@@ -19,7 +19,7 @@
 *                over a year, it loses 365 seconds, which is over 6 minutes.  
 *                This is an example of drift.
 *
-*       Proposito: Quando uma chamada b·sica sleep e usada para determinar o
+*       Proposito: Quando uma chamada b√°sica sleep e usada para determinar o
 *                instante exato em que alguma acao vai ocorrer, ocorre o problema
 *                do desvio. A medicao de tempo e imprecisa. Similarmente, o tempo
 *                que demora o retorno da chamada sleep tambem e impreciso. Ao
@@ -43,18 +43,18 @@
 #include <sys/wait.h>		/* for wait() */
 #include <stdlib.h>
 /*
- * Pergunta 1: o que o compilador gcc faz com o arquivo .h, cujo nome aparece apÛs o include?
-	Resposta: Os arquivos .h s„o bibliotecas, que em sua maioria, est„o em uma pasta de includes. Colocando o include, o gcc vai buscar em qual diretorio est· a biblioteca desejada, consideradas arquivos de sistema, permitindo o uso das funÁıes nelas contidas. … possivel ver o caminho dos arquivos com o comando cpp -v.
+ * Pergunta 1: o que o compilador gcc faz com o arquivo .h, cujo nome aparece ap√≥s o include?
+	Resposta: Os arquivos .h s√£o bibliotecas, que em sua maioria, est√£o em uma pasta de includes. Colocando o include, o gcc vai buscar em qual diretorio est√° a biblioteca desejada, consideradas arquivos de sistema, permitindo o uso das fun√ß√µes nelas contidas. √â possivel ver o caminho dos arquivos com o comando cpp -v.
  */
 
 /*
- * Pergunta 2: apresentar (parcialmente) e explicar o que h· em <stdio.h>
-	Resposta: A bilbioteca <stdio.h> possui diversas funÁıes repons·veis pela entrada e saÌda de dados do programas, como printf() (para a impress„o de informaÁıes e dados na tela) e scanf() (para a entrada de dados no programa). A biblioteca tambÈm possui v·rias definiÁıes para vari·veis e constantes.
+ * Pergunta 2: apresentar (parcialmente) e explicar o que h√° em <stdio.h>
+	Resposta: A bilbioteca <stdio.h> possui diversas fun√ß√µes repons√°veis pela entrada e sa√≠da de dados do programas, como printf() (para a impress√£o de informa√ß√µes e dados na tela) e scanf() (para a entrada de dados no programa). A biblioteca tamb√©m possui v√°rias defini√ß√µes para vari√°veis e constantes.
  */
 
 /*
- * Pergunta 3: qual eh a funcao da diretiva include (linha que comeÁa com #), com relaÁ„o ao compilador?
-	Resposta: Ao usarmos a diretiva include, o compilador adiciona os arquivos, bibliotecas que aparecem apÛs a diretiva.
+ * Pergunta 3: qual eh a funcao da diretiva include (linha que come√ßa com #), com rela√ß√£o ao compilador?
+	Resposta: Ao usarmos a diretiva include, o compilador adiciona os arquivos, bibliotecas que aparecem ap√≥s a diretiva.
  */
 
 /*
@@ -91,9 +91,9 @@
 int main( int argc, char *argv[] )
 {
 /*
- * Pergunta 4: o que s„o e para que servem argc e argv? N„o esqueca de
+ * Pergunta 4: o que s√£o e para que servem argc e argv? N√£o esqueca de
  * considerar o * antes de argv.
-	Resposta: O argcv indica o n˙mero de argumentos que foram passados ao chamar o programa. J· o argv È um vetor que contÈm esses argumentos. Cada string do argv È um dos par‚metros da linha de comando.
+	Resposta: O argc indica o n√∫mero de argumentos que foram passados ao chamar o programa. J√° o argv √© um vetor que cont√©m esses argumentos. Cada string do argv √© um dos par√¢metros da linha de comando.
  */
 	/*
 	 * start_time e stop_time conterao o valor de tempo antes e depois
@@ -170,7 +170,7 @@ int main( int argc, char *argv[] )
 			(drift - NO_OF_ITERATIONS*SLEEP_TIME/MICRO_PER_SECOND)/NO_OF_ITERATIONS);
 		
 		/*
-		 * Pergunta 5: Qual a relaÁ„o: entre SLEEP_TIME e o desvio, nenhuma, direta 
+		 * Pergunta 5: Qual a rela√ß√£o: entre SLEEP_TIME e o desvio, nenhuma, direta 
 		 * ou indiretamente proporcional? 
 			Resposta: Direta.
 		 */
