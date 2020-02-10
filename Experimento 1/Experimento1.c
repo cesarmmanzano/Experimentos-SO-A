@@ -44,7 +44,8 @@
 #include <stdlib.h>
 /*
  * Pergunta 1: o que o compilador gcc faz com o arquivo .h, cujo nome aparece após o include?
-	Resposta:
+	Resposta: Os arquivos .h são bibliotecas, que em sua maioria, estão em uma pasta de
+includes. Colocando o include, o gcc vai buscar em qual diretorio está a biblioteca desejada, consideradas arquivos de sistema. É possivel ver o caminho dos arquivos com o comando cpp -v.
  */
 
 /*
