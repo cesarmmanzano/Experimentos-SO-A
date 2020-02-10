@@ -44,8 +44,7 @@
 #include <stdlib.h>
 /*
  * Pergunta 1: o que o compilador gcc faz com o arquivo .h, cujo nome aparece após o include?
-	Resposta: Os arquivos .h são bibliotecas, que em sua maioria, estão em uma pasta de
-includes. Colocando o include, o gcc vai buscar em qual diretorio está a biblioteca desejada, consideradas arquivos de sistema. É possivel ver o caminho dos arquivos com o comando cpp -v.
+	Resposta: Os arquivos .h são bibliotecas, que em sua maioria, estão em uma pasta de includes. Colocando o include, o gcc vai buscar em qual diretorio está a biblioteca desejada, consideradas arquivos de sistema, permitindo o uso das funções nelas contidas. É possivel ver o caminho dos arquivos com o comando cpp -v.
  */
 
 /*
@@ -166,14 +165,14 @@ int main( int argc, char *argv[] )
 		/*
 		 * Exibe os resultados
 		 */
-		printf("Filho #%d -- desvio total: %.3f -- desvio medio: %.5f\n",
+		printf("Filho #%d -- desvio total: %.8f -- desvio medio: %.8f\n",
 			child_no, drift - NO_OF_ITERATIONS*SLEEP_TIME/MICRO_PER_SECOND,
 			(drift - NO_OF_ITERATIONS*SLEEP_TIME/MICRO_PER_SECOND)/NO_OF_ITERATIONS);
 		
 		/*
 		 * Pergunta 5: Qual a relação: entre SLEEP_TIME e o desvio, nenhuma, direta 
 		 * ou indiretamente proporcional? 
-			Resposta: 
+			Resposta: Direta.
 		 */
 
 	} else {
