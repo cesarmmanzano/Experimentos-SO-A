@@ -115,7 +115,7 @@ int main( int argc, char *argv[] )
 	 * Criacao dos processos filhos
 	 */
 
-	int rtn = 1;
+	pid_t rtn = 1;
 	for( count = 0; count < NO_OF_CHILDREN; count++ ) {
 		if( rtn != 0 ) {
 			rtn = fork();
