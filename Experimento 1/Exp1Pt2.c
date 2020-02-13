@@ -69,7 +69,7 @@
  * pela medida do desvio. 
  */
 
-#define NO_OF_CHILDREN	3
+#define NO_OF_CHILDREN	5
 
 /*
  * SLEEP_TIME corresponde a quantidade de tempo para ficar bloqueado.
