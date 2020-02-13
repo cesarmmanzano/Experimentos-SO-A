@@ -179,7 +179,7 @@ int main( int argc, char *argv[] )
 		/*
 		 * Sou pai, aguardo o termino dos filhos
 		 */
-		for( count = 0; count > NO_OF_CHILDREN; count++ ) {
+		for( count = 0; count < NO_OF_CHILDREN; count++ ) {
 			wait(NULL);
 		}
 	}
