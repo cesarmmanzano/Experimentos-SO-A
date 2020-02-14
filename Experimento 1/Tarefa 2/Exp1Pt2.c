@@ -75,7 +75,7 @@
  * SLEEP_TIME corresponde a quantidade de tempo para ficar bloqueado.
  */
 
-#define SLEEP_TIME 1000
+#define SLEEP_TIME 400
 
 /*
  * MICRO_PER_SECOND define o numero de microsegundos em um segundo
@@ -134,14 +134,19 @@ int main( int argc, char *argv[] )
 	/*
          * Portanto, sou filho. Faco coisas de filho. 
          */
-
-		execvp("./filho", NULL);
+        
+        char exemplo[10];
+        int sleep = SLEEP_TIME;
+        sprintf(exemplo, "%d", sleep);
+        char *teste[] = {exemplo, NULL};
+		execvp("./filho", teste);
 
 	} else {
 		/*
 		 * Sou pai, aguardo o termino dos filhos
 		 */
 		for( count = 0; count < NO_OF_CHILDREN; count++ ) {
+            printf("pai esperando pelo filho");
 			wait(NULL);
 		}
 	}

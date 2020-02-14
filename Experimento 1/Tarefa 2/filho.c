@@ -5,7 +5,7 @@
 #include <sys/types.h>		/* for wait() */
 #include <sys/wait.h>		/* for wait() */
 #include <stdlib.h>
-
+#include <string.h>
 
 #define NO_OF_ITERATIONS	1000
 
@@ -26,20 +26,23 @@ int main( int argc, char *argv[] )
 
 	struct timeval start_time;
 	struct timeval stop_time;
-
+    int temp_sleep = atoi (argv[0]);
+          usleep(temp_sleep);
      
 
       float drift;
       int count;
       int child_no;
-
-	child_no = 3;
+    //child_no++;
+    //printf("%s", *argv);
+	//child_no = 3;
 
 	gettimeofday( &start_time, NULL );
 
 			
 	for( count = 0; count < NO_OF_ITERATIONS; count++ ) {
-		usleep(SLEEP_TIME);
+      usleep(temp_sleep);
+
 	}
 
 		
@@ -49,8 +52,8 @@ int main( int argc, char *argv[] )
 	drift += (stop_time.tv_usec - start_time.tv_usec)/(float)MICRO_PER_SECOND;
 		
 	printf("Filho #%d -- desvio total: %.8f -- desvio medio: %.8f\n",
-		child_no, drift - NO_OF_ITERATIONS*SLEEP_TIME/MICRO_PER_SECOND,
-		(drift - NO_OF_ITERATIONS*SLEEP_TIME/MICRO_PER_SECOND)/NO_OF_ITERATIONS);
+		child_no, drift - NO_OF_ITERATIONS*temp_sleep/MICRO_PER_SECOND,
+		(drift - NO_OF_ITERATIONS*temp_sleep/MICRO_PER_SECOND)/NO_OF_ITERATIONS);
 		
 	exit(0);
 }
