@@ -111,12 +111,12 @@ int main( int argc, char *argv[] )
       int count;
       int child_no;
 
-	//Variáveis para o auxílio na chamada execvp
+	//Variáveis de auxilio
 	int sleep_time = SLEEP_TIME;
 	int no_iterations = NO_OF_ITERATIONS;
 	int micro_second = MICRO_PER_SECOND;
 	
-	//Variáveis para itoa()
+	//Variáveis para sprintf()
 	char buffer_count[20];
 	char buffer_sleep[20];
 	char buffer_iterations[20];
