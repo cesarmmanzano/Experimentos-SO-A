@@ -149,8 +149,9 @@ int main( int argc, char *argv[] )
 		sprintf(buffer_sleep, "%d", sleep_time);
 		sprintf(buffer_iterations, "%d", no_iterations);
 		sprintf(buffer_microSecond, "%d", micro_second);
+		sprintf(buffer_count, "%d", count);
 
-		char *args[] = {"./filho", buffer_sleep, buffer_iterations, buffer_microSecond, NULL};
+		char *args[] = {"./filho", buffer_sleep, buffer_iterations, buffer_microSecond, buffer_count, NULL};
 		execvp(args[0], args);
 
 	} else {

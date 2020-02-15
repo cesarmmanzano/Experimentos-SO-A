@@ -14,13 +14,12 @@ int main( int argc, char *argv[] )
 	struct timeval stop_time;
 
      	float drift;
-      	int count = 3;
       	int child_no;
 
 	int sleep_time = atoi(argv[1]);
 	int no_iterations = atoi(argv[2]);
 	int micro_second = atoi(argv[3]);
-	printf("%d", micro_second);
+	int count = atoi(argv[4]);
 
 	child_no = count;
 
