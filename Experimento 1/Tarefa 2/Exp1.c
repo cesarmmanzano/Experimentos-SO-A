@@ -107,11 +107,11 @@ int main( int argc, char *argv[] )
        * Outras variaveis importantes
        */
 
-      float drift;
+      //float drift;
       int count;
-      int child_no;
+      //int child_no;
 
-	//Variáveis de auxilio
+	//Variáveis para o auxílio na chamada execvp
 	int sleep_time = SLEEP_TIME;
 	int no_iterations = NO_OF_ITERATIONS;
 	int micro_second = MICRO_PER_SECOND;
@@ -121,7 +121,9 @@ int main( int argc, char *argv[] )
 	char buffer_sleep[20];
 	char buffer_iterations[20];
 	char buffer_microSecond[20]; 
-	
+
+	pid_t vet[NO_OF_CHILDREN];
+	int i = 0;
 
 	/*
 	 * Criacao dos processos filhos
@@ -131,6 +133,8 @@ int main( int argc, char *argv[] )
 	for( count = 0; count < NO_OF_CHILDREN; count++ ) {
 		if( rtn != 0 ) {
 			rtn = fork();
+			//vet[i] = rtn;
+			//i++;
 		} else {
 			break;
 		}
@@ -154,12 +158,16 @@ int main( int argc, char *argv[] )
 		char *args[] = {"./filho", buffer_sleep, buffer_iterations, buffer_microSecond, buffer_count, NULL};
 		execvp(args[0], args);
 
+
 	} else {
+		//i=0;
 		/*
 		 * Sou pai, aguardo o termino dos filhos
 		 */
 		for( count = 0; count < NO_OF_CHILDREN; count++ ) {
 			wait(NULL);
+			//kill(vet[i], SIGKILL);
+			//i++;	
 		}
 	}
 
