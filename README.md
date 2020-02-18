@@ -1,1 +1,1 @@
-# Experimentos-SO
+# Experimentos de Sistemas Operacionais (Linux)
