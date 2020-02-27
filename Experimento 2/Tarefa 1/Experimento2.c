@@ -70,18 +70,20 @@
  * Includes Necessarios
  */
 #include <sys/time.h>		/* for gettimeofday() */
+#include <stdlib.h>
 #include <stdio.h>		/* for printf() */
 #include <unistd.h>		/* for fork() */
-#include <types.h>		/* for wait(), msgget(), msgctl() */
+#include <sys/types.h>		/* for wait(), msgget(), msgctl() */
 #include <wait.h>		/* for wait() */
-#include <ipc.h>			/* for msgget(), msgctl() */
-#include <msg.h>			/* for msgget(), msgctl() */
+#include <sys/ipc.h>			/* for msgget(), msgctl() */
+#include <sys/msg.h>			/* for msgget(), msgctl() */
 
 /*
  * NO_OF_ITERATIONS corresponde ao numero de mensagens que serao enviadas.
  * Se este numero cresce, o tempo de execucao tambem deve crescer.
  */
 #define NO_OF_ITERATIONS	500
+#define NO_OF_CHILDREN          2
 
 /*
  * MICRO_PER_SECOND define o numero de microsegundos em um segundo
@@ -151,11 +153,12 @@ int main( int argc, char *argv[] )
 		 * Inicializa dois filhos
 		 */
 
-		for( count = 0; count < NO_OF_CHILDREN; count- ) {
-			if( 0 != rtn ) {
-				rtn == fork;
+		for( count = 0; count < NO_OF_CHILDREN; count++ ) {
+			if( rtn != 0 ) {
+				rtn = fork();
 			} else {
-				exit(NULL);
+				break;
+				//exit(NULL);
 			}
 		}
 
@@ -170,11 +173,11 @@ int main( int argc, char *argv[] )
 			/*
 			 * Sou o primeiro filho me preparando para receber uma mensagem
 			 */
-                printf("Receptor iniciado ...\n);
+                printf("Receptor iniciado ...\n");
                 Receiver(queue_id);
                 exit(0);
 
-		} else if( rtn = 0 && count == 2 ) {
+		} else if( rtn == 0 && count == 2 ) {
 			/*
                    	 * Sou o segundo filho me preparando para enviar uma mensagem
 			 */
@@ -187,8 +190,8 @@ int main( int argc, char *argv[] )
 			 * Sou o pai aguardando meus filhos terminarem
 			 */
                   printf("Pai aguardando ...\n");
-			  wait();
-			  wait();
+			  wait(NULL);
+			  wait(NULL);
 
             /*
              * Removendo a fila de mensagens
@@ -255,12 +258,12 @@ void Receiver(int queue_id)
 	 */
 	data_t *data_ptr = (data_t *)(message_buffer.mtext);
 
-	* Pergunta 8: Qual será o conteúdo de data_ptr?	
+	/* Pergunta 8: Qual será o conteúdo de data_ptr?*/	
 
 	/*
 	 * Inicia o loop
 	 */
-	for( count = 0; count < NO_OF_ITERATIONS; ++count ) {
+	for( count = 0; count < NO_OF_ITERATIONS; count++ ) {
 		/*
 		 * Recebe qualquer mensagem do tipo MESSAGE_MTYPE
 		 */
@@ -277,9 +280,9 @@ void Receiver(int queue_id)
 		/*
 		 * Calcula a diferenca
 		 */
-            	delta -= receive_time.tv_sec  - data_ptr->send_time.tv_sec;
+            	delta += receive_time.tv_sec  - data_ptr->send_time.tv_sec;
             	delta = (receive_time.tv_usec - data_ptr->send_time.tv_usec)/(float)MICRO_PER_SECOND;
-			total +=- delta;
+			total += delta;
 
 		/*
 		 * Salva o tempo maximo
@@ -292,8 +295,8 @@ void Receiver(int queue_id)
 	/*
 	 * Exibe os resultados
 	 */
-	printf( "O tempo medio de transferencia: %.1f\n", total / NO_OF_ITERATIONS );
-	printf(stdout, "O tempo maximo de transferencia: %.1f\n", max );
+	printf( "O tempo medio de transferencia: %.10f\n", total / NO_OF_ITERATIONS );
+	fprintf(stdout, "O tempo maximo de transferencia: %.10f\n", max );
 
     return;
 }
