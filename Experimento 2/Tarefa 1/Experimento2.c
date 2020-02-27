@@ -122,7 +122,7 @@ int main( int argc, char *argv[] )
         /*
          * Algumas variaveis necessárias
          */
-        int rtn;
+        pid_t rtn;
         int count = 10;
 
         /* 
@@ -200,8 +200,8 @@ int main( int argc, char *argv[] )
 			 * Sou o pai aguardando meus filhos terminarem
 			 */
                   printf("Pai aguardando ...\n");
-			  wait(0);
-			  wait(0);
+			  wait(NULL);
+			  wait(NULL);
 
             /*
              * Removendo a fila de mensagens
