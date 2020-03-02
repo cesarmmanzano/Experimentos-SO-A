@@ -147,18 +147,18 @@ int main( int argc, char *argv[] )
 		   Pergunta 3: Para que serve o arquivo stderr? 
 		   Resposta:O erro padrão é um tipo de saída padrão, é utilizada pelos programas para envio de mensagens de erro ou de diagnóstico. 			Este fluxo é independente da saída padrão e pode ser redirecionado separadamente. O destino usual é o terminal de texto onde o 			programa foi executado, para que haja uma grande chance da saída ser observada mesmo que a "saída padrão" tenha sido redirecionada (e 			portanto não observável prontamente). Por exemplo, a saída de um programa em uma canalização Unix é redirecionada para a entrada do 			próximo programa, mas os erros de cada um deles continuam sendo direcionados ao terminal de texto. É aceitável, e até normal, que a 			"saída padrão" e o "erro padrão" sejam direcionados para o mesmo destino, como um terminal de texto. As mensagens aparecem na mesma 			ordem em que o programa as escreve. O descritor de arquivo para o erro padrão é 2; a variável correspondente na biblioteca stdio.h é 			FILE *stderr.
 
+
 	 	 Pergunta 4: Caso seja executada a chamada fprintf com o handler stderr, onde aparecerá o seu resultado? 
-		   Resposta:
+		   Resposta: Será apresentado no prompt de saída.
+
 
 		 Pergunta 5: Onde stderr foi declarado?
 		   Resposta: Na biblioteca <stdio. h>. 
 		 
-
 		
 		 Pergunta 6: Explicar o que são e para que servem stdin e stdout.
-		   Resposta: 
+		   Resposta: Stdin é a entrada padrão que normalmente é o teclado e o Stdout é a saída padrão que regularmente é o monitor.
  		 
-
 		/*
 		 * Inicializa dois filhos
 		 */
@@ -213,7 +213,10 @@ int main( int argc, char *argv[] )
 	    /*
 	     * Pergunta 7: O que ocorre com a fila de mensagens, se ela não é removida e os
 	     * processos terminam?
+	       Resposta: A fila de mensagens fica retida, apenas ocupando espaço de memória, sendo necessário mandar o comando ipcrm para remover.
  	     */
+
+
             exit(0);
 		}
 }
