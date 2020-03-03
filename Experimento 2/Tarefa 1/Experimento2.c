@@ -162,7 +162,8 @@ int main( int argc, char *argv[] )
 		/*
 		 * Inicializa dois filhos
 		 */
-
+		
+		rtn = 1;
 		for( count = 0; count < NO_OF_CHILDREN; count++ ) {
 			if( rtn != 0 ) {
 				rtn = fork();
