@@ -83,7 +83,6 @@
  * Se este numero cresce, o tempo de execucao tambem deve crescer.
  */
 #define NO_OF_ITERATIONS	500
-#define NO_OF_CHILDREN          2
 
 /*
  * MICRO_PER_SECOND define o numero de microsegundos em um segundo
@@ -106,6 +105,7 @@
 /*
  * Filhos
  */
+#define NO_OF_CHILDREN          2
 void Receiver(int queue_id);
 
 void Sender(int queue_id);
@@ -158,14 +158,13 @@ int main( int argc, char *argv[] )
 		/*
 		 * Inicializa dois filhos
 		 */
-		
+
 		rtn = 1;
 		for( count = 0; count < NO_OF_CHILDREN; count++ ) {
 			if( rtn != 0 ) {
 				rtn = fork();
 			} else {
 				break;
-				//exit(NULL);
 			}
 		}
 
@@ -180,7 +179,8 @@ int main( int argc, char *argv[] )
 			/*
 			 * Sou o primeiro filho me preparando para receber uma mensagem
 			 */
-                printf("Receptor iniciado ...\n");
+                //printf("Receptor iniciado ...\n");
+		printf("Pid do Receptor: %d\n", getpid());
                 Receiver(queue_id);
                 exit(0);
 
@@ -188,7 +188,8 @@ int main( int argc, char *argv[] )
 			/*
                    	 * Sou o segundo filho me preparando para enviar uma mensagem
 			 */
-                printf("Emissor iniciado ...\n");
+                //printf("Emissor iniciado ...\n");
+		printf("Pid do Emissor: %d\n\n", getpid());			
                 Sender(queue_id);
                 exit(0);
 
@@ -196,7 +197,7 @@ int main( int argc, char *argv[] )
 			/*
 			 * Sou o pai aguardando meus filhos terminarem
 			 */
-                  printf("Pai aguardando ...\n");
+                  //printf("Pai aguardando ...\n");
 			  wait(NULL);
 			  wait(NULL);
 
