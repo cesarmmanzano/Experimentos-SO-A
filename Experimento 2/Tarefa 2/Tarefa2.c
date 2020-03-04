@@ -132,7 +132,7 @@ int main( int argc, char *argv[] )
          */
         int queue_id;
 	int queue_id_2;
-        key_t key_1 = MESSAGE_QUEUE_ID_1;
+        key_t key = MESSAGE_QUEUE_ID_1;
 	key_t key_2 = MESSAGE_QUEUE_ID_2;
 	
 
@@ -145,20 +145,6 @@ int main( int argc, char *argv[] )
 	msg_size *= 512;
 	
 
-        /*
-         * Cria a fila de mensagens
-         */
-        if( (queue_id = msgget(key_1, IPC_CREAT | 0666)) == -1 ) {
-			fprintf(stderr,"Impossivel criar a fila de mensagens!\n");
-			exit(1);
-		}
-
-	/*
-	if( (queue_id_2 = msgget(key_2, IPC_CREAT | 0666)) == -1 ) {
-			fprintf(stderr,"Impossivel criar a fila de mensagens!\n");
-			exit(1);
-		}
-	*/
 		
 		/*
 		   Pergunta 2: O que significa cada um dos dígitos 0666?
@@ -175,7 +161,8 @@ int main( int argc, char *argv[] )
 		
 		 Pergunta 6: Explicar o que são e para que servem stdin e stdout.
 		   Resposta: Stdin é a entrada padrão que normalmente é o teclado e o Stdout é a saída padrão que regularmente é o monitor.
- 		 
+ 		 */
+
 		/*
 		 * Inicializa dois filhos
 		 */
@@ -185,7 +172,6 @@ int main( int argc, char *argv[] )
 				rtn = fork();
 			} else {
 				break;
-				//exit(NULL);
 			}
 		}
 
@@ -195,41 +181,54 @@ int main( int argc, char *argv[] )
 		 * OBS:  o valor de count no loop anterior indicara cada um dos filhos
 		 *       count = 1 para o primeiro filho, 2 para o segundo, etc.
 		 */
-		if( rtn == 0 && count == 1 ) {
 
-			/*
-			 * Sou o primeiro filho me preparando para receber uma mensagem
-			 */
-                //printf("Receptor iniciado ...\n");
-		//printf("%d\n", getpid());
-                Receiver(queue_id);
-                exit(0);
-
-		} else if( rtn == 0 && count == 2 ) {
-			/*
-                   	 * Sou o segundo filho me preparando para enviar uma mensagem
-			 */
-                //printf("Emissor iniciado ...\n");
-		//printf("%d\n", getpid());
-                Sender(queue_id);
-                exit(0);
-
-		} else {
-			/*
-			 * Sou o pai aguardando meus filhos terminarem
-			 */
-                  	//printf("Pai aguardando ...\n");
-			  wait(NULL);
-			  wait(NULL);
-			//wait(NULL);
-
-            /*
-             * Removendo a fila de mensagens
-             */
-            if( msgctl(queue_id,IPC_RMID,NULL) == -1 ) {
-				fprintf(stderr,"Impossivel remover a fila!\n");
+		if (rtn == 0){
+		       /*
+         		* Cria a fila de mensagens
+         		*/
+        		if( (queue_id = msgget(key, IPC_CREAT | 0666)) == -1 ) {
+				fprintf(stderr,"Impossivel criar a fila de mensagens!\n");
 				exit(1);
 			}
+
+			/*
+			if( (queue_id_2 = msgget(key_2, IPC_CREAT | 0666)) == -1 ) {
+				fprintf(stderr,"Impossivel criar a fila de mensagens!\n");
+				exit(1);
+			}
+			*/
+			
+			switch(count){
+				case 1:
+					Receiver(queue_id);
+					
+					/*
+             				 * Removendo a fila de mensagens
+            				 */
+            				if( msgctl(queue_id,IPC_RMID,NULL) == -1 ) {
+						fprintf(stderr,"Impossivel remover a fila!\n");
+						exit(1);
+					}
+
+					exit(0);
+					break;
+
+				case 2:
+					Sender(queue_id);
+					exit(0);
+					break;
+				//case 3:
+					//Receiver();
+					//exit(0);
+			}
+
+		}else{
+			wait(NULL);
+			wait(NULL);
+			//wait(NULL);
+		}
+		
+
 	    /*
 	     * Pergunta 7: O que ocorre com a fila de mensagens, se ela não é removida e os
 	     * processos terminam?
@@ -238,8 +237,8 @@ int main( int argc, char *argv[] )
 
 
             exit(0);
-		}
 }
+
 
 /*
  * O tipo de dados seguinte pode ser usado para declarar uma estrutura que
