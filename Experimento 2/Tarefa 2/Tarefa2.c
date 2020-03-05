@@ -95,7 +95,7 @@
  * ao mesmo tempo, o numero pode ter que ser mudado!
  */
 #define MESSAGE_QUEUE_ID_1	3102
-#define MESSAGE_QUEUE_ID_2	3000
+#define MESSAGE_QUEUE_ID_2	3103
 
 /*
  * Constantes
@@ -107,9 +107,9 @@
  * Filhos
  */
 #define NO_OF_CHILDREN 3
-void Receiver_1(int queue_id, int queue_id_2, int msg_size);
+void Receiver_1(int queue_id_1, int queue_id_2, int msg_size);
 void Receiver_2(int queue_id_2, int msg_size);
-void Sender(int queue_id, int msg_size);
+void Sender(int queue_id_1, int msg_size);
 
 /*
  * Pergunta 1: O que eh um protótipo? Por qual motivo eh usado?
@@ -130,9 +130,10 @@ int main( int argc, char *argv[] )
         /* 
          * Variaveis relativas a fila, id e key
          */
-        int queue_id;
+        int queue_id_1;
 	int queue_id_2;
-        key_t key = MESSAGE_QUEUE_ID_1;
+
+        key_t key_1 = MESSAGE_QUEUE_ID_1;
 	key_t key_2 = MESSAGE_QUEUE_ID_2;
 	
 
@@ -148,13 +149,15 @@ int main( int argc, char *argv[] )
 		
 		/*
 		   Pergunta 2: O que significa cada um dos dígitos 0666?
-		   Resposta:São um conjunto de flags que neste caso são "IPC_CREAT" e "0666" em conjunto. "IPC_CREAT" diz que se quer criar a fila e 			ela não existe "0666" são as permissões de acesso do Unix (permissão de leitura e escrita para todos).  Agora em relação a cada dígito 			desta permissão, o 0 no início define que o número é um octal, o segundo campo é o "suid" que disponibiliza uma permissão especial 			onde rquivos executáveis que possuam a permissão suid serão executados em nome do dono do arquivo, e não em nome de quem os executou. 			No segundo campo tempos o sgid que de maneira semelhante, a permissão atua em diretórios. A permissão sgid é uma permissão de grupo, 			portanto aparece no campo de permissões referente ao grupo.
-		   Num diretório com a permissão sgid, todos os arquivos criados pertencerão ao grupo do diretório em questão, o que é especialmente 			útil em diretórios com o qual trabalham um grupo de usuários pertencentes ao mesmo grupo. E o terceiro campo depois do 0 é a permissao 			sticky que inibe usuários de apagarem arquivos que não tenham sido criados por eles mesmos. O número 6 ativa as permissões suid e sgid 			e não ativa o stick, e por isso temos 0666.
+		   Resposta:São um conjunto de flags que neste caso são "IPC_CREAT" e "0666" em conjunto. "IPC_CREAT" diz que se quer criar a fila e ela não existe "0666" são as permissões de acesso do Unix (permissão de leitura e escrita para todos). Agora em relação a cada dígito desta permissão, o 0 no início define que o número é um octal, o segundo campo é o "suid" que disponibiliza uma permissão especial onde rquivos executáveis que possuam a permissão suid serão executados em nome do dono do arquivo, e não em nome de quem os executou. No segundo campo tempos o sgid que de maneira semelhante, a permissão atua em diretórios. A permissão sgid é uma permissão de grupo, portanto aparece no campo de permissões referente ao grupo.
+			Num diretório com a permissão sgid, todos os arquivos criados pertencerão ao grupo do diretório em questão, o que é especialmente útil em diretórios com o qual trabalham um grupo de usuários pertencentes ao mesmo grupo. E o terceiro campo depois do 0 é a permissao sticky que inibe usuários de apagarem arquivos que não tenham sido criados por eles mesmos. O número 6 ativa as permissões suid e sgid e não ativa o stick, e por isso temos 0666.
 	
 		   Pergunta 3: Para que serve o arquivo stderr? 
-		   Resposta:O erro padrão é um tipo de saída padrão, é utilizada pelos programas para envio de mensagens de erro ou de diagnóstico. 			Este fluxo é independente da saída padrão e pode ser redirecionado separadamente. O destino usual é o terminal de texto onde o 			programa foi executado, para que haja uma grande chance da saída ser observada mesmo que a "saída padrão" tenha sido redirecionada (e 			portanto não observável prontamente). Por exemplo, a saída de um programa em uma canalização Unix é redirecionada para a entrada do 			próximo programa, mas os erros de cada um deles continuam sendo direcionados ao terminal de texto. É aceitável, e até normal, que a 			"saída padrão" e o "erro padrão" sejam direcionados para o mesmo destino, como um terminal de texto. As mensagens aparecem na mesma 			ordem em que o programa as escreve. O descritor de arquivo para o erro padrão é 2; a variável correspondente na biblioteca stdio.h é 			FILE *stderr.
-	 	 Pergunta 4: Caso seja executada a chamada fprintf com o handler stderr, onde aparecerá o seu resultado? 
+		   Resposta:O erro padrão é um tipo de saída padrão, é utilizada pelos programas para envio de mensagens de erro ou de diagnóstico. Este fluxo é independente da saída padrão e pode ser redirecionado separadamente. O destino usual é o terminal de texto onde o programa foi executado, para que haja uma grande chance da saída ser observada mesmo que a "saída padrão" tenha sido redirecionada (e portanto não observável prontamente). Por exemplo, a saída de um programa em uma canalização Unix é redirecionada para a entrada do próximo programa, mas os erros de cada um deles continuam sendo direcionados ao terminal de texto. É aceitável, e até normal, que a "saída padrão" e o "erro padrão" sejam direcionados para o mesmo destino, como um terminal de texto. As mensagens aparecem na mesma ordem em que o programa as escreve. O descritor de arquivo para o erro padrão é 2; a variável correspondente na biblioteca stdio.h é FILE *stderr.
+	 	 
+		Pergunta 4: Caso seja executada a chamada fprintf com o handler stderr, onde aparecerá o seu resultado? 
 		   Resposta: Será apresentado no prompt de saída.
+
 		 Pergunta 5: Onde stderr foi declarado?
 		   Resposta: Na biblioteca <stdio. h>. 
 		 
@@ -186,7 +189,7 @@ int main( int argc, char *argv[] )
 		       /*
          		* Cria a fila de mensagens
          		*/
-        		if( (queue_id = msgget(key, IPC_CREAT | 0666)) == -1 ) {
+        		if( (queue_id_1 = msgget(key_1, IPC_CREAT | 0666)) == -1 ) {
 				fprintf(stderr,"Impossivel criar a fila de mensagens!\n");
 				exit(1);
 			}
@@ -200,12 +203,12 @@ int main( int argc, char *argv[] )
 			
 			switch(count){
 				case 1:
-					Receiver_1(queue_id, queue_id_2, msg_size);
+					Receiver_1(queue_id_1, queue_id_2, msg_size);
 					
 					/*
              				 * Removendo a fila de mensagens
             				 */
-            				if( msgctl(queue_id,IPC_RMID,NULL) == -1 ) {
+            				if( msgctl(queue_id_1,IPC_RMID,NULL) == -1 ) {
 						fprintf(stderr,"Impossivel remover a fila!\n");
 						exit(1);
 					}
@@ -214,7 +217,7 @@ int main( int argc, char *argv[] )
 					break;
 
 				case 2:
-					Receiver_2(queue_id, msg_size);
+					Receiver_2(queue_id_2, msg_size);
 
 					if( msgctl(queue_id_2,IPC_RMID,NULL) == -1 ) {
 						fprintf(stderr,"Impossivel remover a fila!\n");
@@ -224,7 +227,7 @@ int main( int argc, char *argv[] )
 					exit(0);
 					break;
 				case 3:
-					Sender(queue_id, msg_size);
+					Sender(queue_id_1, msg_size);
 					exit(0);
 					break;
 			}
@@ -285,7 +288,7 @@ typedef struct {
 /*
  * Esta funcao executa o recebimento das mensagens
  */
-void Receiver_1(int queue_id, int queue_id_2, int msg_size)
+void Receiver_1(int queue_id_1, int queue_id_2, int msg_size)
 {
 
 	/*
@@ -295,17 +298,13 @@ void Receiver_1(int queue_id, int queue_id_2, int msg_size)
 	struct timeval receive_time;
 	float delta;
 	float max = 0;
-	float min = 9999999999999;
+	float min = 99999;
 	float total = 0;
 
 	/*
 	 * Este eh o buffer para receber a mensagem
 	 */
 	msgbuf_t message_buffer;
-	
-	/* Struct dos tempos*/
-	times time;
-	time.total = 0;
 	
 
 	/*
@@ -314,6 +313,10 @@ void Receiver_1(int queue_id, int queue_id_2, int msg_size)
 	 */
 	data_t *data_ptr = (data_t *)(message_buffer.mtext);
 
+	/* Para podermos enivar os dados de tempo para o segundo receiver */
+	times *data_ptr_2 = (times *)(message_buffer.mtext);
+
+	
 	/* Pergunta 8: Qual será o conteúdo de data_ptr?*/	
 
 	/*
@@ -323,7 +326,7 @@ void Receiver_1(int queue_id, int queue_id_2, int msg_size)
 		/*
 		 * Recebe qualquer mensagem do tipo MESSAGE_MTYPE
 		 */
-		if( msgrcv(queue_id,(struct msgbuf *)&message_buffer,msg_size,MESSAGE_MTYPE,0) == -1 ) {
+		if( msgrcv(queue_id_1,(struct msgbuf_t *)&message_buffer,msg_size,MESSAGE_MTYPE,0) == -1 ) {
 			fprintf(stderr, "Impossivel receber mensagem!\n");
 			exit(1);
 		}
@@ -338,7 +341,7 @@ void Receiver_1(int queue_id, int queue_id_2, int msg_size)
 		 */
             	delta = receive_time.tv_sec  - data_ptr->send_time.tv_sec;
             	delta += (receive_time.tv_usec - data_ptr->send_time.tv_usec)/(float)MICRO_PER_SECOND;
-		time.total += delta;
+		total += delta;
 		
 
 		/*
@@ -353,28 +356,38 @@ void Receiver_1(int queue_id, int queue_id_2, int msg_size)
 		}
 		
 	}
+	
+	/*
+	 * Apronta os dados
+	 */
+	message_buffer.mtype = MESSAGE_MTYPE;
+	data_ptr_2->total = total;
+	data_ptr_2->max = max;
+	data_ptr_2->min = min;
+
 
 	/*
 	 * Exibe os resultados
 	 */
-
-	printf("Tempo total: %f\n", time.total);
-	printf( "O tempo medio de transferencia: %.10f\n", time.total / NO_OF_ITERATIONS );
-	fprintf(stdout, "O tempo maximo de transferencia: %.10f\n", max );
-	fprintf(stdout, "O tempo minimo de transferencia: %.10f\n", min );
+	printf("O tempo total de transferencia: %.10f\n", data_ptr_2->total);
+	printf("O tempo medio de transferencia: %.10f\n", data_ptr_2->total / NO_OF_ITERATIONS );
+	fprintf(stdout, "O tempo maximo de transferencia: %.10f\n", data_ptr_2->max );
+	fprintf(stdout, "O tempo minimo de transferencia: %.10f\n", data_ptr_2->min );
 
 
     return;
 }
 
-void Receiver_2(int queue_id_2, int msg_size){
+
+void Receiver_2(int queue_id_2, int msg_size)
+{
 	return;
 }
 
 /*
  * Esta funcao envia mensagens
  */
-void Sender(int queue_id, int msg_size)
+void Sender(int queue_id_1, int msg_size)
 {
 	/*
 	 * Variaveis locais
@@ -413,7 +426,7 @@ void Sender(int queue_id, int msg_size)
 		 * Envia a mensagem... usa a identificacao da fila, um ponteiro
 		 * para o buffer, e o tamanho dos dados enviados
 		 */
-		if( msgsnd(queue_id,(struct msgbuf *)&message_buffer,msg_size,0) == -1 ) {
+		if( msgsnd(queue_id_1,(struct msgbuf_t *)&message_buffer,msg_size,0) == -1 ) {
 			fprintf(stderr, "Impossivel enviar mensagem!\n");
 			exit(1);
 		}
