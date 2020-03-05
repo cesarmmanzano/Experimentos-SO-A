@@ -106,9 +106,9 @@
 /*
  * Filhos
  */
-#define NO_OF_CHILDREN 2
-//void Receiver(int queue_id)
-void Receiver(int queue_id, int msg_size);
+#define NO_OF_CHILDREN 3
+void Receiver_1(int queue_id, int queue_id_2, int msg_size);
+void Receiver_2(int queue_id_2, int msg_size);
 void Sender(int queue_id, int msg_size);
 
 /*
@@ -200,7 +200,7 @@ int main( int argc, char *argv[] )
 			
 			switch(count){
 				case 1:
-					Receiver(queue_id, msg_size);
+					Receiver_1(queue_id, queue_id_2, msg_size);
 					
 					/*
              				 * Removendo a fila de mensagens
@@ -214,25 +214,32 @@ int main( int argc, char *argv[] )
 					break;
 
 				case 2:
+					Receiver_2(queue_id, msg_size);
+
+					if( msgctl(queue_id_2,IPC_RMID,NULL) == -1 ) {
+						fprintf(stderr,"Impossivel remover a fila!\n");
+						exit(1);
+					}
+
+					exit(0);
+					break;
+				case 3:
 					Sender(queue_id, msg_size);
 					exit(0);
 					break;
-				//case 3:
-					//Receiver();
-					//exit(0);
 			}
 
 		}else{
 			wait(NULL);
 			wait(NULL);
-			//wait(NULL);
+			wait(NULL);
 		}
 		
 
 	    /*
 	     * Pergunta 7: O que ocorre com a fila de mensagens, se ela não é removida e os
 	     * processos terminam?
-	       Resposta: A fila de mensagens fica retida, apenas ocupando espaço de memória, sendo necessário mandar o comando ipcrm para remover.
+	       Resposta: A fila de mensagens fica retida, apenas ocupando espaço de memória, sendo necessário mandar o comando ipcrm para 			remover.
  	     */
 
 
@@ -251,6 +258,8 @@ typedef struct {
 	struct timeval send_time;
 } data_t; 
 
+
+
 /* 
  * O conteudo de uma estrutura com o seguinte tipo de dados sera enviado 
  * atraves da fila de mensagens. O tipo define dois dados.  O primeiro eh
@@ -262,13 +271,21 @@ typedef struct {
  */
 typedef struct {
 	long mtype;
-	char mtext[sizeof(data_t)];
+	char mtext[5120];
 } msgbuf_t;
+
+
+/*Struct que contem os tempos a serem calculados*/
+typedef struct {
+	float total;
+	float max;
+	float min;
+} times;
 
 /*
  * Esta funcao executa o recebimento das mensagens
  */
-void Receiver(int queue_id, int msg_size)
+void Receiver_1(int queue_id, int queue_id_2, int msg_size)
 {
 
 	/*
@@ -278,12 +295,18 @@ void Receiver(int queue_id, int msg_size)
 	struct timeval receive_time;
 	float delta;
 	float max = 0;
+	float min = 9999999999999;
 	float total = 0;
 
 	/*
 	 * Este eh o buffer para receber a mensagem
 	 */
 	msgbuf_t message_buffer;
+	
+	/* Struct dos tempos*/
+	times time;
+	time.total = 0;
+	
 
 	/*
 	 * Este e o ponteiro para os dados no buffer.  Note
@@ -315,7 +338,8 @@ void Receiver(int queue_id, int msg_size)
 		 */
             	delta = receive_time.tv_sec  - data_ptr->send_time.tv_sec;
             	delta += (receive_time.tv_usec - data_ptr->send_time.tv_usec)/(float)MICRO_PER_SECOND;
-		total += delta;
+		time.total += delta;
+		
 
 		/*
 		 * Salva o tempo maximo
@@ -323,15 +347,28 @@ void Receiver(int queue_id, int msg_size)
 		if( delta > max ) {
 			max = delta;
 		}
+
+		if( delta < min ) {
+			min = delta;
+		}
+		
 	}
 
 	/*
 	 * Exibe os resultados
 	 */
-	printf( "O tempo medio de transferencia: %.10f\n", total / NO_OF_ITERATIONS );
+
+	printf("Tempo total: %f\n", time.total);
+	printf( "O tempo medio de transferencia: %.10f\n", time.total / NO_OF_ITERATIONS );
 	fprintf(stdout, "O tempo maximo de transferencia: %.10f\n", max );
+	fprintf(stdout, "O tempo minimo de transferencia: %.10f\n", min );
+
 
     return;
+}
+
+void Receiver_2(int queue_id_2, int msg_size){
+	return;
 }
 
 /*
