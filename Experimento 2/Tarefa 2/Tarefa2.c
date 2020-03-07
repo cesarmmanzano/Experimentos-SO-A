@@ -157,7 +157,6 @@ int main( int argc, char *argv[] )
 	 	 
 		Pergunta 4: Caso seja executada a chamada fprintf com o handler stderr, onde aparecerá o seu resultado? 
 		   Resposta: Será apresentado no prompt de saída.
-
 		 Pergunta 5: Onde stderr foi declarado?
 		   Resposta: Na biblioteca <stdio. h>. 
 		 
@@ -341,14 +340,14 @@ void Receiver_1(int queue_id_1, int queue_id_2, int msg_size)
 		 */
             	delta = receive_time.tv_sec  - data_ptr->send_time.tv_sec;
             	delta += (receive_time.tv_usec - data_ptr->send_time.tv_usec)/(float)MICRO_PER_SECOND;
-		total += delta;
-		
+		total += delta;		
 
 		/*
 		 * Salva o tempo maximo
 		 */
 		if( delta > max ) {
 			max = delta;
+			data_ptr_2->max = delta;
 		}
 
 		if( delta < min ) {
@@ -366,6 +365,27 @@ void Receiver_1(int queue_id_1, int queue_id_2, int msg_size)
 	data_ptr_2->min = min;
 
 
+	if( msgsnd(queue_id_2,(struct msgbuf_t *)&message_buffer,msg_size,0) == -1 ) {
+		fprintf(stderr, "Impossivel enviar mensagem!\n");
+		exit(1);
+	}
+	
+
+    return;
+}
+
+
+void Receiver_2(int queue_id_2, int msg_size)
+{
+	
+	msgbuf_t message_buffer;
+	times *data_ptr_2 = (times *)(message_buffer.mtext);
+
+	if( msgrcv(queue_id_2,(struct msgbuf_t *)&message_buffer,msg_size,MESSAGE_MTYPE,0) == -1 ) {
+		fprintf(stderr, "Impossivel receber mensagem!\n");
+		exit(1);
+	}
+
 	/*
 	 * Exibe os resultados
 	 */
@@ -374,13 +394,6 @@ void Receiver_1(int queue_id_1, int queue_id_2, int msg_size)
 	fprintf(stdout, "O tempo maximo de transferencia: %.10f\n", data_ptr_2->max );
 	fprintf(stdout, "O tempo minimo de transferencia: %.10f\n", data_ptr_2->min );
 
-
-    return;
-}
-
-
-void Receiver_2(int queue_id_2, int msg_size)
-{
 	return;
 }
 
