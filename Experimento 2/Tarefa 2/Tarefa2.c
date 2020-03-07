@@ -347,7 +347,6 @@ void Receiver_1(int queue_id_1, int queue_id_2, int msg_size)
 		 */
 		if( delta > max ) {
 			max = delta;
-			data_ptr_2->max = delta;
 		}
 
 		if( delta < min ) {
