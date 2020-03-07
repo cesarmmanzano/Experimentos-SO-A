@@ -1,0 +1,60 @@
+Digite o tamanho da mensagem (de 1 a 10): 1    
+O tempo total de transferencia: 0.0026680126                      
+O tempo medio de transferencia: 0.0000053360
+O tempo maximo de transferencia: 0.0000710000
+O tempo minimo de transferencia: 0.0000030000
+
+Digite o tamanho da mensagem (de 1 a 10): 2
+O tempo total de transferencia: 0.0024850108
+O tempo medio de transferencia: 0.0000049700
+O tempo maximo de transferencia: 0.0000570000
+O tempo minimo de transferencia: 0.0000030000
+
+Digite o tamanho da mensagem (de 1 a 10): 3
+O tempo total de transferencia: 0.0026250121
+O tempo medio de transferencia: 0.0000052500
+O tempo maximo de transferencia: 0.0000770000
+O tempo minimo de transferencia: 0.0000030000
+
+Digite o tamanho da mensagem (de 1 a 10): 4    
+O tempo total de transferencia: 0.0025220104
+O tempo medio de transferencia: 0.0000050440
+O tempo maximo de transferencia: 0.0000570000
+O tempo minimo de transferencia: 0.0000030000
+
+Digite o tamanho da mensagem (de 1 a 10): 5
+O tempo total de transferencia: 0.0026990112
+O tempo medio de transferencia: 0.0000053980
+O tempo maximo de transferencia: 0.0000590000
+O tempo minimo de transferencia: 0.0000030000
+
+Digite o tamanho da mensagem (de 1 a 10): 6
+O tempo total de transferencia: 0.0026640114
+O tempo medio de transferencia: 0.0000053280
+O tempo maximo de transferencia: 0.0001220000
+O tempo minimo de transferencia: 0.0000030000
+
+Digite o tamanho da mensagem (de 1 a 10): 7
+O tempo total de transferencia: 0.0025610109
+O tempo medio de transferencia: 0.0000051220
+O tempo maximo de transferencia: 0.0000560000
+O tempo minimo de transferencia: 0.0000030000
+
+Digite o tamanho da mensagem (de 1 a 10): 8
+O tempo total de transferencia: 0.0028090125
+O tempo medio de transferencia: 0.0000056180
+O tempo maximo de transferencia: 0.0000700000
+O tempo minimo de transferencia: 0.0000040000
+
+Digite o tamanho da mensagem (de 1 a 10): 9
+O tempo total de transferencia: 0.0030410120
+O tempo medio de transferencia: 0.0000060820
+O tempo maximo de transferencia: 0.0000610000
+O tempo minimo de transferencia: 0.0000040000
+
+Digite o tamanho da mensagem (de 1 a 10): 10
+O tempo total de transferencia: 0.0028020116
+O tempo medio de transferencia: 0.0000056040
+O tempo maximo de transferencia: 0.0000610000
+O tempo minimo de transferencia: 0.0000040000
+
