@@ -103,6 +103,7 @@
 #define SENDER_DELAY_TIME	10
 #define MESSAGE_MTYPE		1
 
+#define MAX_MSGSZ 5120
 /*
  * Filhos
  */
@@ -273,7 +274,7 @@ typedef struct {
  */
 typedef struct {
 	long mtype;
-	char mtext[5120];
+	char mtext[MAX_MSGSZ];
 } msgbuf_t;
 
 
