@@ -102,8 +102,8 @@
  */
 #define SENDER_DELAY_TIME	10
 #define MESSAGE_MTYPE		1
+#define MAX_MSGSZ 		5120
 
-#define MAX_MSGSZ 5120
 /*
  * Filhos
  */
@@ -259,6 +259,12 @@ int main( int argc, char *argv[] )
 typedef struct {
 	unsigned int msg_no;
 	struct timeval send_time;
+	
+	/* Variáveis dos tempos a serem calculaods*/
+	float total;
+	float max;
+	float min;
+
 } data_t; 
 
 
@@ -276,14 +282,6 @@ typedef struct {
 	long mtype;
 	char mtext[MAX_MSGSZ];
 } msgbuf_t;
-
-
-/*Struct que contem os tempos a serem calculados*/
-typedef struct {
-	float total;
-	float max;
-	float min;
-} times;
 
 /*
  * Esta funcao executa o recebimento das mensagens
@@ -313,11 +311,8 @@ void Receiver_1(int queue_id_1, int queue_id_2, int msg_size)
 	 */
 	data_t *data_ptr = (data_t *)(message_buffer.mtext);
 
-	/* Para podermos enivar os dados de tempo para o segundo receiver */
-	times *data_ptr_2 = (times *)(message_buffer.mtext);
-
 	
-	/* Pergunta 8: Qual será o conteúdo de data_ptr?*/	
+	/* Pergunta 8: Qual será o conteúdo de data_ptr? */	
 
 	/*
 	 * Inicia o loop
@@ -350,6 +345,9 @@ void Receiver_1(int queue_id_1, int queue_id_2, int msg_size)
 			max = delta;
 		}
 
+		/*
+		 * Salva o tempo minimo
+		 */
 		if( delta < min ) {
 			min = delta;
 		}
@@ -360,10 +358,9 @@ void Receiver_1(int queue_id_1, int queue_id_2, int msg_size)
 	 * Apronta os dados
 	 */
 	message_buffer.mtype = MESSAGE_MTYPE;
-	data_ptr_2->total = total;
-	data_ptr_2->max = max;
-	data_ptr_2->min = min;
-
+	data_ptr->total = total;
+	data_ptr->max = max;
+	data_ptr->min = min;
 
 	if( msgsnd(queue_id_2,(struct msgbuf_t *)&message_buffer,msg_size,0) == -1 ) {
 		fprintf(stderr, "Impossivel enviar mensagem!\n");
@@ -379,7 +376,7 @@ void Receiver_2(int queue_id_2, int msg_size)
 {
 	
 	msgbuf_t message_buffer;
-	times *data_ptr_2 = (times *)(message_buffer.mtext);
+	data_t *data_ptr = (data_t *)(message_buffer.mtext);
 
 	if( msgrcv(queue_id_2,(struct msgbuf_t *)&message_buffer,msg_size,MESSAGE_MTYPE,0) == -1 ) {
 		fprintf(stderr, "Impossivel receber mensagem!\n");
@@ -389,10 +386,10 @@ void Receiver_2(int queue_id_2, int msg_size)
 	/*
 	 * Exibe os resultados
 	 */
-	printf("O tempo total de transferencia: %.10f\n", data_ptr_2->total);
-	printf("O tempo medio de transferencia: %.10f\n", data_ptr_2->total / NO_OF_ITERATIONS );
-	fprintf(stdout, "O tempo maximo de transferencia: %.10f\n", data_ptr_2->max );
-	fprintf(stdout, "O tempo minimo de transferencia: %.10f\n", data_ptr_2->min );
+	printf("O tempo total de transferencia: %.10f\n", data_ptr->total);
+	printf("O tempo medio de transferencia: %.10f\n", data_ptr->total / NO_OF_ITERATIONS );
+	fprintf(stdout, "O tempo maximo de transferencia: %.10f\n", data_ptr->max );
+	fprintf(stdout, "O tempo minimo de transferencia: %.10f\n", data_ptr->min );
 
 	return;
 }
