@@ -144,25 +144,7 @@ int main( int argc, char *argv[] )
         fprintf(stderr,"Impossivel criar a fila de mensagens!\n");
         exit(1);
     }
-
-    /*
-       Pergunta 2: O que significa cada um dos dígitos 0666?
-       	Resposta:São um conjunto de flags que neste caso são "IPC_CREAT" e "0666" em conjunto. "IPC_CREAT" diz que se quer criar a fila e 			ela não existe "0666" são as permissões de acesso do Unix (permissão de leitura e escrita para todos).  Agora em relação a cada dígito 			desta permissão, o 0 no início define que o número é um octal, o segundo campo é o "suid" que disponibiliza uma permissão especial 			onde rquivos executáveis que possuam a permissão suid serão executados em nome do dono do arquivo, e não em nome de quem os executou. 			No segundo campo tempos o sgid que de maneira semelhante, a permissão atua em diretórios. A permissão sgid é uma permissão de grupo, 			portanto aparece no campo de permissões referente ao grupo.
-      		Num diretório com a permissão sgid, todos os arquivos criados pertencerão ao grupo do diretório em questão, o que é especialmente 			útil em diretórios com o qual trabalham um grupo de usuários pertencentes ao mesmo grupo. E o terceiro campo depois do 0 é a permissao 			sticky que inibe usuários de apagarem arquivos que não tenham sido criados por eles mesmos. O número 6 ativa as permissões suid e sgid 			e não ativa o stick, e por isso temos 0666.
-
-       Pergunta 3: Para que serve o arquivo stderr?
-       	Resposta:O erro padrão é um tipo de saída padrão, é utilizada pelos programas para envio de mensagens de erro ou de diagnóstico. 			Este fluxo é independente da saída padrão e pode ser redirecionado separadamente. O destino usual é o terminal de texto onde o 			programa foi executado, para que haja uma grande chance da saída ser observada mesmo que a "saída padrão" tenha sido redirecionada (e 			portanto não observável prontamente). Por exemplo, a saída de um programa em uma canalização Unix é redirecionada para a entrada do 			próximo programa, mas os erros de cada um deles continuam sendo direcionados ao terminal de texto. É aceitável, e até normal, que a 			"saída padrão" e o "erro padrão" sejam direcionados para o mesmo destino, como um terminal de texto. As mensagens aparecem na mesma 			ordem em que o programa as escreve. O descritor de arquivo para o erro padrão é 2; a variável correspondente na biblioteca stdio.h é 			FILE *stderr.
-
-     Pergunta 4: Caso seja executada a chamada fprintf com o handler stderr, onde aparecerá o seu resultado?
-      Resposta: Será apresentado no prompt de saída.
-
-     Pergunta 5: Onde stderr foi declarado?
-      Resposta: Na biblioteca <stdio. h>.
-
-
-     Pergunta 6: Explicar o que são e para que servem stdin e stdout.
-       Resposta: Stdin é a entrada padrão que normalmente é o teclado e o Stdout é a saída padrão que regularmente é o monitor.
-
+	
     /*
      * Inicializa dois filhos
      */
@@ -226,13 +208,6 @@ int main( int argc, char *argv[] )
             fprintf(stderr,"Impossivel remover a fila!\n");
             exit(1);
         }
-
-        /*
-         * Pergunta 7: O que ocorre com a fila de mensagens, se ela não é removida e os
-         * processos terminam?
-           Resposta: A fila de mensagens fica retida, apenas ocupando espaço de memória, sendo necessário mandar o comando ipcrm para remover.
-         */
-
 
         exit(0);
     }
