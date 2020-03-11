@@ -42,20 +42,6 @@
 #include <sys/types.h>		/* for wait() */
 #include <sys/wait.h>		/* for wait() */
 #include <stdlib.h>
-/*
- * Pergunta 1: o que o compilador gcc faz com o arquivo .h, cujo nome aparece após o include?
-	Resposta: Resposta: Os arquivos .h são bibliotecas que, em sua maioria, estão em uma pasta de includes. Na fase de pré-processamento o compilador adiciona os arquivos .h no programa.
- */
-
-/*
- * Pergunta 2: apresentar (parcialmente) e explicar o que há em <stdio.h>
-	Resposta: A bilbioteca <stdio.h> possui diversas funções reponsáveis pela entrada e saída de dados do programas, como printf() (para a impressão de informações e dados na tela) e scanf() (para a entrada de dados no programa). A biblioteca também possui várias definições para variáveis e constantes.
- */
-
-/*
- * Pergunta 3: qual eh a funcao da diretiva include (linha que começa com #), com relação ao compilador?
-	Resposta: Ao usarmos a diretiva include, o compilador adiciona os arquivos, bibliotecas que aparecem após a diretiva.
- */
 
 /*
  * NO_OF_ITERATIONS e o numero de vezes que vai se repetir o loop existente
@@ -90,11 +76,6 @@
 
 int main( int argc, char *argv[] )
 {
-/*
- * Pergunta 4: o que são e para que servem argc e argv? Não esqueca de
- * considerar o * antes de argv.
-	Resposta: O argc indica o número de argumentos que foram passados ao chamar o programa. Já o argv é um vetor que contém esses argumentos. Cada string do argv é um dos parâmetros da linha de comando.
- */
 	/*
 	 * start_time e stop_time conterao o valor de tempo antes e depois
 	 * que as trocas de contexto comecem
