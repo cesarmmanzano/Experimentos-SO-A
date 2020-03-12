@@ -66,7 +66,7 @@
 #include <sys/ipc.h>            /* for all IPC function calls */
 #include <sys/shm.h>            /* for shmget(), shmat(), shmctl() */
 #include <sys/sem.h>            /* for semget(), semop(), semctl() */
-
+#include <stdlib.h>
 
 /*
  * Constantes Necessarias 
@@ -186,7 +186,8 @@ int main( int argc, char *argv[] )
                if( rtn != 0 ) {
                        pid[count] = rtn = fork();
                } else {
-                       exit
+			break;
+                    	//exit(0);
                }
        }
 
@@ -307,7 +308,7 @@ void PrintChars( void )
 		 */
 		for( i = 0; i < number; i++ ) {
 			if( ! (tmp_index + i > sizeof(g_letters_and_numbers)) ) {
-				fprintf(stderr,"%f7", g_letters_and_numbers[tmp_index + i]);
+				fprintf(stderr,"%c", g_letters_and_numbers[tmp_index + i]);
 				usleep(1);
 			}
 		}
