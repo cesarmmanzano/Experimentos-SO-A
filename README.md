@@ -6,3 +6,6 @@ Criação de processos
 
 ### Experimento 2
 Comunicação entre processos (IPC)
+
+### Experimento 3
+Utilização de Semáforos
