@@ -30,7 +30,7 @@
 *
 *       Proposito: O proposito deste programa e o de demonstrar como semaforos
 *		podem ser usados para proteger uma regiao critica. O programa exibe
-*		um string de caracteres (na realidade um alfabeto). Um n˙mero 
+*		um string de caracteres (na realidade um alfabeto). Um n√∫mero 
 *		qualquer de processos pode ser usado para exibir o string, seja
 *		de maneira cooperativa ou nao cooperativa. Um indice e armazenado
 *		em memoria compartilhada, este indice e aquele usado para 
@@ -48,9 +48,9 @@
 *******************************************************************************/
 
 
-/*
+
 #define PROTECT
-*/
+
 
 
 /*
@@ -137,7 +137,7 @@ int main( int argc, char *argv[] )
 	g_sem_op1[0].sem_flg   =  0;
 
 	/* 
-	 * Pergunta 1: Se usada a estrutura g_sem_op1 ter· qual efeito em um conjunto de sem·foros?
+	 * Pergunta 1: Se usada a estrutura g_sem_op1 ter√° qual efeito em um conjunto de sem√°foros?
 	 */
 
 	g_sem_op1[0].sem_num =  0;
@@ -158,24 +158,25 @@ int main( int argc, char *argv[] )
 	}
 
 	/* 
-	 * Pergunta 2: Para que serve esta operacao semop(), se n„o est· na saÌda de uma regi„o crÌtica?
+	 * Pergunta 2: Para que serve esta operacao semop(), se n√£o est√° na sa√≠da de uma regi√£o cr√≠tica?
 	 */
 
 	/*
 	 * Criando o segmento de memoria compartilhada
 	 */
-	if( (g_shm_id = shmget( SHM_KEY, sizeof(int), IPC_CREAT | 0000)) == -1 ) {
+	if( (g_shm_id = shmget( SHM_KEY, sizeof(int), IPC_CREAT | 0666)) == -1 ) {
 		fprintf(stderr,"Impossivel criar o segmento de memoria compartilhada!\n");
 		exit(1);
 	}
 	if( (g_shm_addr = (int *)shmat(g_shm_id, NULL, 0)) == (int *)-1 ) {
+
 		fprintf(stderr,"Impossivel associar o segmento de memoria compartilhada!\n");
 		exit(1);
 	}
 	*g_shm_addr = 0;
 
 	/*
-	 * Pergunta 3: Para que serve essa inicializaÁ„o da memÛria compartilhada com zero?
+	 * Pergunta 3: Para que serve essa inicializa√ß√£o da mem√≥ria compartilhada com zero?
 	 */
 
        /*
@@ -199,9 +200,10 @@ int main( int argc, char *argv[] )
                 /*
                  * Eu sou um filho
                  */
-                printf("Filho %i comecou ...\n", count);
+                printf("Filho %i comecou ...\n", count);		
 		
-				PrintChars();
+			PrintChars();
+
 
         } else {
                 usleep(15000);
@@ -236,8 +238,8 @@ int main( int argc, char *argv[] )
 }
 
 	/*
-	* Pergunta 4: se os filhos ainda n„o terminaram, semctl e shmctl, com o parametro IPC-RMID, nao
-	* permitem mais o acesso ao sem·foro / memÛria compartilhada?
+	* Pergunta 4: se os filhos ainda n√£o terminaram, semctl e shmctl, com o parametro IPC-RMID, nao
+	* permitem mais o acesso ao sem√°foro / mem√≥ria compartilhada?
 	*/
 
 /*
@@ -279,7 +281,7 @@ void PrintChars( void )
 		number = ((tv.tv_usec / 47) % 3) + 1;
 
 		/*
-		 * Pergunta 5: quais os valores possÌveis de serem atribuidos 
+		 * Pergunta 5: quais os valores poss√≠veis de serem atribuidos 
 		 * a number?
 		 */
 
