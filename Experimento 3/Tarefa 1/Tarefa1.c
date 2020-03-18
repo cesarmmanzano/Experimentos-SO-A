@@ -156,11 +156,12 @@ int main( int argc, char *argv[] )
 		fprintf(stderr,"chamada semop() falhou, impossivel inicializar o semaforo!");
 		exit(1);
 	}
-
 	if( semop( g_sem_id, g_sem_op2, 1 ) == -1 ) {
 		fprintf(stderr,"chamada semop() falhou, impossivel inicializar o semaforo!");
 		exit(1);
 	}
+
+	
 
 	/* 
 	 * Pergunta 2: Para que serve esta operacao semop(), se não está na saída de uma região crítica?
@@ -169,7 +170,7 @@ int main( int argc, char *argv[] )
 	/*
 	 * Criando o segmento de memoria compartilhada
 	 */
-	if( (g_shm_id = shmget( SHM_KEY, sizeof(int), IPC_CREAT | 0000)) == -1 ) {
+	if( (g_shm_id = shmget( SHM_KEY, sizeof(int), IPC_CREAT | 0666)) == -1 ) {
 		fprintf(stderr,"Impossivel criar o segmento de memoria compartilhada!\n");
 		exit(1);
 	}
@@ -191,8 +192,8 @@ int main( int argc, char *argv[] )
                if( rtn != 0 ) {
                        pid[count] = rtn = fork();
                } else {
-			break;
-                    	//exit(0);
+			//break;
+                    	exit(0);
                }
        }
 
