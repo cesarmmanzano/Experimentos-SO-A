@@ -98,8 +98,8 @@ int	*g_shm_addr;
  * elas podem ser usadas nesses processos sem a necessidade de nova associacao
  * ou mudancas.
 */
-struct sembuf	g_sem_op1[1];
-struct sembuf	g_sem_op2[1];
+struct sembuf	g_sem_op1[1];	
+struct sembuf	g_sem_op2[1];	
 
 /*
  * O seguinte vetor de caracteres contem o alfabeto que constituira o string
@@ -133,7 +133,7 @@ int main( int argc, char *argv[] )
 	 * Construindo a estrutura de controle do semaforo
 	 */
 	g_sem_op1[0].sem_num   =  0;
-	g_sem_op1[0].sem_op    = -1;
+	g_sem_op1[0].sem_op    = -1;	//Bloquear
 	g_sem_op1[0].sem_flg   =  0;
 
 	/* 
@@ -141,7 +141,7 @@ int main( int argc, char *argv[] )
 	 */
 
 	g_sem_op2[0].sem_num =  0;
-	g_sem_op2[0].sem_op  =  1;
+	g_sem_op2[0].sem_op  =  1;	//Desbloquear
 	g_sem_op2[0].sem_flg =  0;
 
 	/*
@@ -156,11 +156,11 @@ int main( int argc, char *argv[] )
 		fprintf(stderr,"chamada semop() falhou, impossivel inicializar o semaforo!");
 		exit(1);
 	}
+
 	if( semop( g_sem_id, g_sem_op2, 1 ) == -1 ) {
 		fprintf(stderr,"chamada semop() falhou, impossivel inicializar o semaforo!");
 		exit(1);
 	}
-
 	
 
 	/* 
@@ -170,10 +170,11 @@ int main( int argc, char *argv[] )
 	/*
 	 * Criando o segmento de memoria compartilhada
 	 */
-	if( (g_shm_id = shmget( SHM_KEY, sizeof(int), IPC_CREAT | 0666)) == -1 ) {
+	if( (g_shm_id = shmget( SHM_KEY, sizeof(int), IPC_CREAT | 0644)) == -1 ) {
 		fprintf(stderr,"Impossivel criar o segmento de memoria compartilhada!\n");
 		exit(1);
 	}
+
 	if( (g_shm_addr = (int *)shmat(g_shm_id, NULL, 0)) == (int *)-1 ) {
 		fprintf(stderr,"Impossivel associar o segmento de memoria compartilhada!\n");
 		exit(1);
@@ -190,10 +191,11 @@ int main( int argc, char *argv[] )
        rtn = 1;
        for( count = 0; count < NO_OF_CHILDREN; count++ ) {
                if( rtn != 0 ) {
-                       pid[count] = rtn = fork();
+                       	rtn = fork();
+			pid[count] = rtn;
                } else {
-			//break;
-                    	exit(0);
+			break;
+                    	//exit(0);
                }
        }
 
@@ -255,6 +257,7 @@ int main( int argc, char *argv[] )
 */
 void PrintChars( void )
 {
+	
 	struct timeval tv;
 	int number;
 
