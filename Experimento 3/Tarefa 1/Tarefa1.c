@@ -30,7 +30,7 @@
 *
 *       Proposito: O proposito deste programa e o de demonstrar como semaforos
 *		podem ser usados para proteger uma regiao critica. O programa exibe
-*		um string de caracteres (na realidade um alfabeto). Um n˙mero 
+*		um string de caracteres (na realidade um alfabeto). Um n√∫mero 
 *		qualquer de processos pode ser usado para exibir o string, seja
 *		de maneira cooperativa ou nao cooperativa. Um indice e armazenado
 *		em memoria compartilhada, este indice e aquele usado para 
@@ -137,7 +137,7 @@ int main( int argc, char *argv[] )
 	g_sem_op1[0].sem_flg   =  0;
 
 	/* 
-	 * Pergunta 1: Se usada a estrutura g_sem_op1 ter· qual efeito em um conjunto de sem·foros?
+	 * Pergunta 1: Se usada a estrutura g_sem_op1 ter√° qual efeito em um conjunto de sem√°foros?
 	 */
 
 	g_sem_op2[0].sem_num =  0;
@@ -152,7 +152,7 @@ int main( int argc, char *argv[] )
 		exit(1);
 	}
 	
-	//Sem·foro para bloquear 
+	//Sem√°foro para bloquear 
 	if( semop( g_sem_id, g_sem_op2, 1 ) == -1 ) {
 		fprintf(stderr,"chamada semop() falhou, impossivel inicializar o semaforo!");
 		exit(1);
@@ -162,17 +162,12 @@ int main( int argc, char *argv[] )
 	
 
 	/* 
-	 * Pergunta 2: Para que serve esta operacao semop(), se n„o est· na saÌda de uma regi„o crÌtica?
+	 * Pergunta 2: Para que serve esta operacao semop(), se n√£o est√° na sa√≠da de uma regi√£o cr√≠tica?
 	 */
 
 	/*
 	 * Criando o segmento de memoria compartilhada
 	 */
-
-	/*Inicialmente a permissao para criar a memoria compartilhada era 0000, 
-	porÈm h· v·rios locais em que se usa a permissao 0644 para criar memoria compartilhada.
-	Testamos com ambas permissoes e nao tivemos problemas. N„o sabemos qual o correto.
-	*/
 	if( (g_shm_id = shmget( SHM_KEY, sizeof(int), IPC_CREAT | 0666)) == -1 ) {
 		fprintf(stderr,"Impossivel criar o segmento de memoria compartilhada!\n");
 		exit(1);
@@ -185,7 +180,7 @@ int main( int argc, char *argv[] )
 	*g_shm_addr = 0;
 
 	/*
-	 * Pergunta 3: Para que serve essa inicializaÁ„o da memÛria compartilhada com zero?
+	 * Pergunta 3: Para que serve essa inicializa√ß√£o da mem√≥ria compartilhada com zero?
 	 */
 
        /*
@@ -195,11 +190,8 @@ int main( int argc, char *argv[] )
        for( count = 0; count < NO_OF_CHILDREN; count++ ) {
                if( rtn != 0 ) {
                        	pid [count] = rtn = fork();
-			//rtn = fork();
-			//pid[count] = rtn;
                } else {
 			break;
-                    	//exit(0);
                }
        }
 
@@ -221,13 +213,9 @@ int main( int argc, char *argv[] )
                 /*
                  * Matando os filhos 
                  */
-		//kill(pid[0], SIGKILL);
-		//kill(pid[1], SIGKILL);
-		//kill(pid[2], SIGKILL);
 		int child;
 		for(child = 0; child < NO_OF_CHILDREN; child++){
 			kill(pid[child], SIGKILL);
-			//wait(NULL);
 		}
 
                 /*
@@ -251,8 +239,8 @@ int main( int argc, char *argv[] )
 }
 
 	/*
-	* Pergunta 4: se os filhos ainda n„o terminaram, semctl e shmctl, com o parametro IPC-RMID, nao
-	* permitem mais o acesso ao sem·foro / memÛria compartilhada?
+	* Pergunta 4: se os filhos ainda n√£o terminaram, semctl e shmctl, com o parametro IPC-RMID, nao
+	* permitem mais o acesso ao sem√°foro / mem√≥ria compartilhada?
 	*/
 
 /*
@@ -295,7 +283,7 @@ void PrintChars( void )
 		number = ((tv.tv_usec / 47) % 3) + 1;
 
 		/*
-		 * Pergunta 5: quais os valores possÌveis de serem atribuidos 
+		 * Pergunta 5: quais os valores poss√≠veis de serem atribuidos 
 		 * a number?
 		 */
 
