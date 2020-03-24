@@ -87,6 +87,7 @@
 int	g_sem_id;
 int	g_shm_id;
 int	*g_shm_addr;
+FILE *Arq;
 
 
 /*
@@ -120,7 +121,7 @@ int main( int argc, char *argv[] )
       /*
        * Variaveis necessarias
        */
-      int rtn;
+      pid_t rtn;
       int count;
         
       /*
@@ -152,13 +153,15 @@ int main( int argc, char *argv[] )
 		exit(1);
 	}
 	
-	//Semáforo para bloquear 
 	if( semop( g_sem_id, g_sem_op2, 1 ) == -1 ) {
 		fprintf(stderr,"chamada semop() falhou, impossivel inicializar o semaforo!");
 		exit(1);
 	}
 
-	
+	/*if( semop( g_sem_id, g_sem_op2, 1 ) == -1 ) {
+		fprintf(stderr,"chamada semop() falhou, impossivel inicializar o semaforo!");
+		exit(1);
+	}*/
 	
 
 	/* 
@@ -189,9 +192,11 @@ int main( int argc, char *argv[] )
        rtn = 1;
        for( count = 0; count < NO_OF_CHILDREN; count++ ) {
                if( rtn != 0 ) {
-                       	pid [count] = rtn = fork();
+                       	rtn = fork();
+			pid[count] = rtn;
                } else {
 			break;
+                    	//exit(0);
                }
        }
 
@@ -203,7 +208,6 @@ int main( int argc, char *argv[] )
                 /*
                  * Eu sou um filho
                  */
-		
                 printf("Filho %i comecou ...\n", count);
 		PrintChars();
 
@@ -254,7 +258,7 @@ int main( int argc, char *argv[] )
 */
 void PrintChars( void )
 {
-
+	
 	struct timeval tv;
 	int number;
 
@@ -262,7 +266,7 @@ void PrintChars( void )
 	int i;
 
 	/*
-	 * Este tempo permite que todos os filhos sejam iniciados
+	 * Este tempo permite que todos os filhos sejam inciados
 	 */
 	usleep(200);
 
@@ -280,8 +284,9 @@ void PrintChars( void )
 			fprintf(stderr,"Impossivel conseguir o tempo atual, terminando.\n");
 			exit(1);
 		}
-		number = ((tv.tv_usec / 47) % 3) + 1;
-
+		number = ((tv.tv_usec / 47) % 3) + 1; //tv_usec = pega em microsegundos o tempo
+		
+		//printf("valor number: %c \n\n\n", number);
 		/*
 		 * Pergunta 5: quais os valores possíveis de serem atribuidos 
 		 * a number?
@@ -289,8 +294,9 @@ void PrintChars( void )
 
 		/*
 		 * O #ifdef PROTECT inclui este pedaco de codigo se a macro
-            	 * PROTECT estiver definida. semop() e chamada para fechar o semaforo.
-            	 */
+            * PROTECT estiver definida. Para sua definicao, retire o comentario
+            * que a acompanha. semop() e chamada para fechar o semaforo.
+            */
 
 #ifdef PROTECT
 		if( semop( g_sem_id, g_sem_op1, 1 ) == -1 ) {
@@ -303,7 +309,11 @@ void PrintChars( void )
 		 * Lendo o indice do segmento de memoria compartilhada
 		 */
 		tmp_index = *g_shm_addr;
-
+		
+		Arq = fopen("teste.txt", "a+");
+		if(!Arq){
+		printf("Erro na abertura do arquivo");	
+		}
 
 		/*
             	* Repita o numero especificado de vezes, esteja certo de nao
@@ -311,7 +321,8 @@ void PrintChars( void )
 		 */
 		for( i = 0; i < number; i++ ) {
 			if( ! (tmp_index + i > sizeof(g_letters_and_numbers)) ) {
-				fprintf(stderr,"%c", g_letters_and_numbers[tmp_index + i]);
+			fprintf(stderr,"%c", g_letters_and_numbers[tmp_index + i]);
+			fputc(g_letters_and_numbers[tmp_index + i], Arq);
 				usleep(1);
 			}
 		}
@@ -331,6 +342,8 @@ void PrintChars( void )
 			fprintf(stderr,"\n");
 			*g_shm_addr = 0;
 		}
+		
+		
 
 		/*
 		 * Liberando o recurso se a macro PROTECT estiver definida
@@ -342,6 +355,7 @@ void PrintChars( void )
                        	exit(1);
                	}
 #endif
+		fclose(Arq);
 
 	}
 }
