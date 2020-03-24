@@ -152,15 +152,13 @@ int main( int argc, char *argv[] )
 		exit(1);
 	}
 	
-	if( semop( g_sem_id, g_sem_op1, 1 ) == -1 ) {
-		fprintf(stderr,"chamada semop() falhou, impossivel inicializar o semaforo!");
-		exit(1);
-	}
-
+	//Semáforo para bloquear 
 	if( semop( g_sem_id, g_sem_op2, 1 ) == -1 ) {
 		fprintf(stderr,"chamada semop() falhou, impossivel inicializar o semaforo!");
 		exit(1);
 	}
+
+	
 	
 
 	/* 
@@ -170,7 +168,12 @@ int main( int argc, char *argv[] )
 	/*
 	 * Criando o segmento de memoria compartilhada
 	 */
-	if( (g_shm_id = shmget( SHM_KEY, sizeof(int), IPC_CREAT | 0644)) == -1 ) {
+
+	/*Inicialmente a permissao para criar a memoria compartilhada era 0000, 
+	porém há vários locais em que se usa a permissao 0644 para criar memoria compartilhada.
+	Testamos com ambas permissoes e nao tivemos problemas. Não sabemos qual o correto.
+	*/
+	if( (g_shm_id = shmget( SHM_KEY, sizeof(int), IPC_CREAT | 0666)) == -1 ) {
 		fprintf(stderr,"Impossivel criar o segmento de memoria compartilhada!\n");
 		exit(1);
 	}
@@ -191,8 +194,9 @@ int main( int argc, char *argv[] )
        rtn = 1;
        for( count = 0; count < NO_OF_CHILDREN; count++ ) {
                if( rtn != 0 ) {
-                       	rtn = fork();
-			pid[count] = rtn;
+                       	pid [count] = rtn = fork();
+			//rtn = fork();
+			//pid[count] = rtn;
                } else {
 			break;
                     	//exit(0);
@@ -207,6 +211,7 @@ int main( int argc, char *argv[] )
                 /*
                  * Eu sou um filho
                  */
+		
                 printf("Filho %i comecou ...\n", count);
 		PrintChars();
 
@@ -216,9 +221,13 @@ int main( int argc, char *argv[] )
                 /*
                  * Matando os filhos 
                  */
+		//kill(pid[0], SIGKILL);
+		//kill(pid[1], SIGKILL);
+		//kill(pid[2], SIGKILL);
 		int child;
 		for(child = 0; child < NO_OF_CHILDREN; child++){
 			kill(pid[child], SIGKILL);
+			//wait(NULL);
 		}
 
                 /*
@@ -257,7 +266,7 @@ int main( int argc, char *argv[] )
 */
 void PrintChars( void )
 {
-	
+
 	struct timeval tv;
 	int number;
 
@@ -265,7 +274,7 @@ void PrintChars( void )
 	int i;
 
 	/*
-	 * Este tempo permite que todos os filhos sejam inciados
+	 * Este tempo permite que todos os filhos sejam iniciados
 	 */
 	usleep(200);
 
@@ -292,9 +301,8 @@ void PrintChars( void )
 
 		/*
 		 * O #ifdef PROTECT inclui este pedaco de codigo se a macro
-            * PROTECT estiver definida. Para sua definicao, retire o comentario
-            * que a acompanha. semop() e chamada para fechar o semaforo.
-            */
+            	 * PROTECT estiver definida. semop() e chamada para fechar o semaforo.
+            	 */
 
 #ifdef PROTECT
 		if( semop( g_sem_id, g_sem_op1, 1 ) == -1 ) {
