@@ -30,7 +30,7 @@
 *
 *       Proposito: O proposito deste programa e o de demonstrar como semaforos
 *		podem ser usados para proteger uma regiao critica. O programa exibe
-*		um string de caracteres (na realidade um alfabeto). Um n˙mero 
+*		um string de caracteres (na realidade um alfabeto). Um n√∫mero 
 *		qualquer de processos pode ser usado para exibir o string, seja
 *		de maneira cooperativa ou nao cooperativa. Um indice e armazenado
 *		em memoria compartilhada, este indice e aquele usado para 
@@ -140,7 +140,7 @@ int main( int argc, char *argv[] )
 	g_sem_op1[0].sem_flg   =  0;
 
 	/* 
-	 * Pergunta 1: Se usada a estrutura g_sem_op1 ter· qual efeito em um conjunto de sem·foros?
+	 * Pergunta 1: Se usada a estrutura g_sem_op1 ter√° qual efeito em um conjunto de sem√°foros?
 	 */
 
 	g_sem_op2[0].sem_num =  0;
@@ -159,15 +159,10 @@ int main( int argc, char *argv[] )
 		fprintf(stderr,"chamada semop() falhou, impossivel inicializar o semaforo!");
 		exit(1);
 	}
-
-	/*if( semop( g_sem_id, g_sem_op2, 1 ) == -1 ) {
-		fprintf(stderr,"chamada semop() falhou, impossivel inicializar o semaforo!");
-		exit(1);
-	}*/
 	
 
 	/* 
-	 * Pergunta 2: Para que serve esta operacao semop(), se n„o est· na saÌda de uma regi„o crÌtica?
+	 * Pergunta 2: Para que serve esta operacao semop(), se n√£o est√° na sa√≠da de uma regi√£o cr√≠tica?
 	 */
 
 	/*
@@ -185,7 +180,7 @@ int main( int argc, char *argv[] )
 	*g_shm_addr = 0;
 
 	/*
-	 * Pergunta 3: Para que serve essa inicializaÁ„o da memÛria compartilhada com zero?
+	 * Pergunta 3: Para que serve essa inicializa√ß√£o da mem√≥ria compartilhada com zero?
 	 */
 
        /*
@@ -219,6 +214,7 @@ int main( int argc, char *argv[] )
                 /*
                  * Matando os filhos 
                  */
+	    
 		int child;
 		for(child = 0; child < NO_OF_CHILDREN; child++){
 			kill(pid[child], SIGKILL);
@@ -245,8 +241,8 @@ int main( int argc, char *argv[] )
 }
 
 	/*
-	* Pergunta 4: se os filhos ainda n„o terminaram, semctl e shmctl, com o parametro IPC-RMID, nao
-	* permitem mais o acesso ao sem·foro / memÛria compartilhada?
+	* Pergunta 4: se os filhos ainda n√£o terminaram, semctl e shmctl, com o parametro IPC-RMID, nao
+	* permitem mais o acesso ao sem√°foro / mem√≥ria compartilhada?
 	*/
 
 /*
@@ -290,7 +286,7 @@ void PrintChars( void )
 		
 		//printf("valor number: %c \n\n\n", number);
 		/*
-		 * Pergunta 5: quais os valores possÌveis de serem atribuidos 
+		 * Pergunta 5: quais os valores poss√≠veis de serem atribuidos 
 		 * a number?
 		 */
 
@@ -312,7 +308,6 @@ void PrintChars( void )
 		 */
 		tmp_index = *g_shm_addr;
 		
-		//Arq = fopen("resultados.txt", "a+");
 		if( (arq = fopen("resultados.txt", "a+")) == NULL){
 			printf("Erro na abertura do arquivo");
 			exit(1);	
@@ -342,7 +337,7 @@ void PrintChars( void )
          	 * zero no indice
 		 */
 		if( tmp_index + i > sizeof(g_letters_and_numbers) ) {
-			fprintf(stderr,"\n");
+			fprintf(stderr, "\n");
 			*g_shm_addr = 0;
 		}
 		
