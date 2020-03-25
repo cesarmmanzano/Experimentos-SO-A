@@ -30,7 +30,7 @@
 *
 *       Proposito: O proposito deste programa e o de demonstrar como semaforos
 *		podem ser usados para proteger uma regiao critica. O programa exibe
-*		um string de caracteres (na realidade um alfabeto). Um n˙mero 
+*		um string de caracteres (na realidade um alfabeto). Um n√∫mero 
 *		qualquer de processos pode ser usado para exibir o string, seja
 *		de maneira cooperativa ou nao cooperativa. Um indice e armazenado
 *		em memoria compartilhada, este indice e aquele usado para 
@@ -149,7 +149,7 @@ int main( int argc, char *argv[] )
       int pid[NO_OF_CHILDREN];
 
 	
-	/*==================================================================================================*/
+	/*=================================================================================================*/
 
 
 	/*
@@ -164,7 +164,7 @@ int main( int argc, char *argv[] )
 	g_sem_op2[0].sem_flg =  0;
 
 
-	/*=========================== SEM¡FOROS ===========================*/
+	/*=========================== SEM√ÅFOROS ===========================*/
 
 	/*
 	 * Criando o semaforo
@@ -184,7 +184,7 @@ int main( int argc, char *argv[] )
 		exit(1);
 	}
 	
-	/* Destrava os sem·foros */
+	/* Destrava os sem√°foros */
 	if( semop( g_sem_id_buffer, g_sem_op2, 1 ) == -1 ) {
 		fprintf(stderr,"chamada semop() falhou, impossivel inicializar o semaforo!");
 		exit(1);
@@ -200,7 +200,7 @@ int main( int argc, char *argv[] )
 		exit(1);
 	}
 
-	/*=========================== MEMORIA COMPARTILHADA ===========================*/
+	/*=========================== MEM√ìRIA COMPARTILHADA ===========================*/
 
 
 	/*
@@ -240,8 +240,7 @@ int main( int argc, char *argv[] )
 	*g_shm_addr_produtor = 0;
 
 	
-	/*==================================================================================================*/
-
+	/*=================================================================================================*/
 
        /*
         * Criando os filhos
@@ -367,7 +366,7 @@ void PrintChars( void )
 		number = ((tv.tv_usec / 47) % 3) + 1; //tv_usec = pega em microsegundos o tempo
 		
 		/*
-		 * Pergunta 5: quais os valores possÌveis de serem atribuidos 
+		 * Pergunta 5: quais os valores poss√≠veis de serem atribuidos 
 		 * a number?
 		 */
 
