@@ -30,7 +30,7 @@
 *
 *       Proposito: O proposito deste programa e o de demonstrar como semaforos
 *		podem ser usados para proteger uma regiao critica. O programa exibe
-*		um string de caracteres (na realidade um alfabeto). Um n√∫mero 
+*		um string de caracteres (na realidade um alfabeto). Um n˙mero 
 *		qualquer de processos pode ser usado para exibir o string, seja
 *		de maneira cooperativa ou nao cooperativa. Um indice e armazenado
 *		em memoria compartilhada, este indice e aquele usado para 
@@ -103,8 +103,6 @@ int 	*g_shm_addr_produtor;
 int 	*g_shm_addr_consumidor;
 
 /*Arquivo para salvarmos o resultado*/
-//FILE *arq;
-
 
 /*
  * As seguintes duas estruturas contem a informacao necessaria para controlar
@@ -149,7 +147,7 @@ int main( int argc, char *argv[] )
       int pid[NO_OF_CHILDREN];
 
 	
-	/*=================================================================================================*/
+	/*==================================================================================================*/
 
 
 	/*
@@ -164,7 +162,7 @@ int main( int argc, char *argv[] )
 	g_sem_op2[0].sem_flg =  0;
 
 
-	/*=========================== SEM√ÅFOROS ===========================*/
+	/*=========================== SEM¡FOROS ===========================*/
 
 	/*
 	 * Criando o semaforo
@@ -184,7 +182,7 @@ int main( int argc, char *argv[] )
 		exit(1);
 	}
 	
-	/* Destrava os sem√°foros */
+	/* Destrava os sem·foros */
 	if( semop( g_sem_id_buffer, g_sem_op2, 1 ) == -1 ) {
 		fprintf(stderr,"chamada semop() falhou, impossivel inicializar o semaforo!");
 		exit(1);
@@ -200,13 +198,13 @@ int main( int argc, char *argv[] )
 		exit(1);
 	}
 
-	/*=========================== MEM√ìRIA COMPARTILHADA ===========================*/
+	/*=========================== MEMORIA COMPARTILHADA ===========================*/
 
 
 	/*
 	 * Criando o segmento de memoria compartilhada
 	 */
-	if( (g_shm_id_buffer = shmget( SHM_KEY_BUFFER, sizeof(g_letters_and_numbers), IPC_CREAT | 0666)) == -1 ) {
+	if( (g_shm_id_buffer = shmget( SHM_KEY_BUFFER, 5*sizeof(g_letters_and_numbers), IPC_CREAT | 0666)) == -1 ) {
 		fprintf(stderr,"Impossivel criar o segmento de memoria compartilhada!\n");
 		exit(1);
 	}
@@ -240,7 +238,8 @@ int main( int argc, char *argv[] )
 	*g_shm_addr_produtor = 0;
 
 	
-	/*=================================================================================================*/
+	/*==================================================================================================*/
+
 
        /*
         * Criando os filhos
@@ -262,7 +261,6 @@ int main( int argc, char *argv[] )
                 /*
                  * Eu sou um filho
                  */
-                printf("Filho %i comecou ...\n", count);
 		PrintChars();
 
 		/*
@@ -363,12 +361,7 @@ void PrintChars( void )
 			fprintf(stderr,"Impossivel conseguir o tempo atual, terminando.\n");
 			exit(1);
 		}
-		number = ((tv.tv_usec / 47) % 3) + 1; //tv_usec = pega em microsegundos o tempo
-		
-		/*
-		 * Pergunta 5: quais os valores poss√≠veis de serem atribuidos 
-		 * a number?
-		 */
+		number = ((tv.tv_usec / 47) % 3) + 1;
 
 		/*
 		 * O #ifdef PROTECT inclui este pedaco de codigo se a macro
@@ -388,13 +381,6 @@ void PrintChars( void )
 		 */
 		tmp_index = *g_shm_addr_buffer;
 		
-/*
-		if( (arq = fopen("resultados.txt", "a+")) == NULL){
-			printf("Erro na abertura do arquivo");
-			exit(1);	
-		}
-*/
-
 		/*
             	* Repita o numero especificado de vezes, esteja certo de nao
             	* ultrapassar os limites do vetor, o comando if garante isso
@@ -402,7 +388,6 @@ void PrintChars( void )
 		for( i = 0; i < number; i++ ) {
 			if( ! (tmp_index + i > sizeof(g_letters_and_numbers)) ) {
 				fprintf(stderr,"%c", g_letters_and_numbers[tmp_index + i]);
-				//fputc(g_letters_and_numbers[tmp_index + i], arq);
 				usleep(1);
 			}
 		}
@@ -435,7 +420,6 @@ void PrintChars( void )
                        	exit(1);
                	}
 #endif
-		//fclose(arq);
 
 	}
 }
@@ -447,7 +431,8 @@ void Produtor( void ){
 	struct timeval tv;
 	int number;
 
-	int tmp_index;
+	int tmp_index_buffer;
+	int tmp_index_produtor;
 	int i;
 
 	/*
@@ -470,6 +455,42 @@ void Produtor( void ){
 			exit(1);
 		}
 		number = ((tv.tv_usec / 47) % 5) + 1;	
+	
+
+#ifdef PROTECT
+		if( semop( g_sem_id_buffer, g_sem_op1, 1 ) == -1 ) {      		
+                        fprintf(stderr,"chamada semop() falhou, impossivel liberar o recurso!");
+                       	exit(1);
+               	}
+
+		if( semop( g_sem_id_produtor, g_sem_op1, 1 ) == -1 ) {      		
+                        fprintf(stderr,"chamada semop() falhou, impossivel liberar o recurso!");
+                       	exit(1);
+               	}
+#endif
+		
+		tmp_index_buffer = *g_shm_addr_buffer;
+		tmp_index_produtor = *g_shm_addr_produtor;
+
+		for( i = 0; i < number; i++ ) {
+			if( ! (tmp_index + i > sizeof(g_letters_and_numbers)) ) {
+				//Coloca no buffer
+				usleep(1);
+			}
+		}
+
+#ifdef PROTECT
+		if( semop( g_sem_id_buffer, g_sem_op2, 1 ) == -1 ) {      		
+                        fprintf(stderr,"chamada semop() falhou, impossivel liberar o recurso!");
+                       	exit(1);
+               	}
+
+		if( semop( g_sem_id_produtor, g_sem_op2, 1 ) == -1 ) {      		
+                        fprintf(stderr,"chamada semop() falhou, impossivel liberar o recurso!");
+                       	exit(1);
+               	}
+#endif
+
 	}
 }
 
@@ -480,7 +501,8 @@ void Consumidor( void ){
 	struct timeval tv;
 	int number;
 
-	int tmp_index;
+	int tmp_index_buffer;
+	int tmp_index_consumidor;
 	int i;
 
 	/*
@@ -503,5 +525,34 @@ void Consumidor( void ){
 			exit(1);
 		}
 		number = ((tv.tv_usec / 47) % 5) + 1;	
+
+#ifdef PROTECT
+		if( semop( g_sem_id_buffer, g_sem_op1, 1 ) == -1 ) {      		
+                        fprintf(stderr,"chamada semop() falhou, impossivel liberar o recurso!");
+                       	exit(1);
+               	}
+
+		if( semop( g_sem_id_consumidor, g_sem_op1, 1 ) == -1 ) {      		
+                        fprintf(stderr,"chamada semop() falhou, impossivel liberar o recurso!");
+                       	exit(1);
+               	}
+#endif
+		
+		tmp_index_buffer = *g_shm_addr_buffer;
+		tmp_index_consumidor = *g_shm_addr_consumidor;
+
+
+#ifdef PROTECT
+		if( semop( g_sem_id_buffer, g_sem_op2, 1 ) == -1 ) {      		
+                        fprintf(stderr,"chamada semop() falhou, impossivel liberar o recurso!");
+                       	exit(1);
+               	}
+
+		if( semop( g_sem_id_consumidor, g_sem_op2, 1 ) == -1 ) {      		
+                        fprintf(stderr,"chamada semop() falhou, impossivel liberar o recurso!");
+                       	exit(1);
+               	}
+#endif
+
 	}
 }
