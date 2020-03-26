@@ -236,6 +236,7 @@ int main( int argc, char *argv[] )
                         exit(1);
                 }
 
+	       fprintf(stderr, "\n");
                 exit(0);
         }
 }
