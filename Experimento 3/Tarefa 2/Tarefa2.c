@@ -81,7 +81,7 @@
 
 #define NO_OF_CHILDREN	8
 
-#define MAX_SIZE_BUFFER 500
+#define MAX_SIZE_BUFFER 66
 /*
  * As seguintes variaveis globais contem informacao importante. A variavel
  * g_sem_id e g_shm_id contem as identificacoes IPC para o semaforo e para
@@ -367,12 +367,13 @@ void Produtor( int count ){
 		*/
 		for( i = 0; i < number; i++ ) {
 			if( ! (tmp_index_produtor + i > sizeof(g_letters_and_numbers)) ) {
-				//Coloca no buffer e atualiza índice
-				buffer[tmp_index_buffer + i] = g_letters_and_numbers[tmp_index_produtor + i];
-				caracteres_produzidos[i] = g_letters_and_numbers[tmp_index_produtor + i];
-				*g_shm_addr_buffer = tmp_index_buffer + i;
-				fprintf(stderr,"%c", buffer[tmp_index_buffer + i]);
-				usleep(1);
+				if(! (tmp_index_buffer + i > MAX_SIZE_BUFFER)){ //Verifica se buffer esta cheio
+					//Coloca no buffer e atualiza índice
+					buffer[tmp_index_buffer + i] = g_letters_and_numbers[tmp_index_produtor + i];
+					//caracteres_produzidos[i] = g_letters_and_numbers[tmp_index_produtor + i];
+					fprintf(stderr,"%c", buffer[tmp_index_buffer + i]);
+					usleep(1);
+				}
 			}
 		}
 		
@@ -381,23 +382,27 @@ void Produtor( int count ){
 		 * Atualizando o indice na memoria compartilhada
 		 */
 		*g_shm_addr_produtor = tmp_index_produtor + i;
+		*g_shm_addr_buffer = tmp_index_buffer + i;
+
+		
+		if( tmp_index_buffer + i > sizeof(buffer) ) {
+			*g_shm_addr_buffer = 0;
+			/*Printar conteúdo do buffer se estiver cheio 
+			for( i = 0; i < number; i++ ) {
+				if( ! (tmp_index_buffer + i > sizeof(buffer)) ) {	
+					fprintf(stderr, "\nBuffer cheio...\n");
+					fprintf(stderr,"%c", buffer[tmp_index_buffer + i]);
+				}
+			}*/
+		}
+		
+		
 
 		/*
          	 * Se o indice e maior que o tamanho do alfabeto, exibe um
          	 * caractere return para iniciar a linha seguinte e coloca
          	 * zero no indice
 		 */
-		if( tmp_index_buffer + i > sizeof(buffer) ) {
-			/* Printar conteúdo do buffer se estiver cheio */
-			for( i = 0; i < number; i++ ) {
-				if( ! (tmp_index_buffer + i > sizeof(buffer)) ) {	
-					fprintf(stderr, "\nBuffer cheio...\n");
-					fprintf(stderr,"%c", buffer[tmp_index_buffer + i]);
-				}
-			}
-			*g_shm_addr_buffer = 0;
-		}
-	
 		if( tmp_index_produtor + i > sizeof(g_letters_and_numbers) ) {
 			fprintf(stderr,"\n");
 			*g_shm_addr_produtor = 0;
@@ -436,6 +441,7 @@ void Consumidor( int count ){
 
 	int tmp_index_buffer;
 	int tmp_index_consumidor;
+	int limite_buffer;
 	int i;
 
 	/*
@@ -471,7 +477,8 @@ void Consumidor( int count ){
                	}
 #endif
 		
-		tmp_index_buffer = *g_shm_addr_buffer;
+		limite_buffer = *g_shm_addr_produtor;
+		tmp_index_buffer = 0;
 		tmp_index_consumidor = *g_shm_addr_consumidor;
 
 
