@@ -319,7 +319,7 @@ void Produtor( int count ){
 	int tmp_index_produtor;
 	int i;
 
-	char caracteres_produzidos[5*sizeof(g_letters_and_numbers)];
+	char caracteres_produzidos[MAX_SIZE_BUFFER];
 
 	/*
 	 * Este tempo permite que todos os filhos sejam inciados
