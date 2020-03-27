@@ -189,11 +189,9 @@ int main( int argc, char *argv[] )
        rtn = 1;
        for( count = 0; count < NO_OF_CHILDREN; count++ ) {
                if( rtn != 0 ) {
-                       	rtn = fork();
-			pid[count] = rtn;
+                      pid[count] = rtn = fork();
                } else {
 			break;
-                    	//exit(0);
                }
        }
 
@@ -205,7 +203,7 @@ int main( int argc, char *argv[] )
                 /*
                  * Eu sou um filho
                  */
-                printf("Filho %i comecou ...\n", count);
+                //printf("Filho %i comecou ...\n", count);
 		PrintChars();
 
         } else {
