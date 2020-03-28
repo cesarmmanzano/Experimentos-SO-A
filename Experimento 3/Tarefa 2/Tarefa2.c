@@ -103,7 +103,7 @@ int 	g_shm_id_consumidor;
 /* Endereço */
 int	*g_shm_addr_produtor;	
 int 	*g_shm_addr_consumidor;	
-int 	*g_shm_addr_buffer;
+char 	*g_shm_addr_buffer;
 
 
 /*
