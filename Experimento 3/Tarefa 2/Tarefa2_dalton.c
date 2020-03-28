@@ -30,7 +30,7 @@
 *
 *       Proposito: O proposito deste programa e o de demonstrar como semaforos
 *		podem ser usados para proteger uma regiao critica. O programa exibe
-*		um string de caracteres (na realidade um alfabeto). Um n˙mero 
+*		um string de caracteres (na realidade um alfabeto). Um n√∫mero 
 *		qualquer de processos pode ser usado para exibir o string, seja
 *		de maneira cooperativa ou nao cooperativa. Um indice e armazenado
 *		em memoria compartilhada, este indice e aquele usado para 
@@ -100,7 +100,7 @@ typedef struct {
 
 int 	g_shm_id;
 
-/* EndereÁo */
+/* Endere√ßo */
 shared_memory	*g_shm_addr;
 
 
@@ -161,7 +161,7 @@ int main( int argc, char *argv[] )
 	g_sem_op2[0].sem_flg =  0;
 
 
-	/* ============================= SEM¡FOROS ============================= */
+	/* ============================= SEM√ÅFOROS ============================= */
 
 	if( ( g_sem_id_produtor = semget( SEM_KEY_PRODUTOR, 1, IPC_CREAT | 0666 ) ) == -1 ) {
 		fprintf(stderr,"chamada a semget() falhou, impossivel criar o conjunto de semaforos!");
@@ -172,7 +172,7 @@ int main( int argc, char *argv[] )
 		exit(1);
 	}
 	
-	/* Destrava os sem·foros */
+	/* Destrava os sem√°foros */
 	if( semop( g_sem_id_produtor, g_sem_op2, 1 ) == -1 ) {
 		fprintf(stderr,"chamada semop() falhou, impossivel inicializar o semaforo!");
 		exit(1);
@@ -304,7 +304,7 @@ void Produtor( int count ){
 			fprintf(stderr,"Impossivel conseguir o tempo atual, terminando.\n");
 			exit(1);
 		}
-		/* number contem numero de caracteres que ser„o produzidos */	
+		/* number contem numero de caracteres que ser√£o produzidos */	
 		number = ((tv.tv_usec / 47) % 5) + 1;
 	
 
@@ -322,7 +322,7 @@ void Produtor( int count ){
 			/* Verificar se pode produzir */
 			if(tmp_index_produtor + i < MAX_SIZE_BUFFER){
 				/* Pode produzir */
-				/* Garante que n„o ultrapasse o limite do vetor */
+				/* Garante que n√£o ultrapasse o limite do vetor */
 				if( ! (tmp_index_produtor > sizeof(g_letters_and_numbers)) ){
 					/* Coloca caracteres no buffer */
 					(*g_shm_addr).buffer[tmp_index_produtor + i] = g_letters_and_numbers[tmp_index_produtor + i];
@@ -358,7 +358,7 @@ void Produtor( int count ){
 		}
 		
 		/* Tempo de dormencia equivalente a caracteres produzidos */
-		usleep(15*number);
+		usleep(30*number);
 
 #ifdef PROTECT
 	if( semop( g_sem_id_produtor, g_sem_op2, 1 ) == -1 ) {      		
@@ -402,7 +402,7 @@ void Consumidor( int count ){
 			fprintf(stderr,"Impossivel conseguir o tempo atual, terminando.\n");
 			exit(1);
 		}
-		/* number contem o numero de caracteres que ser„o consumidos */	
+		/* number contem o numero de caracteres que ser√£o consumidos */	
 		number = ((tv.tv_usec / 47) % 5) + 1;	
 
 #ifdef PROTECT
@@ -420,7 +420,7 @@ void Consumidor( int count ){
 			/* Verificar se pode consumir */
 			if(tmp_index_produtor + i != 0){
 				/* Pode consumir */
-				/* Troca posiÁ„o do vetor por '#' */
+				/* Troca posi√ß√£o do vetor por '#' */
 				if(! (tmp_index_consumidor + i > MAX_SIZE_BUFFER )) {
 					(*g_shm_addr).buffer[tmp_index_consumidor + i] = '#';
 					usleep(1);
@@ -449,7 +449,7 @@ void Consumidor( int count ){
 		}	
 		
 		/* Tempo de dormencia equivalente a caracteres consumidos */
-		usleep(15*number);
+		usleep(30*number);
 
 #ifdef PROTECT
 	if( semop( g_sem_id_consumidor, g_sem_op2, 1 ) == -1 ) {      		
