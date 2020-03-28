@@ -73,11 +73,8 @@
  */
 #define SEM_KEY_PRODUTOR	0x1243
 #define SEM_KEY_CONSUMIDOR	0x1244
-
 #define SHM_KEY			0x1432
-
 #define NO_OF_CHILDREN	8
-
 #define MAX_SIZE_BUFFER 66
 
 /*
@@ -149,7 +146,7 @@ int main( int argc, char *argv[] )
       int pid[NO_OF_CHILDREN];
 
 	
-	/*==================================================================================================*/
+	/* ================================================================================================== */
 
 
 	/*
@@ -164,7 +161,7 @@ int main( int argc, char *argv[] )
 	g_sem_op2[0].sem_flg =  0;
 
 
-	/*=========================== SEMÁFOROS ===========================*/
+	/* ============================= SEMÁFOROS ============================= */
 
 	if( ( g_sem_id_produtor = semget( SEM_KEY_PRODUTOR, 1, IPC_CREAT | 0666 ) ) == -1 ) {
 		fprintf(stderr,"chamada a semget() falhou, impossivel criar o conjunto de semaforos!");
@@ -185,7 +182,7 @@ int main( int argc, char *argv[] )
 		exit(1);
 	}
 
-	/*=========================== MEMORIA COMPARTILHADA ===========================*/
+	/* =========================== MEMORIA COMPARTILHADA =========================== */
 	
 	if( (g_shm_id = shmget( SHM_KEY, sizeof(shared_memory), IPC_CREAT | 0666)) == -1 ) {
 		fprintf(stderr,"Impossivel criar o segmento de memoria compartilhada!\n");
@@ -200,7 +197,7 @@ int main( int argc, char *argv[] )
 	(*g_shm_addr).tmp_index_consumidor = 0;
 	(*g_shm_addr).tmp_index_buffer = 0;
 
-	/*==================================================================================================*/
+	/* ================================================================================================== */
 
 
        /*
@@ -223,10 +220,11 @@ int main( int argc, char *argv[] )
                 /*
                  * Eu sou um filho
                  */
-		
 		if(count % 2 == 0){
+			/* Metade dos filhos produtores */
 			Produtor( count );
 		}else{
+			/* Metade dos filhos consumidores */
 			Consumidor( count );
 		}
 
@@ -272,7 +270,7 @@ int main( int argc, char *argv[] )
 }
 
 
-/*==================================================================================================*/
+/* ================================================================================================== */
 
 
 /* Produzir os caracteres */
@@ -381,6 +379,7 @@ void Consumidor( int count ){
 	int number;
 
 	int tmp_index_consumidor;
+	int tmp_index_produtor;
 	int tmp_index_buffer;
 	int i, j;
 
@@ -403,7 +402,7 @@ void Consumidor( int count ){
 			fprintf(stderr,"Impossivel conseguir o tempo atual, terminando.\n");
 			exit(1);
 		}
-		/* number contem numero de caracteres que serão consumidos */	
+		/* number contem o numero de caracteres que serão consumidos */	
 		number = ((tv.tv_usec / 47) % 5) + 1;	
 
 #ifdef PROTECT
@@ -412,16 +411,17 @@ void Consumidor( int count ){
 		exit(1);
 	}
 #endif
-
+		
 		tmp_index_buffer = (*g_shm_addr).tmp_index_buffer;
 		tmp_index_consumidor = (*g_shm_addr).tmp_index_consumidor;
+		tmp_index_produtor = (*g_shm_addr).tmp_index_produtor;
 
 		for( i = 0; i < number; i++ ) {
 			/* Verificar se pode consumir */
-			if(tmp_index_consumidor + i != 0){
+			if(tmp_index_produtor + i != 0){
 				/* Pode consumir */
 				/* Troca posição do vetor por '#' */
-				if(! (tmp_index_consumidor + i > sizeof((*g_shm_addr).buffer)) ){
+				if(! (tmp_index_consumidor + i > MAX_SIZE_BUFFER )) {
 					(*g_shm_addr).buffer[tmp_index_consumidor + i] = '#';
 					usleep(1);
 				}
