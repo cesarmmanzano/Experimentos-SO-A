@@ -103,7 +103,7 @@ int 	g_shm_id_consumidor;
 /* Endereço */
 int	*g_shm_addr_produtor;	
 int 	*g_shm_addr_consumidor;	
-int 	*g_shm_addr_buffer;
+char 	*g_shm_addr_buffer;
 
 
 /*
@@ -266,6 +266,11 @@ int main( int argc, char *argv[] )
                  * Removendo as memorias compartilhadas
                  */
 		
+		if( shmctl(g_shm_id_buffer, IPC_RMID, NULL) != 0 ) {
+                        fprintf(stderr,"Impossivel remover o segmento de memoria compartilhada!\n");
+                        exit(1);
+                }
+
 		if( shmctl(g_shm_id_produtor, IPC_RMID, NULL) != 0 ) {
                         fprintf(stderr,"Impossivel remover o segmento de memoria compartilhada!\n");
                         exit(1);
