@@ -30,7 +30,7 @@
 *
 *       Proposito: O proposito deste programa e o de demonstrar como semaforos
 *		podem ser usados para proteger uma regiao critica. O programa exibe
-*		um string de caracteres (na realidade um alfabeto). Um n√∫mero 
+*		um string de caracteres (na realidade um alfabeto). Um n˙mero 
 *		qualquer de processos pode ser usado para exibir o string, seja
 *		de maneira cooperativa ou nao cooperativa. Um indice e armazenado
 *		em memoria compartilhada, este indice e aquele usado para 
@@ -73,13 +73,8 @@
  */
 #define SEM_KEY_PRODUTOR	0x1243
 #define SEM_KEY_CONSUMIDOR	0x1244
-
-#define SHM_KEY_BUFFER		0x1432
-#define SHM_KEY_PRODUTOR	0x1433
-#define SHM_KEY_CONSUMIDOR	0x1434
-
+#define SHM_KEY			0x1432
 #define NO_OF_CHILDREN	8
-
 #define MAX_SIZE_BUFFER 66
 
 /*
@@ -96,14 +91,16 @@ int 	g_sem_id_produtor;
 int 	g_sem_id_consumidor;
 
 /* Memoria Compartilhada */
-int 	g_shm_id_buffer;
-int 	g_shm_id_produtor;
-int 	g_shm_id_consumidor;
+typedef struct {
+	int consumidor;
+	int produtor;
+	char buffer[MAX_SIZE_BUFFER];
+}shared_memory;
 
-/* Endere√ßo */
-int	*g_shm_addr_produtor;	
-int 	*g_shm_addr_consumidor;	
-char 	*g_shm_addr_buffer;
+int 	g_shm_id;
+
+/* EndereÁo */
+shared_memory	*g_shm_addr;
 
 
 /*
@@ -123,7 +120,6 @@ struct sembuf	g_sem_op2[1];
  * que sera exibido.
 */
 char g_letters_and_numbers[] = " ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 1234567890";
-char buffer[MAX_SIZE_BUFFER];
 
 /*
  * Funcoes
@@ -149,7 +145,7 @@ int main( int argc, char *argv[] )
       int pid[NO_OF_CHILDREN];
 
 	
-	/*==================================================================================================*/
+	/* ================================================================================================== */
 
 
 	/*
@@ -164,7 +160,7 @@ int main( int argc, char *argv[] )
 	g_sem_op2[0].sem_flg =  0;
 
 
-	/*=========================== SEM√ÅFOROS ===========================*/
+	/* ============================= SEM¡FOROS ============================= */
 
 	if( ( g_sem_id_produtor = semget( SEM_KEY_PRODUTOR, 1, IPC_CREAT | 0666 ) ) == -1 ) {
 		fprintf(stderr,"chamada a semget() falhou, impossivel criar o conjunto de semaforos!");
@@ -175,7 +171,7 @@ int main( int argc, char *argv[] )
 		exit(1);
 	}
 	
-	/* Destrava os sem√°foros */
+	/* Destrava os sem·foros */
 	if( semop( g_sem_id_produtor, g_sem_op2, 1 ) == -1 ) {
 		fprintf(stderr,"chamada semop() falhou, impossivel inicializar o semaforo!");
 		exit(1);
@@ -185,46 +181,21 @@ int main( int argc, char *argv[] )
 		exit(1);
 	}
 
-	/*=========================== MEMORIA COMPARTILHADA ===========================*/
-
-	/*Memoria compartilhada buffer*/
+	/* =========================== MEMORIA COMPARTILHADA =========================== */
 	
-	if( (g_shm_id_buffer = shmget( SHM_KEY_BUFFER, MAX_SIZE_BUFFER, IPC_CREAT | 0666)) == -1 ) {
+	if( (g_shm_id = shmget( SHM_KEY, sizeof(shared_memory), IPC_CREAT | 0666)) == -1 ) {
 		fprintf(stderr,"Impossivel criar o segmento de memoria compartilhada!\n");
 		exit(1);
 	}
-	if( (g_shm_addr_buffer = (char *)shmat(g_shm_id_buffer, NULL, 0)) == (char *)-1 ) {
+	if( (g_shm_addr = (shared_memory *)shmat(g_shm_id, NULL, 0)) == (shared_memory *)-1 ) {
 		fprintf(stderr,"Impossivel associar o segmento de memoria compartilhada!\n");
 		exit(1);
 	}
 
-	/*Memoria Compartilhada Produtor*/
+	(*g_shm_addr).produtor = 0;
+	(*g_shm_addr).consumidor = 0;
 
-	if( (g_shm_id_produtor = shmget( SHM_KEY_PRODUTOR, sizeof(int), IPC_CREAT | 0666)) == -1 ) {
-		fprintf(stderr,"Impossivel criar o segmento de memoria compartilhada!\n");
-		exit(1);
-	}
-	if( (g_shm_addr_produtor = (int *)shmat(g_shm_id_produtor, NULL, 0)) == (int *)-1 ) {
-		fprintf(stderr,"Impossivel associar o segmento de memoria compartilhada!\n");
-		exit(1);
-	}
-
-	/*Memoria Compartilhada Consumidor*/
-
-	if( (g_shm_id_consumidor = shmget( SHM_KEY_CONSUMIDOR, sizeof(int), IPC_CREAT | 0666)) == -1 ) {
-		fprintf(stderr,"Impossivel criar o segmento de memoria compartilhada!\n");
-		exit(1);
-	}
-	if( (g_shm_addr_consumidor = (int *)shmat(g_shm_id_consumidor, NULL, 0)) == (int *)-1 ) {
-		fprintf(stderr,"Impossivel associar o segmento de memoria compartilhada!\n");
-		exit(1);
-	}
-
-	*g_shm_addr_produtor = 0;
-	*g_shm_addr_consumidor = 0;
-	*g_shm_addr_buffer = 0;
-
-	/*==================================================================================================*/
+	/* ================================================================================================== */
 
 
        /*
@@ -247,13 +218,11 @@ int main( int argc, char *argv[] )
                 /*
                  * Eu sou um filho
                  */
-		
-		if(count <= NO_OF_CHILDREN /2){
-			
+		if(count % 2 == 0){
+			/* Metade dos filhos produtores */
 			Produtor( count );
-		}
-		
-		else{
+		}else{
+			/* Metade dos filhos consumidores */
 			Consumidor( count );
 		}
 
@@ -273,12 +242,7 @@ int main( int argc, char *argv[] )
                  * Removendo as memorias compartilhadas
                  */
 		
-		if( shmctl(g_shm_id_produtor, IPC_RMID, NULL) != 0 ) {
-                        fprintf(stderr,"Impossivel remover o segmento de memoria compartilhada!\n");
-                        exit(1);
-                }
-
-		if( shmctl(g_shm_id_consumidor, IPC_RMID, NULL) != 0 ) {
+		if( shmctl(g_shm_id, IPC_RMID, NULL) != 0 ) {
                         fprintf(stderr,"Impossivel remover o segmento de memoria compartilhada!\n");
                         exit(1);
                 }
@@ -304,7 +268,7 @@ int main( int argc, char *argv[] )
 }
 
 
-/*==================================================================================================*/
+/* ================================================================================================== */
 
 
 /* Produzir os caracteres */
@@ -314,7 +278,6 @@ void Produtor( int count ){
 	int number;
 
 	int tmp_index_produtor;
-	int tmp_index_buffer;
 	int i, j;
 	
 	char caracteres_produzidos[5];
@@ -338,7 +301,7 @@ void Produtor( int count ){
 			fprintf(stderr,"Impossivel conseguir o tempo atual, terminando.\n");
 			exit(1);
 		}
-		/* number contem numero de caracteres que ser√£o produzidos */	
+		/* number contem numero de caracteres que ser„o produzidos */	
 		number = ((tv.tv_usec / 47) % 5) + 1;
 	
 
@@ -347,18 +310,22 @@ void Produtor( int count ){
 		fprintf(stderr,"chamada semop() falhou, impossivel liberar o recurso!");
 		exit(1);
 	}
+	if( semop( g_sem_id_consumidor, g_sem_op1, 1 ) == -1 ) {      		
+		fprintf(stderr,"chamada semop() falhou, impossivel liberar o recurso!");
+		exit(1);
+	}
 #endif
-		
-		tmp_index_produtor = *g_shm_addr_produtor;
+
+		tmp_index_produtor = (*g_shm_addr).produtor;
 
 		for( i = 0; i < number; i++ ) {
 			/* Verificar se pode produzir */
 			if(tmp_index_produtor + i < MAX_SIZE_BUFFER){
 				/* Pode produzir */
-				/* Garante que n√£o ultrapasse o limite do vetor */
+				/* Garante que n„o ultrapasse o limite do vetor */
 				if( ! (tmp_index_produtor > sizeof(g_letters_and_numbers)) ){
 					/* Coloca caracteres no buffer */
-					buffer[tmp_index_produtor + i] = g_letters_and_numbers[tmp_index_produtor + i];
+					(*g_shm_addr).buffer[tmp_index_produtor + i] = g_letters_and_numbers[tmp_index_produtor + i];
 					caracteres_produzidos[i] =  g_letters_and_numbers[tmp_index_produtor + i];
 					usleep(1);
 				}
@@ -369,18 +336,18 @@ void Produtor( int count ){
 		}
 		
 		/* Atualiza indice da memoria */
-		*g_shm_addr_produtor = tmp_index_produtor + i;
+		(*g_shm_addr).produtor = tmp_index_produtor + i;
 		
 		/* Verifica se buffer esta cheio */
 		if(tmp_index_produtor + i >= MAX_SIZE_BUFFER){
 			/* Reinicia indice */
-			*g_shm_addr_produtor = 0;
+			(*g_shm_addr).produtor = 0;
+			(*g_shm_addr).consumidor = 0;
 
 			/* Printa buffer */
-			fprintf(stderr, "\nProdutor - Buffer Cheio\n");
-			fprintf(stderr, "Produtor - Buffer: ");
-			for(int k=0; k < (tmp_index_produtor + i); k++){
-			fprintf(stderr, "%c", buffer[k]);
+			fprintf(stderr, "\n\nProdutor - Buffer Cheio\n");
+			for( j = 0; j < MAX_SIZE_BUFFER; j++ ){
+				fprintf(stderr, "%c", (*g_shm_addr).buffer[j]);
 			}
 		}
 		
@@ -389,13 +356,16 @@ void Produtor( int count ){
 		for( j = 0; j < number; j++ ){
 			fprintf(stderr,"%c", caracteres_produzidos[j]);
 		}
-		fprintf(stderr, "\n");
 		
 		/* Tempo de dormencia equivalente a caracteres produzidos */
-		usleep(15*number);
+		usleep(number);
 
 #ifdef PROTECT
 	if( semop( g_sem_id_produtor, g_sem_op2, 1 ) == -1 ) {      		
+		fprintf(stderr,"chamada semop() falhou, impossivel liberar o recurso!");
+		exit(1);
+	}
+	if( semop( g_sem_id_consumidor, g_sem_op2, 1 ) == -1 ) {      		
 		fprintf(stderr,"chamada semop() falhou, impossivel liberar o recurso!");
 		exit(1);
 	}
@@ -413,7 +383,7 @@ void Consumidor( int count ){
 	int number;
 
 	int tmp_index_consumidor;
-	int tmp_index_buffer;
+	int tmp_index_produtor;
 	int i, j;
 
 	/*
@@ -435,25 +405,32 @@ void Consumidor( int count ){
 			fprintf(stderr,"Impossivel conseguir o tempo atual, terminando.\n");
 			exit(1);
 		}
-		/* number contem numero de caracteres que ser√£o consumidos */	
+		/* number contem o numero de caracteres que ser„o consumidos */	
 		number = ((tv.tv_usec / 47) % 5) + 1;	
 
 #ifdef PROTECT
+	if( semop( g_sem_id_produtor, g_sem_op1, 1 ) == -1 ) {      		
+		fprintf(stderr,"chamada semop() falhou, impossivel liberar o recurso!");
+		exit(1);
+	}
 	if( semop( g_sem_id_consumidor, g_sem_op1, 1 ) == -1 ) {      		
 		fprintf(stderr,"chamada semop() falhou, impossivel liberar o recurso!");
 		exit(1);
 	}
 #endif
 		
-		tmp_index_consumidor = *g_shm_addr_consumidor;
-	
+		tmp_index_produtor = (*g_shm_addr).produtor;
+		tmp_index_consumidor = (*g_shm_addr).consumidor;
+
 		for( i = 0; i < number; i++ ) {
 			/* Verificar se pode consumir */
-			if(tmp_index_consumidor + i != 0){
+			if(tmp_index_produtor + i != 0){
 				/* Pode consumir */
-				/* Troca posi√ß√£o do vetor por '#' */
-				buffer[tmp_index_consumidor + i] = '#';
-				usleep(1);
+				/* Troca posiÁ„o do vetor por '#' */
+				if(! (tmp_index_consumidor + i > MAX_SIZE_BUFFER )) {
+					(*g_shm_addr).buffer[tmp_index_consumidor + i] = '#';
+					usleep(1);
+				}
 			}else{
 				/* Nao pode consumir -> break */
 				break;
@@ -461,24 +438,30 @@ void Consumidor( int count ){
 		}
 			
 		/* Atualiza indice da memoria */
-		*g_shm_addr_consumidor = tmp_index_consumidor + i;
+		(*g_shm_addr).consumidor = tmp_index_consumidor + i;
 		
-		/* Verifica se buffer esta cheio -> printa e indice no inicio*/
-		if(tmp_index_consumidor +i >= MAX_SIZE_BUFFER){
+		/* Verifica se buffer esta cheio */
+		if(tmp_index_consumidor + i >= MAX_SIZE_BUFFER){
 			/* Reinicia indice */
-			*g_shm_addr_consumidor = 0;
-			
+			(*g_shm_addr).produtor = 0;
+			(*g_shm_addr).consumidor = 0;
+
 			/* Printa buffer */
-			fprintf(stderr, "Consumidor(%i) - Buffer: ", count);
-			for(int k=0; k <= (tmp_index_consumidor + i); k++){
-			fprintf(stderr, "%c", buffer[k]);
-			}	
-		}		
+			fprintf(stderr, "\n\nConsumidor - Buffer Cheio\n");
+			for( j = 0; j < MAX_SIZE_BUFFER; j++ ){
+				fprintf(stderr, "%c", (*g_shm_addr).buffer[j]);
+			}
+			fprintf(stderr, "\n");
+		}	
 		
 		/* Tempo de dormencia equivalente a caracteres consumidos */
-		usleep(15*number);
+		usleep(number);
 
 #ifdef PROTECT
+	if( semop( g_sem_id_produtor, g_sem_op2, 1 ) == -1 ) {      		
+		fprintf(stderr,"chamada semop() falhou, impossivel liberar o recurso!");
+		exit(1);
+	}
 	if( semop( g_sem_id_consumidor, g_sem_op2, 1 ) == -1 ) {      		
 		fprintf(stderr,"chamada semop() falhou, impossivel liberar o recurso!");
 		exit(1);
