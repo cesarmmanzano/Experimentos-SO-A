@@ -107,17 +107,7 @@
  */
 #define NO_OF_CHILDREN          2
 void Receiver(int queue_id);
-
 void Sender(int queue_id);
-	
-	/*
-	  Pergunta 1: O que eh um protótipo? Por qual motivo eh usado?
-	  	Resposta: Protótipo é uma declaração de uma função, o tipo dela, o seu nome assim como o de seus parâmetros também. É usado para 			alocar espaço de memória previamente.
-	 */
-
-
-//==================================================================================================//
-
 
 /*
  * Programa principal

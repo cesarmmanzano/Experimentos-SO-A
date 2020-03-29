@@ -1,0 +1,3829 @@
+COM PROTECT DEFINIDO
+
+1ªexecução
+Caracteres produzidos pelo filho 2:  A
+Caracteres produzidos pelo filho 4: BC
+Caracteres produzidos pelo filho 6: DE
+Caracteres produzidos pelo filho 2: FGHIJ
+Caracteres produzidos pelo filho 8: KL
+Caracteres produzidos pelo filho 4: MNO
+Caracteres produzidos pelo filho 6: PQ
+Caracteres produzidos pelo filho 2: RST
+Caracteres produzidos pelo filho 8: U
+Caracteres produzidos pelo filho 4: VWXY
+Caracteres produzidos pelo filho 6: Z 
+Caracteres produzidos pelo filho 2: abcd
+Caracteres produzidos pelo filho 8: efg
+Caracteres produzidos pelo filho 4: hijk
+Caracteres produzidos pelo filho 6: lmnop
+Caracteres produzidos pelo filho 2: qrstu
+Caracteres produzidos pelo filho 8: vwxyz
+Caracteres produzidos pelo filho 4:  
+Caracteres produzidos pelo filho 6: 123
+Caracteres produzidos pelo filho 2: 4567
+Caracteres produzidos pelo filho 8: 89
+Caracteres produzidos pelo filho 4: 0
+
+Consumidor - Buffer Cheio
+##BCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqr##################0#
+
+Caracteres produzidos pelo filho 6:  ABC
+Caracteres produzidos pelo filho 2: DEFG
+Caracteres produzidos pelo filho 8: HIJKL
+Caracteres produzidos pelo filho 4: MN
+Caracteres produzidos pelo filho 6: OPQRS
+Caracteres produzidos pelo filho 2: TUVWX
+Caracteres produzidos pelo filho 8: YZ 
+Caracteres produzidos pelo filho 4: abcde
+Caracteres produzidos pelo filho 6: fghij
+Caracteres produzidos pelo filho 2: kl
+Caracteres produzidos pelo filho 8: mn
+Caracteres produzidos pelo filho 4: opq
+Caracteres produzidos pelo filho 6: rstu
+Caracteres produzidos pelo filho 2: vwx
+Caracteres produzidos pelo filho 8: y
+Caracteres produzidos pelo filho 4: z 12
+Caracteres produzidos pelo filho 6: 3456
+
+Produtor - Buffer Cheio
+#########################################nopqrstuvwxyz 1234567890
+Caracteres produzidos pelo filho 2: 7890
+Caracteres produzidos pelo filho 8:  
+Caracteres produzidos pelo filho 4: AB
+Caracteres produzidos pelo filho 6: CD
+Caracteres produzidos pelo filho 2: E
+Caracteres produzidos pelo filho 8: FGHIJ
+Caracteres produzidos pelo filho 4: KLMN
+Caracteres produzidos pelo filho 6: OPQRS
+Caracteres produzidos pelo filho 2: TUV
+Caracteres produzidos pelo filho 8: WXYZ 
+Caracteres produzidos pelo filho 4: abc
+Caracteres produzidos pelo filho 6: def
+Caracteres produzidos pelo filho 2: ghijk
+Caracteres produzidos pelo filho 8: l
+Caracteres produzidos pelo filho 4: mn
+Caracteres produzidos pelo filho 6: opqrs
+Caracteres produzidos pelo filho 2: tu
+
+
+
+2ªexecução
+Caracteres produzidos pelo filho 2:  
+Caracteres produzidos pelo filho 4: A
+Caracteres produzidos pelo filho 2: B
+Caracteres produzidos pelo filho 6: C
+Caracteres produzidos pelo filho 8: DE
+Caracteres produzidos pelo filho 4: FG
+Caracteres produzidos pelo filho 2: HIJ
+Caracteres produzidos pelo filho 6: KLMNO
+Caracteres produzidos pelo filho 8: PQR
+Caracteres produzidos pelo filho 4: STU
+Caracteres produzidos pelo filho 2: VWXY
+Caracteres produzidos pelo filho 6: Z
+Caracteres produzidos pelo filho 8:  
+Caracteres produzidos pelo filho 4: a
+Caracteres produzidos pelo filho 2: b
+Caracteres produzidos pelo filho 6: cde
+Caracteres produzidos pelo filho 8: fgh
+Caracteres produzidos pelo filho 4: i
+Caracteres produzidos pelo filho 2: jklmn
+Caracteres produzidos pelo filho 6: opqr
+Caracteres produzidos pelo filho 8: s
+Caracteres produzidos pelo filho 4: tuvw
+Caracteres produzidos pelo filho 2: x
+Caracteres produzidos pelo filho 6: yz 12
+Caracteres produzidos pelo filho 8: 34567
+
+Consumidor - Buffer Cheio
+#ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 1234567####
+
+Caracteres produzidos pelo filho 4:  ABCD
+Caracteres produzidos pelo filho 2: EFGHI
+Caracteres produzidos pelo filho 6: J
+Caracteres produzidos pelo filho 8: K
+Caracteres produzidos pelo filho 4: L
+Caracteres produzidos pelo filho 2: M
+Caracteres produzidos pelo filho 6: NOPQR
+Caracteres produzidos pelo filho 8: STUV
+Caracteres produzidos pelo filho 4: WXYZ
+Caracteres produzidos pelo filho 2:  a
+Caracteres produzidos pelo filho 6: bc
+Caracteres produzidos pelo filho 8: d
+Caracteres produzidos pelo filho 4: e
+Caracteres produzidos pelo filho 2: fg
+Caracteres produzidos pelo filho 6: hijk
+Caracteres produzidos pelo filho 8: l
+Caracteres produzidos pelo filho 4: mnopq
+Caracteres produzidos pelo filho 2: rstuv
+Caracteres produzidos pelo filho 6: wxy
+Caracteres produzidos pelo filho 8: z
+Caracteres produzidos pelo filho 4:  12
+Caracteres produzidos pelo filho 2: 34
+Caracteres produzidos pelo filho 6: 567
+Caracteres produzidos pelo filho 8: 8
+
+Consumidor - Buffer Cheio
+#############MNOP#################################################
+
+Caracteres produzidos pelo filho 4:  ABC
+Caracteres produzidos pelo filho 2: DEFG
+Caracteres produzidos pelo filho 6: HIJKL
+Caracteres produzidos pelo filho 8: MNOP
+Caracteres produzidos pelo filho 4: QR
+Caracteres produzidos pelo filho 2: S
+Caracteres produzidos pelo filho 6: TUVWX
+Caracteres produzidos pelo filho 8: YZ ab
+Caracteres produzidos pelo filho 4: cdefg
+Caracteres produzidos pelo filho 2: hijkl
+Caracteres produzidos pelo filho 6: mnop
+Caracteres produzidos pelo filho 8: qr
+Caracteres produzidos pelo filho 4: stu
+Caracteres produzidos pelo filho 2: vwxyz
+Caracteres produzidos pelo filho 6:  1
+Caracteres produzidos pelo filho 8: 2
+Caracteres produzidos pelo filho 4: 34
+
+
+
+3ªexecução
+Caracteres produzidos pelo filho 2:  ABC
+Caracteres produzidos pelo filho 4: DEFGH
+Caracteres produzidos pelo filho 6: IJKLM
+Caracteres produzidos pelo filho 8: N
+Caracteres produzidos pelo filho 2: OPQ
+Caracteres produzidos pelo filho 4: RSTUV
+Caracteres produzidos pelo filho 6: WXYZ
+Caracteres produzidos pelo filho 8:  
+Caracteres produzidos pelo filho 2: a
+Caracteres produzidos pelo filho 4: bcde
+Caracteres produzidos pelo filho 6: f
+Caracteres produzidos pelo filho 8: ghijk
+Caracteres produzidos pelo filho 2: lmn
+Caracteres produzidos pelo filho 4: op
+Caracteres produzidos pelo filho 6: qrst
+Caracteres produzidos pelo filho 8: u
+Caracteres produzidos pelo filho 2: v
+Caracteres produzidos pelo filho 4: w
+Caracteres produzidos pelo filho 6: xyz
+Caracteres produzidos pelo filho 8:  12
+Caracteres produzidos pelo filho 2: 34567
+
+Consumidor - Buffer Cheio
+####DEFGH#####N###RST#############g#############uvwxyz 1234567####
+
+Caracteres produzidos pelo filho 4:  AB
+Caracteres produzidos pelo filho 6: CDE
+Caracteres produzidos pelo filho 8: FGH
+Caracteres produzidos pelo filho 2: IJ
+Caracteres produzidos pelo filho 4: KL
+Caracteres produzidos pelo filho 6: MN
+Caracteres produzidos pelo filho 8: O
+Caracteres produzidos pelo filho 2: PQRST
+Caracteres produzidos pelo filho 4: UVW
+Caracteres produzidos pelo filho 6: XY
+Caracteres produzidos pelo filho 8: Z ab
+Caracteres produzidos pelo filho 2: cd
+Caracteres produzidos pelo filho 4: ef
+Caracteres produzidos pelo filho 6: g
+Caracteres produzidos pelo filho 8: hij
+Caracteres produzidos pelo filho 2: kl
+Caracteres produzidos pelo filho 4: mn
+Caracteres produzidos pelo filho 6: opqr
+Caracteres produzidos pelo filho 8: st
+Caracteres produzidos pelo filho 2: uv
+Caracteres produzidos pelo filho 4: w
+Caracteres produzidos pelo filho 6: xyz
+
+Consumidor - Buffer Cheio
+######FGH##KLM#OPQR##UVWX#Z abc#efghijklmnopqrstuvwxyz############
+
+Caracteres produzidos pelo filho 8:  AB
+Caracteres produzidos pelo filho 2: CD
+Caracteres produzidos pelo filho 4: E
+Caracteres produzidos pelo filho 6: FG
+Caracteres produzidos pelo filho 8: HIJ
+Caracteres produzidos pelo filho 2: KLM
+Caracteres produzidos pelo filho 4: NOPQR
+Caracteres produzidos pelo filho 6: STUVW
+Caracteres produzidos pelo filho 8: XYZ 
+Caracteres produzidos pelo filho 2: abcde
+Caracteres produzidos pelo filho 4: f
+Caracteres produzidos pelo filho 6: ghij
+Caracteres produzidos pelo filho 8: kl
+Caracteres produzidos pelo filho 2: mnopq
+Caracteres produzidos pelo filho 4: rstu
+Caracteres produzidos pelo filho 6: v
+Caracteres produzidos pelo filho 8: wxyz
+Caracteres produzidos pelo filho 2:  12
+Caracteres produzidos pelo filho 4: 345
+Caracteres produzidos pelo filho 6: 67
+
+Produtor - Buffer Cheio
+########HIJKL#NOPQRS####XY##############################234567890
+Caracteres produzidos pelo filho 8: 890
+Caracteres produzidos pelo filho 2:  ABCD
+Caracteres produzidos pelo filho 4: EFGH
+Caracteres produzidos pelo filho 6: IJKLM
+Caracteres produzidos pelo filho 8: NOP
+Caracteres produzidos pelo filho 2: Q
+Caracteres produzidos pelo filho 4: RS
+Caracteres produzidos pelo filho 6: TU
+Caracteres produzidos pelo filho 8: VWXYZ
+Caracteres produzidos pelo filho 2:  ab
+Caracteres produzidos pelo filho 4: c
+Caracteres produzidos pelo filho 6: d
+Caracteres produzidos pelo filho 8: efg
+Caracteres produzidos pelo filho 2: hijkl
+Caracteres produzidos pelo filho 4: m
+Caracteres produzidos pelo filho 6: nopq
+Caracteres produzidos pelo filho 8: rstu
+Caracteres produzidos pelo filho 2: vw
+Caracteres produzidos pelo filho 4: xyz
+Caracteres produzidos pelo filho 6:  1234
+Caracteres produzidos pelo filho 8: 56789
+
+Produtor - Buffer Cheio
+##############N###RSTUVWXYZ ##cdefghijklmnopqrstu##xyz 1234567890
+Caracteres produzidos pelo filho 2: 0jk
+Caracteres produzidos pelo filho 4:  ABCD
+
+
+
+4ªexecução
+Caracteres produzidos pelo filho 2:  ABCD
+Caracteres produzidos pelo filho 4: E
+Caracteres produzidos pelo filho 6: F
+Caracteres produzidos pelo filho 2: GHIJ
+Caracteres produzidos pelo filho 8: KLMN
+Caracteres produzidos pelo filho 4: OPQR
+Caracteres produzidos pelo filho 6: STU
+Caracteres produzidos pelo filho 2: V
+Caracteres produzidos pelo filho 8: WXYZ
+Caracteres produzidos pelo filho 4:  a
+Caracteres produzidos pelo filho 6: bcd
+Caracteres produzidos pelo filho 2: ef
+Caracteres produzidos pelo filho 8: gh
+Caracteres produzidos pelo filho 4: ij
+Caracteres produzidos pelo filho 6: kl
+Caracteres produzidos pelo filho 2: m
+Caracteres produzidos pelo filho 8: no
+Caracteres produzidos pelo filho 4: pq
+Caracteres produzidos pelo filho 6: rstuv
+Caracteres produzidos pelo filho 2: wxy
+Caracteres produzidos pelo filho 8: z 123
+Caracteres produzidos pelo filho 4: 45678
+
+Consumidor - Buffer Cheio
+######FGHIJK###OPQ##################i#klmnopqrstuvwxyz 12#45678###
+
+Caracteres produzidos pelo filho 6:  A
+Caracteres produzidos pelo filho 2: BCDEF
+Caracteres produzidos pelo filho 8: GHIJ
+Caracteres produzidos pelo filho 4: K
+Caracteres produzidos pelo filho 6: LMNO
+Caracteres produzidos pelo filho 2: P
+Caracteres produzidos pelo filho 8: QRST
+Caracteres produzidos pelo filho 4: U
+Caracteres produzidos pelo filho 6: V
+Caracteres produzidos pelo filho 2: WX
+Caracteres produzidos pelo filho 8: YZ ab
+Caracteres produzidos pelo filho 4: cdef
+Caracteres produzidos pelo filho 6: g
+Caracteres produzidos pelo filho 2: hij
+Caracteres produzidos pelo filho 8: kl
+Caracteres produzidos pelo filho 4: m
+Caracteres produzidos pelo filho 6: nopq
+Caracteres produzidos pelo filho 2: rstuv
+Caracteres produzidos pelo filho 8: wxyz
+Caracteres produzidos pelo filho 4:  1
+Caracteres produzidos pelo filho 6: 234
+Caracteres produzidos pelo filho 2: 56
+Caracteres produzidos pelo filho 8: 7890
+
+Consumidor - Buffer Cheio
+##BC########LM########VWXYZ###cdefghijklmnopqrstuv#### #23456789##
+
+Caracteres produzidos pelo filho 4:  A
+Caracteres produzidos pelo filho 6: BCDEF
+Caracteres produzidos pelo filho 2: GHIJK
+Caracteres produzidos pelo filho 8: L
+Caracteres produzidos pelo filho 4: MNO
+Caracteres produzidos pelo filho 6: PQ
+Caracteres produzidos pelo filho 2: RS
+Caracteres produzidos pelo filho 8: TUVWX
+Caracteres produzidos pelo filho 4: YZ ab
+Caracteres produzidos pelo filho 6: c
+Caracteres produzidos pelo filho 2: d
+Caracteres produzidos pelo filho 8: efgh
+Caracteres produzidos pelo filho 4: ij
+Caracteres produzidos pelo filho 6: kl
+Caracteres produzidos pelo filho 2: mnopq
+Caracteres produzidos pelo filho 8: r
+Caracteres produzidos pelo filho 4: stu
+Caracteres produzidos pelo filho 6: vwxy
+
+
+
+5ªexecução
+Caracteres produzidos pelo filho 2:  ABCD
+Caracteres produzidos pelo filho 4: E
+Caracteres produzidos pelo filho 6: FG
+Caracteres produzidos pelo filho 8: HIJ
+Caracteres produzidos pelo filho 2: KLMNO
+Caracteres produzidos pelo filho 4: P
+Caracteres produzidos pelo filho 6: Q
+Caracteres produzidos pelo filho 8: RS
+Caracteres produzidos pelo filho 2: TUVW
+Caracteres produzidos pelo filho 4: XY
+Caracteres produzidos pelo filho 6: Z abc
+Caracteres produzidos pelo filho 8: de
+Caracteres produzidos pelo filho 2: fghi
+Caracteres produzidos pelo filho 4: jklmn
+Caracteres produzidos pelo filho 6: op
+Caracteres produzidos pelo filho 8: qrs
+Caracteres produzidos pelo filho 2: tuvw
+Caracteres produzidos pelo filho 4: xyz 
+Caracteres produzidos pelo filho 6: 1234
+Caracteres produzidos pelo filho 8: 56789
+
+Produtor - Buffer Cheio
+########HIJ#######RSTU##XYZ####de#########################4567890
+Caracteres produzidos pelo filho 2: 0
+Caracteres produzidos pelo filho 4:  A
+Caracteres produzidos pelo filho 6: BCD
+Caracteres produzidos pelo filho 8: E
+Caracteres produzidos pelo filho 2: FGHI
+Caracteres produzidos pelo filho 4: JKLMN
+Caracteres produzidos pelo filho 6: O
+Caracteres produzidos pelo filho 8: P
+Caracteres produzidos pelo filho 2: QRS
+Caracteres produzidos pelo filho 4: TUV
+Caracteres produzidos pelo filho 6: W
+Caracteres produzidos pelo filho 8: XYZ
+Caracteres produzidos pelo filho 2:  abc
+Caracteres produzidos pelo filho 4: d
+Caracteres produzidos pelo filho 6: efgh
+Caracteres produzidos pelo filho 8: ij
+Caracteres produzidos pelo filho 2: klm
+Caracteres produzidos pelo filho 4: nopq
+Caracteres produzidos pelo filho 6: rs
+Caracteres produzidos pelo filho 8: tuv
+Caracteres produzidos pelo filho 2: wx
+Caracteres produzidos pelo filho 4: yz
+Caracteres produzidos pelo filho 6:  
+
+Consumidor - Buffer Cheio
+#####EFGHIJK####PQRSTUVWXYZ abcdefghijklmno####tuvwxyz ###########
+
+Caracteres produzidos pelo filho 8:  ABCD
+Caracteres produzidos pelo filho 2: EFGHI
+Caracteres produzidos pelo filho 4: JKL
+Caracteres produzidos pelo filho 6: M
+Caracteres produzidos pelo filho 8: NOP
+Caracteres produzidos pelo filho 2: Q
+Caracteres produzidos pelo filho 4: RS
+Caracteres produzidos pelo filho 6: TUVWX
+Caracteres produzidos pelo filho 8: YZ 
+Caracteres produzidos pelo filho 2: ab
+Caracteres produzidos pelo filho 4: cdef
+Caracteres produzidos pelo filho 6: ghi
+Caracteres produzidos pelo filho 8: jklm
+Caracteres produzidos pelo filho 2: no
+Caracteres produzidos pelo filho 4: pqr
+Caracteres produzidos pelo filho 6: s
+Caracteres produzidos pelo filho 8: tuvwx
+Caracteres produzidos pelo filho 2: yz 12
+Caracteres produzidos pelo filho 4: 345
+Caracteres produzidos pelo filho 6: 6
+
+Consumidor - Buffer Cheio
+###############################################tuvwx##############
+
+Caracteres produzidos pelo filho 8:  ABC
+Caracteres produzidos pelo filho 2: DEF
+Caracteres produzidos pelo filho 4: GHI
+Caracteres produzidos pelo filho 6: J
+Caracteres produzidos pelo filho 8: KLM
+Caracteres produzidos pelo filho 2: NOPQ
+Caracteres produzidos pelo filho 4: RSTU
+Caracteres produzidos pelo filho 6: VW
+Caracteres produzidos pelo filho 8: XYZ 
+Caracteres produzidos pelo filho 2: a
+Caracteres produzidos pelo filho 4: b
+Caracteres produzidos pelo filho 6: c
+Caracteres produzidos pelo filho 8: d
+Caracteres produzidos pelo filho 2: efghi
+Caracteres produzidos pelo filho 4: jkl
+Caracteres produzidos pelo filho 6: m
+Caracteres produzidos pelo filho 8: nopq
+Caracteres produzidos pelo filho 2: rstu
+Caracteres produzidos pelo filho 4: vwx
+Caracteres produzidos pelo filho 6: yz
+
+Consumidor - Buffer Cheio
+###########KLMNO##R#####X######defghijklmnopqrstuvwxyz############
+
+Caracteres produzidos pelo filho 8:  ABC
+
+
+
+/* ========================================================================================== */
+
+
+
+SEM PROTECT DEFINIDO
+
+1ªexecução
+Caracteres produzidos pelo filho 4:  AB
+Caracteres produzidos pelo filho 2:  ABCD
+Caracteres produzidos pelo filho 4: EFG
+Caracteres produzidos pelo filho 2: EFG
+Caracteres produzidos pelo filho 4: H
+Caracteres produzidos pelo filho 2: HI
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 4: HJKLMNIH
+Caracteres produzidos pelo filho 4: JOKILJ
+Caracteres produzidos pelo filho 4: PQ
+Caracteres produzidos pelo filho 8: P
+Caracteres produzidos pelo filho 4: RST
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 6: RSTUVPQQRS
+Caracteres produzidos pelo filho 4: TUVR
+Caracteres produzidos pelo filho 2: TU
+Caracteres produzidos pelo filho 4: VW
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 2: VWV
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 4: 
+Caracteres produzidos pelo filho 2: WWXYVWZXY
+Caracteres produzidos pelo filho 8: WX
+Caracteres produzidos pelo filho 4: X
+Caracteres produzidos pelo filho 2: YXZYZ 
+Caracteres produzidos pelo filho 2:  
+Caracteres produzidos pelo filho 8:  a
+Caracteres produzidos pelo filho 2: bc
+Caracteres produzidos pelo filho 8: defg
+Caracteres produzidos pelo filho 2: defgh
+Caracteres produzidos pelo filho 4:  abc
+Caracteres produzidos pelo filho 6: YZ a
+Caracteres produzidos pelo filho 4: d
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 4: efddef
+Caracteres produzidos pelo filho 6: eeffgghhig
+Caracteres produzidos pelo filho 4: hijkl
+Caracteres produzidos pelo filho 2: jkl
+
+Consumidor - Buffer Cheio
+###
+
+Consumidor - Buffer Cheio
+#################PQRS
+Caracteres produzidos pelo filho 4: 
+Caracteres produzidos pelo filho 8: TmnU
+
+Consumidor - Buffer Cheio
+VW XAYBZC #a#b#c#d#efghij
+
+Consumidor - Buffer Cheio
+k l
+Caracteres produzidos pelo filho 4: monpoqpq##
+Caracteres produzidos pelo filho 2: #################P#Q#RPSQTRUSVTWUXVYWZX YaZb cadbecfdgehfigjhkiljmknlompnqorpsq#r#s##################################
+##
+####
+Caracteres produzidos pelo filho 6: #####m#n#o####p#q###
+mAn 
+Caracteres produzidos pelo filho 4: #rsAB
+Caracteres produzidos pelo filho 6: tCDu#
+Caracteres produzidos pelo filho 8: #v##
+Caracteres produzidos pelo filho 4: v
+Caracteres produzidos pelo filho 6: wwxx######
+Caracteres produzidos pelo filho 2: w#xyz
+Caracteres produzidos pelo filho 6:  1#
+Caracteres produzidos pelo filho 8: yz
+Caracteres produzidos pelo filho 4: y#zP 
+Caracteres produzidos pelo filho 6: 1 12QRSTUVWXYZ abcd
+Caracteres produzidos pelo filho 2: e2f3g4hij
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 4: 23k425
+Caracteres produzidos pelo filho 6: 2
+Caracteres produzidos pelo filho 2: 3465
+Caracteres produzidos pelo filho 4: 678lmnop
+
+Produtor - Buffer Cheio
+
+Caracteres produzidos pelo filho 6: ##
+Caracteres produzidos pelo filho 4: #9#0###q#7######r
+
+Produtor - Buffer Cheio
+
+
+Produtor - Buffer Cheio
+###############################c#d#e#f#g#h#i#j#k#l#m#n#o#p#q#rcsdteufvgwhxiyjzk l1m2n3o4p5q6r7s8t9u0vw
+Caracteres produzidos pelo filho 2: x9y0z z12348567890s9
+Caracteres produzidos pelo filho 4: #AB######
+Caracteres produzidos pelo filho 2: t uABCvwx
+Caracteres produzidos pelo filho 4: y zA B#1234#5678#90
+##########
+Caracteres produzidos pelo filho 2: CD#E#F#
+Caracteres produzidos pelo filho 4: #C#D#####EFG####
+Caracteres produzidos pelo filho 6: # #A#BC
+Caracteres produzidos pelo filho 2: HIJ
+Caracteres produzidos pelo filho 6: H
+Caracteres produzidos pelo filho 4: HIJK###opqrstuv
+Caracteres produzidos pelo filho 4: LM
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 4: OPw
+Caracteres produzidos pelo filho 6: KLxyMNzL MN1234567890
+Caracteres produzidos pelo filho 4: OPQ
+Caracteres produzidos pelo filho 8: 7890
+Caracteres produzidos pelo filho 6: OP
+Caracteres produzidos pelo filho 2: OPQRS
+Caracteres produzidos pelo filho 4: R
+Caracteres produzidos pelo filho 4: 
+Caracteres produzidos pelo filho 8: STUS
+Caracteres produzidos pelo filho 6: ST
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 4: U
+Caracteres produzidos pelo filho 2: SXTUVWVWV
+Caracteres produzidos pelo filho 6: YZ
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 8: YZYZ
+
+Consumidor - Buffer Cheio
+ A
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 8:   BCDEFGH
+Caracteres produzidos pelo filho 2: I JaKbLcMNOaabcPQbcRSdTUVWXYZ abcdef##
+Caracteres produzidos pelo filho 2: d##ef
+Caracteres produzidos pelo filho 6: d############################
+
+Caracteres produzidos pelo filho 2: ef
+Caracteres produzidos pelo filho 6: ef
+Caracteres produzidos pelo filho 8: defgh
+Caracteres produzidos pelo filho 2: gh
+Caracteres produzidos pelo filho 6: ij
+Caracteres produzidos pelo filho 8: ijklk
+Caracteres produzidos pelo filho 2: ij
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 8: kkll
+Caracteres produzidos pelo filho 2: klm
+Caracteres produzidos pelo filho 8: mn
+Caracteres produzidos pelo filho 6: nopq
+Caracteres produzidos pelo filho 2: nopqr
+Caracteres produzidos pelo filho 8: op
+Caracteres produzidos pelo filho 6: rs
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 2: qq
+Caracteres produzidos pelo filho 6: rst
+Caracteres produzidos pelo filho 6: u
+Caracteres produzidos pelo filho 8: rstuv
+Caracteres produzidos pelo filho 6: vwxy
+
+Consumidor - Buffer Cheio
+#######
+Caracteres produzidos pelo filho 4: #z# #########
+
+Consumidor - Buffer Cheio
+##S#T#U#V#W#X#Y#Z# #a#b#c#d#e#f#g#h#i#j
+Caracteres produzidos pelo filho 4: k lmn
+Caracteres produzidos pelo filho 8: owpxqyrzst
+Caracteres produzidos pelo filho 6: uvwxSzTUyz ###### ##V###
+WXYZ abcdefghijklmno
+Caracteres produzidos pelo filho 8:  123pqrs
+Caracteres produzidos pelo filho 4: t u1v2w3xyz 12
+Caracteres produzidos pelo filho 6: 3 41#2######
+
+Caracteres produzidos pelo filho 4: 45
+Caracteres produzidos pelo filho 4: 6
+Caracteres produzidos pelo filho 6: 3456
+Caracteres produzidos pelo filho 6: 7
+Caracteres produzidos pelo filho 8: 67890
+Caracteres produzidos pelo filho 4: 7890
+
+Produtor - Buffer Cheio
+ #############
+Caracteres produzidos pelo filho 4:  ##
+Caracteres produzidos pelo filho 8: ###ST UVWXYZ abcdefghijklmno
+Caracteres produzidos pelo filho 2: rstu
+Caracteres produzidos pelo filho 4: ABCD
+Caracteres produzidos pelo filho 8: AB
+Caracteres produzidos pelo filho 2: Epqrstuvwxyz 1234567890
+Caracteres produzidos pelo filho 6: 456
+Caracteres produzidos pelo filho 2: CDEF
+Caracteres produzidos pelo filho 4: CDEF
+Caracteres produzidos pelo filho 8: CDEF
+Caracteres produzidos pelo filho 2: G
+Caracteres produzidos pelo filho 6: CDHEF
+Caracteres produzidos pelo filho 8: IJKLM
+Caracteres produzidos pelo filho 4: IJKLM
+Caracteres produzidos pelo filho 8: NO
+Caracteres produzidos pelo filho 6: GHI
+Caracteres produzidos pelo filho 2: JGHIJ
+Caracteres produzidos pelo filho 8: K
+Caracteres produzidos pelo filho 6: K
+Caracteres produzidos pelo filho 4: PQR
+Caracteres produzidos pelo filho 2: SKL
+Caracteres produzidos pelo filho 8: M
+Caracteres produzidos pelo filho 2: M
+Caracteres produzidos pelo filho 6: M
+Caracteres produzidos pelo filho 4: MNOPQ
+Caracteres produzidos pelo filho 8: NOPQ
+Caracteres produzidos pelo filho 4: RS
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 6: NNOOPPQQ
+Caracteres produzidos pelo filho 4: R
+Caracteres produzidos pelo filho 2: R
+Caracteres produzidos pelo filho 6: RSS
+Caracteres produzidos pelo filho 8: RSTUV
+Caracteres produzidos pelo filho 6: T
+Caracteres produzidos pelo filho 4: 
+Caracteres produzidos pelo filho 2: TUVWTU
+Caracteres produzidos pelo filho 4: V
+Caracteres produzidos pelo filho 6: UVWX
+Caracteres produzidos pelo filho 8: UVWX
+Caracteres produzidos pelo filho 2: 
+
+Consumidor - Buffer Cheio
+V WABCDEFGHIJKLMNOPQRSTUVWX
+Caracteres produzidos pelo filho 8: Y Z ##
+Caracteres produzidos pelo filho 2: ### ###########################
+
+Consumidor - Buffer Cheio
+# #A#B#C##
+
+Consumidor - Buffer Cheio
+
+
+Consumidor - Buffer Cheio
+
+ DAB AECFDGEHFBIGCJHDKIELJFMKGNLHOMIPNJQOKRPLSQMTRNUSOVTPWUQXVRYWZSX TYaUZbV #Wa#Xb#Y##Z## ##a##b#########################################################################################
+###
+#####
+
+Caracteres produzidos pelo filho 4: YZ ab
+Caracteres produzidos pelo filho 6: YZ ab
+Caracteres produzidos pelo filho 2: ABCD
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 4: EE
+Caracteres produzidos pelo filho 8: FAGBCDEH
+Caracteres produzidos pelo filho 2: FGH
+Caracteres produzidos pelo filho 6: EFGHI
+Caracteres produzidos pelo filho 8: FGHI
+Caracteres produzidos pelo filho 4: FGHI
+Caracteres produzidos pelo filho 2: IJ
+Caracteres produzidos pelo filho 4: K
+Caracteres produzidos pelo filho 2: K
+Caracteres produzidos pelo filho 6: JKLM
+Caracteres produzidos pelo filho 8: JKLMN
+Caracteres produzidos pelo filho 2: NOP
+Caracteres produzidos pelo filho 4: NOPQ
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 6: RNSOTPQR
+Caracteres produzidos pelo filho 2: ST
+Caracteres produzidos pelo filho 4: RSTUV
+Caracteres produzidos pelo filho 8: RST
+Caracteres produzidos pelo filho 2: WU
+Caracteres produzidos pelo filho 6: STU
+Caracteres produzidos pelo filho 4: XY
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 2: XYZ
+Caracteres produzidos pelo filho 4: Z 
+Caracteres produzidos pelo filho 6: ZV WaXbYc
+Caracteres produzidos pelo filho 8: d
+Caracteres produzidos pelo filho 6: de
+Caracteres produzidos pelo filho 4: defg
+Caracteres produzidos pelo filho 2: hdefgh
+Caracteres produzidos pelo filho 6: f
+Caracteres produzidos pelo filho 8: efgh
+Caracteres produzidos pelo filho 4: g
+Caracteres produzidos pelo filho 6: ijkh
+Caracteres produzidos pelo filho 6: lm
+Caracteres produzidos pelo filho 2: ijkl
+Caracteres produzidos pelo filho 8: ijklm
+Caracteres produzidos pelo filho 2: n
+Caracteres produzidos pelo filho 4: nop
+Caracteres produzidos pelo filho 6: mnop
+Caracteres produzidos pelo filho 4: q
+Caracteres produzidos pelo filho 2: q
+Caracteres produzidos pelo filho 8: rstqrst
+Caracteres produzidos pelo filho 2: u
+Caracteres produzidos pelo filho 6: qrstu
+Caracteres produzidos pelo filho 8: vw
+Caracteres produzidos pelo filho 4: rst
+Caracteres produzidos pelo filho 4: u
+Caracteres produzidos pelo filho 2: vwx
+Caracteres produzidos pelo filho 6: x
+Caracteres produzidos pelo filho 4: yzyz 
+Caracteres produzidos pelo filho 8: uvwxy
+Caracteres produzidos pelo filho 2: yz 1
+Caracteres produzidos pelo filho 6: z 
+Caracteres produzidos pelo filho 4:  1234
+Caracteres produzidos pelo filho 8: 1234
+Caracteres produzidos pelo filho 2: 1234
+Caracteres produzidos pelo filho 6: 1234
+Caracteres produzidos pelo filho 6: 5
+Caracteres produzidos pelo filho 4: 567
+Caracteres produzidos pelo filho 2: 5
+Caracteres produzidos pelo filho 8: 5678
+
+Produtor - Buffer Cheio
+
+
+Produtor - Buffer Cheio
+############
+
+Produtor - Buffer Cheio
+###########################################
+Caracteres produzidos pelo filho 8:  A#BCD#######
+
+Consumidor - Buffer Cheio
+# AB
+
+Consumidor - Buffer Cheio
+#C ADEFG###
+
+Consumidor - Buffer Cheio
+ A#
+Caracteres produzidos pelo filho 8: EF#G###
+Caracteres produzidos pelo filho 2: 904hACBDEFCGHBCD###################B##C#D#E#F#G##HI
+
+Consumidor - Buffer Cheio
+ #DEEFAGBHCJFGHIJ######################################
+Caracteres produzidos pelo filho 2: #KL######D
+Caracteres produzidos pelo filho 8: #HIJKEFGHIJKLH###IJKL#L#####################################################
+
+Caracteres produzidos pelo filho 8: IL###J#########
+Caracteres produzidos pelo filho 2: ####N###########################################################
+#
+KM#####################
+Caracteres produzidos pelo filho 4: 9034L#M###########################################
+
+Caracteres produzidos pelo filho 2: NOPQROSPQRSTUVW################
+Caracteres produzidos pelo filho 4: TUVW###
+Caracteres produzidos pelo filho 8: #O#P#Q#R#S##################
+Caracteres produzidos pelo filho 6: 904
+Caracteres produzidos pelo filho 4: T
+Caracteres produzidos pelo filho 2: TUV
+Caracteres produzidos pelo filho 8: WX
+Caracteres produzidos pelo filho 6: WXY
+Caracteres produzidos pelo filho 4: WXY
+Caracteres produzidos pelo filho 8: Z
+Caracteres produzidos pelo filho 6: Z  
+Caracteres produzidos pelo filho 4: Z a
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 6: bb
+Caracteres produzidos pelo filho 4: bc
+Caracteres produzidos pelo filho 4: defg
+Caracteres produzidos pelo filho 8: defg
+Caracteres produzidos pelo filho 6: def
+Caracteres produzidos pelo filho 4: hijg
+Caracteres produzidos pelo filho 6: k
+Caracteres produzidos pelo filho 4: klmno
+Caracteres produzidos pelo filho 8: klmno
+Caracteres produzidos pelo filho 4: pqrs
+Caracteres produzidos pelo filho 6: pqrs
+Caracteres produzidos pelo filho 6: tu
+Caracteres produzidos pelo filho 8: pqrs
+Caracteres produzidos pelo filho 4: ttuvwvw
+Caracteres produzidos pelo filho 2: WXY
+Caracteres produzidos pelo filho 8: xyz
+Caracteres produzidos pelo filho 2: Z
+Caracteres produzidos pelo filho 8:  a
+Caracteres produzidos pelo filho 4: xyz 
+Caracteres produzidos pelo filho 6: xyz 
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 8:  1a2b3
+Caracteres produzidos pelo filho 6: 41
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 4: 21324345
+Caracteres produzidos pelo filho 6: 234
+Caracteres produzidos pelo filho 8: 234
+Caracteres produzidos pelo filho 2: 5678
+Caracteres produzidos pelo filho 2: 90
+Caracteres produzidos pelo filho 4: 5678
+
+Produtor - Buffer Cheio
+#########################YZ ab#############pqrstuvwxyz 1234567890
+Caracteres produzidos pelo filho 2: 078
+Caracteres produzidos pelo filho 4:  
+Caracteres produzidos pelo filho 4: ABC
+Caracteres produzidos pelo filho 2: ABC
+Caracteres produzidos pelo filho 4: DE
+Caracteres produzidos pelo filho 2: DEF
+Caracteres produzidos pelo filho 4: F
+Caracteres produzidos pelo filho 4: GHIJ
+Caracteres produzidos pelo filho 2: GHIJ
+Caracteres produzidos pelo filho 2: KLMN
+Caracteres produzidos pelo filho 4: KLMN
+Caracteres produzidos pelo filho 4: O
+Caracteres produzidos pelo filho 2: OPQR
+Caracteres produzidos pelo filho 4: PQR
+Caracteres produzidos pelo filho 2: STUVW
+Caracteres produzidos pelo filho 4: STU
+
+Consumidor - Buffer Cheio
+ ABCDEFGHIJKLMNOP
+
+Consumidor - Buffer Cheio
+ ABCDEFGHIJKLMNOPQRSTUVWXYZ ab########
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 4: V#W#X##########################
+
+
+Consumidor - Buffer Cheio
+#ABCDEFGHIJKLMNOPQRSTUVWXYZ ab####################################
+VWXQRSTUVWXYZ ab#######
+Caracteres produzidos pelo filho 2: ####YZ## a#######################
+
+Caracteres produzidos pelo filho 4:  A
+Caracteres produzidos pelo filho 2: BbCc
+Caracteres produzidos pelo filho 2: d
+Caracteres produzidos pelo filho 4: d
+Caracteres produzidos pelo filho 2: efgh
+Caracteres produzidos pelo filho 4: efgh
+Caracteres produzidos pelo filho 2: ijkl
+Caracteres produzidos pelo filho 6: 5678
+Caracteres produzidos pelo filho 8: 5678
+Caracteres produzidos pelo filho 4: ijkl
+
+Produtor - Buffer Cheio
+ ABC##################V
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 6: mWnXopYZ abmcdneofpghijk
+Caracteres produzidos pelo filho 4: lmnompnqopq##################90
+Caracteres produzidos pelo filho 2: 90l
+Caracteres produzidos pelo filho 6: rs
+Caracteres produzidos pelo filho 8: rs
+Caracteres produzidos pelo filho 4: rst
+Caracteres produzidos pelo filho 6: t
+Caracteres produzidos pelo filho 8: uv
+Caracteres produzidos pelo filho 2: tuvw
+Caracteres produzidos pelo filho 6: uvw
+Caracteres produzidos pelo filho 2: x
+Caracteres produzidos pelo filho 4: u
+Caracteres produzidos pelo filho 8: vxw
+Caracteres produzidos pelo filho 6: xy
+Caracteres produzidos pelo filho 4: yz 
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 2: yyz 
+Caracteres produzidos pelo filho 6: zz 
+Caracteres produzidos pelo filho 4: 12
+Caracteres produzidos pelo filho 2:  
+Caracteres produzidos pelo filho 8: 1 2123
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 6: 4 5123
+Caracteres produzidos pelo filho 4: 34567
+Caracteres produzidos pelo filho 8: 45
+Caracteres produzidos pelo filho 4: 
+
+Produtor - Buffer Cheio
+ ABC#6#######
+
+Produtor - Buffer Cheio
+# #A#B#######
+Caracteres produzidos pelo filho 8: C6###########################################st#u#vwx#y#z 1#2#3456#7#8#9#0#
+Caracteres produzidos pelo filho 6: 89#0############tuvwxyz 1234567890
+Caracteres produzidos pelo filho 2: 890W
+Caracteres produzidos pelo filho 4:  ABC
+Caracteres produzidos pelo filho 8:  AB
+Caracteres produzidos pelo filho 4: C
+Caracteres produzidos pelo filho 8: C
+Caracteres produzidos pelo filho 6:  ABC
+Caracteres produzidos pelo filho 2: DEFGH
+Caracteres produzidos pelo filho 8: DEFG
+Caracteres produzidos pelo filho 4: DEFG
+Caracteres produzidos pelo filho 6: DEFG
+Caracteres produzidos pelo filho 2: IJKH
+Caracteres produzidos pelo filho 6: LM
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 8: HILJMK
+Caracteres produzidos pelo filho 4: IJKLM
+Caracteres produzidos pelo filho 8: L
+Caracteres produzidos pelo filho 2: N
+Caracteres produzidos pelo filho 8: OP
+Caracteres produzidos pelo filho 4: OP
+Caracteres produzidos pelo filho 6: LMNOP
+Caracteres produzidos pelo filho 2: OPQ
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 8: RR
+Caracteres produzidos pelo filho 4: RR
+
+Consumidor - Buffer Cheio
+ ABCDEFGHIJKLM
+Caracteres produzidos pelo filho 8: NS
+
+Consumidor - Buffer Cheio
+T AU
+
+Consumidor - Buffer Cheio
+BOPC QDAREBSFCTGDUH#EIFJGKHLIMJK#L##M#NOP#QRSTUV#############
+Caracteres produzidos pelo filho 6: #S#T#U#V#################
+Caracteres produzidos pelo filho 8: # ##A######
+N
+Caracteres produzidos pelo filho 2: OSPTQURST#UV#W#X####################################################
+Caracteres produzidos pelo filho 8: ##B################
+######
+
+Caracteres produzidos pelo filho 2: B
+Caracteres produzidos pelo filho 4: CSTUV
+Caracteres produzidos pelo filho 6: WXYZ
+Caracteres produzidos pelo filho 2:  
+Caracteres produzidos pelo filho 6:  a
+Caracteres produzidos pelo filho 8: CDEF
+Caracteres produzidos pelo filho 4:  a
+Caracteres produzidos pelo filho 2: GHIJ
+Caracteres produzidos pelo filho 6: bcde
+Caracteres produzidos pelo filho 2: fg
+Caracteres produzidos pelo filho 8: bcdef
+Caracteres produzidos pelo filho 4: bcd
+Caracteres produzidos pelo filho 6: fgehf
+Caracteres produzidos pelo filho 8: i
+Caracteres produzidos pelo filho 6: i
+Caracteres produzidos pelo filho 4: ij
+Caracteres produzidos pelo filho 2: ghijk
+Caracteres produzidos pelo filho 6: jkl
+Caracteres produzidos pelo filho 4: l
+Caracteres produzidos pelo filho 2: m
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 6: mjnklm
+Caracteres produzidos pelo filho 2: nop
+Caracteres produzidos pelo filho 4: nop
+Caracteres produzidos pelo filho 6: opqrs
+Caracteres produzidos pelo filho 2: qr
+Caracteres produzidos pelo filho 8: opqrs
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 4: stuv
+Caracteres produzidos pelo filho 6: stuvw
+Caracteres produzidos pelo filho 6: x
+Caracteres produzidos pelo filho 2: tuv
+Caracteres produzidos pelo filho 8: tuv
+Caracteres produzidos pelo filho 4: tuvw
+Caracteres produzidos pelo filho 6: wxy
+Caracteres produzidos pelo filho 2: wxyz
+Caracteres produzidos pelo filho 4: xy
+Caracteres produzidos pelo filho 8: xy
+Caracteres produzidos pelo filho 8: z
+Caracteres produzidos pelo filho 4: z
+Caracteres produzidos pelo filho 6: z 12
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 4: z3 41523
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 4: 4345
+Caracteres produzidos pelo filho 6: 3456
+Caracteres produzidos pelo filho 2: 56
+Caracteres produzidos pelo filho 4: 789
+Caracteres produzidos pelo filho 8: 78
+
+Produtor - Buffer Cheio
+9##B####################################
+Caracteres produzidos pelo filho 6: #7#8#
+Caracteres produzidos pelo filho 4:  A#####tuvwxyz 129345607890
+Caracteres produzidos pelo filho 2: 0123
+Caracteres produzidos pelo filho 4: 
+Caracteres produzidos pelo filho 6: BB
+Caracteres produzidos pelo filho 8:  AB
+Caracteres produzidos pelo filho 4: 
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 2: CCDCDE
+Caracteres produzidos pelo filho 6: CDDEE
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 2: FF
+Caracteres produzidos pelo filho 4: G
+Caracteres produzidos pelo filho 6: GH
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 8: GGHH
+Caracteres produzidos pelo filho 4: IJKL
+Caracteres produzidos pelo filho 2: IJKL
+Caracteres produzidos pelo filho 6: IJKL
+Caracteres produzidos pelo filho 8: IJKLM
+Caracteres produzidos pelo filho 4: MNO
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 2: MMNNOOPP
+Caracteres produzidos pelo filho 4: QRS
+Caracteres produzidos pelo filho 8: QRS
+Caracteres produzidos pelo filho 2: QRST
+Caracteres produzidos pelo filho 6: QRST
+Caracteres produzidos pelo filho 8: TU
+Caracteres produzidos pelo filho 4: TU
+
+Consumidor - Buffer Cheio
+ ABCDEFGHIJKLMNOPQRSTUVWX
+
+Consumidor - Buffer Cheio
+# #A#B#C#D#E######
+
+Consumidor - Buffer Cheio
+# #A#B#C#D#E#F
+
+Consumidor - Buffer Cheio
+ #AB#CG#D#E#F#GH#H#I#J#K#L#M#N#IO#P#Q#R#SJT#U#V#W#X
+##K####L####F##G#H#I##J##
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 4: MN#OPQRSTUVWXY######
+Caracteres produzidos pelo filho 8: #V#W#X#Y##############################
+KL
+Caracteres produzidos pelo filho 6: MNXUY#VW#####################
+VOWXYPQRSTUVWXYZ 
+Caracteres produzidos pelo filho 4: aZb##
+Caracteres produzidos pelo filho 8: Z# #a#b###############################
+
+Caracteres produzidos pelo filho 2: Z abc
+Caracteres produzidos pelo filho 6:  ab
+Caracteres produzidos pelo filho 8: cd
+Caracteres produzidos pelo filho 4: efcdef
+Caracteres produzidos pelo filho 2: cde
+Caracteres produzidos pelo filho 8: g
+Caracteres produzidos pelo filho 4: hgihjij
+Caracteres produzidos pelo filho 6: ghi
+Caracteres produzidos pelo filho 2: fg
+Caracteres produzidos pelo filho 8: jkl
+Caracteres produzidos pelo filho 4: jkl
+Caracteres produzidos pelo filho 6: hijk
+Caracteres produzidos pelo filho 4: m
+Caracteres produzidos pelo filho 2: nhij
+Caracteres produzidos pelo filho 8: mnkl
+
+
+
+2ªexecução
+Caracteres produzidos pelo filho 2:  A
+Caracteres produzidos pelo filho 4: BCD
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 6: BCDE
+Caracteres produzidos pelo filho 4: EF
+Caracteres produzidos pelo filho 4: G
+Caracteres produzidos pelo filho 6: EFGHI
+Caracteres produzidos pelo filho 2: GH
+Caracteres produzidos pelo filho 8: EFGH
+Caracteres produzidos pelo filho 4: IJK
+Caracteres produzidos pelo filho 6: IJK
+Caracteres produzidos pelo filho 8: LM
+Caracteres produzidos pelo filho 2: IJK
+Caracteres produzidos pelo filho 4: 
+Caracteres produzidos pelo filho 6: LLMMNNOOLM
+Caracteres produzidos pelo filho 8: N
+Caracteres produzidos pelo filho 2: O
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 4: OOPPP
+Caracteres produzidos pelo filho 4: Q
+Caracteres produzidos pelo filho 6: Q
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 4: QRR
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 8: SOT
+Caracteres produzidos pelo filho 4: SPQR
+Caracteres produzidos pelo filho 2: TU
+Caracteres produzidos pelo filho 4: V
+Caracteres produzidos pelo filho 6: VSW
+Caracteres produzidos pelo filho 4: 
+Caracteres produzidos pelo filho 2: XYXY
+Caracteres produzidos pelo filho 6: XYZ
+Caracteres produzidos pelo filho 8: X
+Caracteres produzidos pelo filho 6:  a
+Caracteres produzidos pelo filho 4:  abcd
+Caracteres produzidos pelo filho 6: e
+Caracteres produzidos pelo filho 6: f
+Caracteres produzidos pelo filho 4: fghij
+Caracteres produzidos pelo filho 6: ghijk
+Caracteres produzidos pelo filho 4: klmno
+Caracteres produzidos pelo filho 4: pq
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 4: ptqrs
+Caracteres produzidos pelo filho 4: u
+Caracteres produzidos pelo filho 6: uvw
+Caracteres produzidos pelo filho 6: vw
+Caracteres produzidos pelo filho 4: vwx
+Caracteres produzidos pelo filho 4: y
+
+Consumidor - Buffer Cheio
+##BCDEFGHIJKL
+Caracteres produzidos pelo filho 4: z
+
+Consumidor - Buffer Cheio
+##BCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwx##############
+MNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwx##############
+
+Caracteres produzidos pelo filho 6: y
+Caracteres produzidos pelo filho 6: z 
+Caracteres produzidos pelo filho 6: 12345
+
+Consumidor - Buffer Cheio
+##BCDEF
+
+Consumidor - Buffer Cheio
+G##HIBJCDKELFMGNHOIPJQKRLSMTNUOVPWQXRYSZT UaVbWcXdYeZf gahbicjdkelfmgnhiojpkqlrmsntoupvqrwsxt#uvzw x1#2z3 4152#3#4#5#######
+##
+
+Caracteres produzidos pelo filho 4:  A
+Caracteres produzidos pelo filho 2:  YZ a
+Caracteres produzidos pelo filho 4: BCD
+Caracteres produzidos pelo filho 4: EF
+Caracteres produzidos pelo filho 4: GHIJ
+Caracteres produzidos pelo filho 4: KLM
+Caracteres produzidos pelo filho 4: NOPQR
+Caracteres produzidos pelo filho 4: STU
+Caracteres produzidos pelo filho 4: V
+Caracteres produzidos pelo filho 4: W
+Caracteres produzidos pelo filho 4: X
+Caracteres produzidos pelo filho 4: YZ ab
+Caracteres produzidos pelo filho 4: cd
+Caracteres produzidos pelo filho 4: ef
+Caracteres produzidos pelo filho 6:  ABC
+Caracteres produzidos pelo filho 4: ghi
+Caracteres produzidos pelo filho 6: jk
+Caracteres produzidos pelo filho 4: 
+
+Consumidor - Buffer Cheio
+  ABAC##
+Caracteres produzidos pelo filho 6: FlmnopG#
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 8: EB##CF#G######
+Caracteres produzidos pelo filho 6: #H#I#J#K###############jklmn
+Caracteres produzidos pelo filho 2: Lopqrs
+Caracteres produzidos pelo filho 8: tHuIvJwKx#z
+Caracteres produzidos pelo filho 6: LLM 12345######
+
+Caracteres produzidos pelo filho 2: NO
+Caracteres produzidos pelo filho 8: NOP
+Caracteres produzidos pelo filho 6: NO
+Caracteres produzidos pelo filho 2: QPRQ
+Caracteres produzidos pelo filho 2: ST
+Caracteres produzidos pelo filho 8: RS
+Caracteres produzidos pelo filho 6: STUTUV
+Caracteres produzidos pelo filho 2: WX
+Caracteres produzidos pelo filho 2: YZ
+Caracteres produzidos pelo filho 8: VWXYZ
+Caracteres produzidos pelo filho 6: VWXYZ
+Caracteres produzidos pelo filho 2:  a
+Caracteres produzidos pelo filho 6: b
+Caracteres produzidos pelo filho 4:  
+Caracteres produzidos pelo filho 2: bc
+Caracteres produzidos pelo filho 4: de
+Caracteres produzidos pelo filho 6: abc
+Caracteres produzidos pelo filho 8: d eabc
+Caracteres produzidos pelo filho 4: f
+Caracteres produzidos pelo filho 2: defg
+Caracteres produzidos pelo filho 2: hi
+Caracteres produzidos pelo filho 8: ghij
+Caracteres produzidos pelo filho 6: ghijk
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 4: gklhij
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 8: llmmnok
+Caracteres produzidos pelo filho 6: p
+Caracteres produzidos pelo filho 6: q
+Caracteres produzidos pelo filho 4: q
+Caracteres produzidos pelo filho 2: pqrst
+
+Consumidor - Buffer Cheio
+ ABC##FG
+
+Consumidor - Buffer Cheio
+ AHBC##FGHIJKI
+Caracteres produzidos pelo filho 2: L
+
+Consumidor - Buffer Cheio
+MNOPQRSTUVWX
+Caracteres produzidos pelo filho 6: YuZv waxbc
+Caracteres produzidos pelo filho 8:  dpAeqBfCJg#hi#jFkGlmnopqr
+
+Consumidor - Buffer Cheio
+stuvwx##############
+uvKHIJKL 
+Caracteres produzidos pelo filho 4: 
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 8: uvvwAxyM#LrNstOuPQ#RMSNTOPQRUVWXYSTZU Vab
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 4: w#wcxx#yy
+Caracteres produzidos pelo filho 6: wWdXeFfYghijkZl manbocpdqerstuvfwgxhyizj k######l#m#n##o#p#
+qrstu#v
+Caracteres produzidos pelo filho 2: wwxxyyzz  1
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 4: ##z 123#2LMz34 1N2O3PQRS
+Caracteres produzidos pelo filho 8: zT 561U2V3WXYZ
+Caracteres produzidos pelo filho 6:  4a5
+Caracteres produzidos pelo filho 2: b7c#d#e#f#g
+h4ijklm
+Caracteres produzidos pelo filho 8: n8opq5r6s7tuvwxyz 123456789##
+
+Caracteres produzidos pelo filho 6: 89
+Caracteres produzidos pelo filho 4: 4567
+
+Produtor - Buffer Cheio
+
+Caracteres produzidos pelo filho 4: #8##9###
+Caracteres produzidos pelo filho 6: 89
+
+Produtor - Buffer Cheio
+#
+Caracteres produzidos pelo filho 6:   #######
+Caracteres produzidos pelo filho 4: # #####QR####S##TUVWXYZ ab#c#d#efgh
+Caracteres produzidos pelo filho 6: iAjBkClmnopqrs#tuvwxy##z# Q1R2S3T4567890UV
+Caracteres produzidos pelo filho 8: W9XY
+Caracteres produzidos pelo filho 4: ZAB CabDcdef0ghij2klmnopqrstuvwxyz 1234567890
+Caracteres produzidos pelo filho 2: 907
+Caracteres produzidos pelo filho 8: E
+Caracteres produzidos pelo filho 6: DEFGH
+Caracteres produzidos pelo filho 4: EFGHI
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 8: JIKJKLM
+Caracteres produzidos pelo filho 2: FGHI
+Caracteres produzidos pelo filho 4: JKL
+Caracteres produzidos pelo filho 6: JK
+Caracteres produzidos pelo filho 2: MN
+Caracteres produzidos pelo filho 6: OL
+Caracteres produzidos pelo filho 8: MNO
+Caracteres produzidos pelo filho 4: MNOP
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 6: PQQR
+Caracteres produzidos pelo filho 4: QR
+Caracteres produzidos pelo filho 8: QRSTU
+Caracteres produzidos pelo filho 2: STU
+Caracteres produzidos pelo filho 6: STUV
+Caracteres produzidos pelo filho 4: STUVW
+Caracteres produzidos pelo filho 8: VWX
+Caracteres produzidos pelo filho 2: WXYZ Y
+Caracteres produzidos pelo filho 6: XYZ
+Caracteres produzidos pelo filho 4: X
+Caracteres produzidos pelo filho 8:  abYZ 
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 8: cd e
+Caracteres produzidos pelo filho 6:  abcdab
+Caracteres produzidos pelo filho 4: cdefg
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 2: e
+Caracteres produzidos pelo filho 4: hefghfijgih
+Caracteres produzidos pelo filho 6: efghi
+Caracteres produzidos pelo filho 4: kl
+Caracteres produzidos pelo filho 8: jkl
+Caracteres produzidos pelo filho 2: jk
+Caracteres produzidos pelo filho 4: lm
+Caracteres produzidos pelo filho 6: jklm
+Caracteres produzidos pelo filho 2: nop
+Caracteres produzidos pelo filho 4: nop
+Caracteres produzidos pelo filho 8: nop
+Caracteres produzidos pelo filho 6: q
+Caracteres produzidos pelo filho 2: qr
+Caracteres produzidos pelo filho 8: r
+Caracteres produzidos pelo filho 4: srtst
+Caracteres produzidos pelo filho 6: rst
+Caracteres produzidos pelo filho 2: u
+Caracteres produzidos pelo filho 4: vwx
+Caracteres produzidos pelo filho 8: vwx
+Caracteres produzidos pelo filho 4: y
+Caracteres produzidos pelo filho 2: v
+Caracteres produzidos pelo filho 6: wvwxxyy
+
+Consumidor - Buffer Cheio
+ ABCDEF
+
+Consumidor - Buffer Cheio
+ GAHBICJDKELFGHMINJOKPL
+
+Consumidor - Buffer Cheio
+ ABCDEFGHIJKLMQNORPSQMTRUSVTWUX
+Caracteres produzidos pelo filho 4: VYzW X1Y2Z 
+Caracteres produzidos pelo filho 8: ab
+
+Consumidor - Buffer Cheio
+ ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 12345######
+
+Caracteres produzidos pelo filho 2:  Z abcdefghijklmnopqrstuvwxyz 1234567####
+yz cNdeOfPgQhRiSjTklUmVnopqrstuvwxyz 1234567890#
+
+Caracteres produzidos pelo filho 6:  ABCD
+Caracteres produzidos pelo filho 4: 3WX45YZ a
+Caracteres produzidos pelo filho 2: b67890cdefghijkl
+Caracteres produzidos pelo filho 8: 6mnopqrst
+
+Produtor - Buffer Cheio
+uvwxyz 123#45678#90
+#####
+
+Produtor - Buffer Cheio
+#####H####HIJIKJLMKLMNNOPOPQQRSTRSUTUVWVWXYXYZZ abcdef ghiabjklcmdefghijnopqklmnorsptuqvrwxyz 12stu3v45678w90xyz
+Caracteres produzidos pelo filho 2:  08901234567890
+Caracteres produzidos pelo filho 6: AB
+Caracteres produzidos pelo filho 2:  
+Caracteres produzidos pelo filho 6: ABC
+Caracteres produzidos pelo filho 2: ABCD
+Caracteres produzidos pelo filho 6: EFGH
+Caracteres produzidos pelo filho 2: EF
+Caracteres produzidos pelo filho 6: G
+Caracteres produzidos pelo filho 2: GH
+Caracteres produzidos pelo filho 2: I
+Caracteres produzidos pelo filho 6: HIJK
+Caracteres produzidos pelo filho 6: L
+Caracteres produzidos pelo filho 2: JKLM
+Caracteres produzidos pelo filho 6: MNO
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 6: PP
+Caracteres produzidos pelo filho 6: QRS
+Caracteres produzidos pelo filho 6: TU
+Caracteres produzidos pelo filho 2: QRST
+
+Produtor - Buffer Cheio
+ ####EF
+Caracteres produzidos pelo filho 2:  
+Caracteres produzidos pelo filho 6: UVWXY
+Caracteres produzidos pelo filho 2: ABC##IJKLMNO#####UVWXY###########jklmnopqrstuv
+Caracteres produzidos pelo filho 2: wDxEyFz 1234567890
+Caracteres produzidos pelo filho 6: DE
+Caracteres produzidos pelo filho 4: 452g789
+Caracteres produzidos pelo filho 4: F
+Caracteres produzidos pelo filho 6: FGHI
+Caracteres produzidos pelo filho 8: GH
+Caracteres produzidos pelo filho 4: GHI
+Caracteres produzidos pelo filho 8: J
+Caracteres produzidos pelo filho 4: J
+Caracteres produzidos pelo filho 6: IJKLM
+Caracteres produzidos pelo filho 4: KLMN
+Caracteres produzidos pelo filho 8: KLM
+Caracteres produzidos pelo filho 6: NO
+Caracteres produzidos pelo filho 4: NOPQ
+Caracteres produzidos pelo filho 6: PQRST
+Caracteres produzidos pelo filho 8: PQRS
+Caracteres produzidos pelo filho 6: TUV
+Caracteres produzidos pelo filho 8: TUVW
+Caracteres produzidos pelo filho 4: 
+Caracteres produzidos pelo filho 2: TFUGVHI
+Caracteres produzidos pelo filho 4: J
+Caracteres produzidos pelo filho 6: W
+Caracteres produzidos pelo filho 2: XKYLZ 
+Caracteres produzidos pelo filho 4: KLM
+Caracteres produzidos pelo filho 8: WXYZ 
+Caracteres produzidos pelo filho 2: NO
+Caracteres produzidos pelo filho 6: NO
+Caracteres produzidos pelo filho 4: NO
+Caracteres produzidos pelo filho 4: 
+Caracteres produzidos pelo filho 6: PP
+Caracteres produzidos pelo filho 8: PQRS
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 6: TUVW
+Caracteres produzidos pelo filho 4: TUVPQRST
+Caracteres produzidos pelo filho 8: TUVWX
+Caracteres produzidos pelo filho 6: WXYZ
+Caracteres produzidos pelo filho 4: WXYZ
+Caracteres produzidos pelo filho 8: YZ
+Caracteres produzidos pelo filho 6:  ab
+Caracteres produzidos pelo filho 2: WXYZ 
+Caracteres produzidos pelo filho 8:  
+Caracteres produzidos pelo filho 4:  abcd
+Caracteres produzidos pelo filho 6: abc
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 8: aabbccd
+Caracteres produzidos pelo filho 4: de
+Caracteres produzidos pelo filho 6: de
+Caracteres produzidos pelo filho 8: fghi
+Caracteres produzidos pelo filho 6: fghi
+Caracteres produzidos pelo filho 2: fghi
+Caracteres produzidos pelo filho 4: fghij
+Caracteres produzidos pelo filho 6: jkl
+Caracteres produzidos pelo filho 8: jklm
+Caracteres produzidos pelo filho 2: jklmn
+Caracteres produzidos pelo filho 4: mno
+Caracteres produzidos pelo filho 6: nopq
+Caracteres produzidos pelo filho 2: pq
+Caracteres produzidos pelo filho 6: r
+Caracteres produzidos pelo filho 2: r
+Caracteres produzidos pelo filho 4: pqr
+Caracteres produzidos pelo filho 6: st
+Caracteres produzidos pelo filho 2: st
+Caracteres produzidos pelo filho 6: uvwx
+Caracteres produzidos pelo filho 4: uvwx
+Caracteres produzidos pelo filho 2: yz 1
+Caracteres produzidos pelo filho 6: yz 1
+Caracteres produzidos pelo filho 4: yz 12
+Caracteres produzidos pelo filho 6: 2
+Caracteres produzidos pelo filho 4: 34
+Caracteres produzidos pelo filho 4: 5
+Caracteres produzidos pelo filho 6: 345
+
+Consumidor - Buffer Cheio
+ 
+
+Consumidor - Buffer Cheio
+A ABCDEF
+Caracteres produzidos pelo filho 4: 
+Caracteres produzidos pelo filho 2: GHIJKBLM67NCDOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 12345678###
+23456EFGHIJKLM
+Caracteres produzidos pelo filho 4: NO89PQRSTUVWXYZ a
+
+Produtor - Buffer Cheio
+####DEbFGc
+Caracteres produzidos pelo filho 4: 0HdIJKLMNOefgPQRS
+
+Produtor - Buffer Cheio
+ TUVhWXYiA#Z## a###HbIcdefghijklmnopqrstuvwxyz jklJ12KLmn3oMp4567q89Nrstu0OP
+Caracteres produzidos pelo filho 6: 890QRvwxyz 12S34
+Caracteres produzidos pelo filho 4: 56 ABCDTUVW7890XYZ 
+abcdefghijklmnopqrstuvwx
+Caracteres produzidos pelo filho 6:  ABCyz 1234567890
+Caracteres produzidos pelo filho 2: 890
+Caracteres produzidos pelo filho 6: D
+Caracteres produzidos pelo filho 4: EFGHI
+Caracteres produzidos pelo filho 2: DE
+Caracteres produzidos pelo filho 4: JKL
+Caracteres produzidos pelo filho 6: JKL
+Caracteres produzidos pelo filho 2: M
+Caracteres produzidos pelo filho 4: NOP
+Caracteres produzidos pelo filho 4: Q
+Caracteres produzidos pelo filho 2: NOP
+Caracteres produzidos pelo filho 6: NOP
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 8: QnRoSpTq
+Caracteres produzidos pelo filho 4: QRST
+Caracteres produzidos pelo filho 8: rs
+Caracteres produzidos pelo filho 2: rs
+Caracteres produzidos pelo filho 6: QRSTU
+Caracteres produzidos pelo filho 2: t
+Caracteres produzidos pelo filho 4: tuvw
+Caracteres produzidos pelo filho 8: tuvwx
+Caracteres produzidos pelo filho 6: uvw
+Caracteres produzidos pelo filho 2: uvw
+Caracteres produzidos pelo filho 8: xyz
+Caracteres produzidos pelo filho 4: 
+Caracteres produzidos pelo filho 6: xxyzy
+Caracteres produzidos pelo filho 2: z 1xyz 
+Caracteres produzidos pelo filho 8: 12
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 6: 112323
+Caracteres produzidos pelo filho 8: 4
+Caracteres produzidos pelo filho 4: 123
+Caracteres produzidos pelo filho 8: 45
+Caracteres produzidos pelo filho 2: 56
+Caracteres produzidos pelo filho 6: 45
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 4: 67890
+
+Produtor - Buffer Cheio
+ ABCDEFGH
+Caracteres produzidos pelo filho 2: I6J7K8L9M0NOPQRSTU#########################tuvwx
+
+Produtor - Buffer Cheio
+y zA 
+Caracteres produzidos pelo filho 4:  AB12B3C4D5E6FGHIJKLMNOP7QR8S9T0U##
+Caracteres produzidos pelo filho 8: #7######8#9#0#####
+Caracteres produzidos pelo filho 6: # #A###########xyz 1234567890
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 8: B
+Caracteres produzidos pelo filho 4: 
+Caracteres produzidos pelo filho 6: BBCC
+Caracteres produzidos pelo filho 2: CDE
+Caracteres produzidos pelo filho 4: D
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 8: DCEDFGHEF
+Caracteres produzidos pelo filho 6: G
+Caracteres produzidos pelo filho 2: EFG
+Caracteres produzidos pelo filho 4: EFGH
+Caracteres produzidos pelo filho 8: HI
+Caracteres produzidos pelo filho 6: HIJ
+Caracteres produzidos pelo filho 4: K
+Caracteres produzidos pelo filho 6: K
+
+Consumidor - Buffer Cheio
+ ABCD
+Caracteres produzidos pelo filho 2: EFGHIJKILJMNOKPQR
+
+Consumidor - Buffer Cheio
+
+
+Consumidor - Buffer Cheio
+#ABCLD
+Caracteres produzidos pelo filho 8: #AKBSETCUDE#F#GHIFJKGLHMINJO##P##Q#RST#U###############
+Caracteres produzidos pelo filho 2: K
+Caracteres produzidos pelo filho 4: #MN#O####
+Caracteres produzidos pelo filho 8: L#ML
+Caracteres produzidos pelo filho 6:  ANBOCPQRLST#U#########################################################
+##########################
+Caracteres produzidos pelo filho 6: #D###
+Caracteres produzidos pelo filho 2: #D##
+###########
+
+Caracteres produzidos pelo filho 8: DEFGH
+Caracteres produzidos pelo filho 4: DEFGH
+Caracteres produzidos pelo filho 4: I
+Caracteres produzidos pelo filho 2: E
+Caracteres produzidos pelo filho 8: FGHIJ
+Caracteres produzidos pelo filho 6: EFGH
+Caracteres produzidos pelo filho 8: KLMN
+Caracteres produzidos pelo filho 4: 
+Caracteres produzidos pelo filho 6: IKLMN
+Caracteres produzidos pelo filho 4: J
+Caracteres produzidos pelo filho 8: OPQ
+Caracteres produzidos pelo filho 2: IJKLM
+Caracteres produzidos pelo filho 4: NO
+Caracteres produzidos pelo filho 2: PNQOPQ
+Caracteres produzidos pelo filho 8: NOPQ
+Caracteres produzidos pelo filho 6: JKLMN
+Caracteres produzidos pelo filho 4: R
+Caracteres produzidos pelo filho 2: RSTUV
+Caracteres produzidos pelo filho 6: OPQ
+Caracteres produzidos pelo filho 8: RSTUV
+Caracteres produzidos pelo filho 2: WX
+Caracteres produzidos pelo filho 8: W
+Caracteres produzidos pelo filho 4: XSYTUVWZ
+Caracteres produzidos pelo filho 6: WXY
+Caracteres produzidos pelo filho 2: X
+Caracteres produzidos pelo filho 8: Z 
+Caracteres produzidos pelo filho 2: YZ 
+Caracteres produzidos pelo filho 4: YZ 
+Caracteres produzidos pelo filho 6: abc
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 8: aabcd
+Caracteres produzidos pelo filho 2: efgh
+Caracteres produzidos pelo filho 4: efg
+Caracteres produzidos pelo filho 8: efgh
+Caracteres produzidos pelo filho 6: efgh
+Caracteres produzidos pelo filho 4: ijk
+Caracteres produzidos pelo filho 2: ijk
+Caracteres produzidos pelo filho 2: lm
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 4: iljmklm
+
+
+
+3ªexecução
+Caracteres produzidos pelo filho 2:  A
+Caracteres produzidos pelo filho 2: BC
+Caracteres produzidos pelo filho 4: BCD
+Caracteres produzidos pelo filho 4: E
+Caracteres produzidos pelo filho 6: B
+Caracteres produzidos pelo filho 4: CF
+Caracteres produzidos pelo filho 2: DDEFGH
+Caracteres produzidos pelo filho 4: IJ
+Caracteres produzidos pelo filho 6: IJK
+Caracteres produzidos pelo filho 2: ILJKLM
+Caracteres produzidos pelo filho 8: IJKL
+Caracteres produzidos pelo filho 4: K
+Caracteres produzidos pelo filho 6: NOP
+Caracteres produzidos pelo filho 2: NOPQLMNO
+Caracteres produzidos pelo filho 8: Q
+Caracteres produzidos pelo filho 6: RR
+Caracteres produzidos pelo filho 2: ST
+Caracteres produzidos pelo filho 6: U
+Caracteres produzidos pelo filho 4: STU
+Caracteres produzidos pelo filho 8: UV
+Caracteres produzidos pelo filho 2: VWX
+Caracteres produzidos pelo filho 6: WX
+Caracteres produzidos pelo filho 8: Y
+Caracteres produzidos pelo filho 4: WXY
+Caracteres produzidos pelo filho 2: YZ
+Caracteres produzidos pelo filho 4:  a
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 6: ZZ a abb
+Caracteres produzidos pelo filho 2:  abc
+Caracteres produzidos pelo filho 8: de
+Caracteres produzidos pelo filho 4: 
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 2: dfegfcde
+Caracteres produzidos pelo filho 8: ghi
+Caracteres produzidos pelo filho 6: h
+Caracteres produzidos pelo filho 2: ihjij
+Caracteres produzidos pelo filho 6: kl
+Caracteres produzidos pelo filho 8: k
+Caracteres produzidos pelo filho 4: jkllmnmn
+Caracteres produzidos pelo filho 2: klm
+Caracteres produzidos pelo filho 6: opq
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 2: rsnop
+Caracteres produzidos pelo filho 6: rst
+Caracteres produzidos pelo filho 4: rstuv
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 6: wx
+Caracteres produzidos pelo filho 2: uvwxwx
+Caracteres produzidos pelo filho 4: wx
+Caracteres produzidos pelo filho 6: yyz
+Caracteres produzidos pelo filho 2: yz
+Caracteres produzidos pelo filho 6:  
+Caracteres produzidos pelo filho 4: 1
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 8: 23 112
+Caracteres produzidos pelo filho 2: 31423452
+Caracteres produzidos pelo filho 4: 6
+Caracteres produzidos pelo filho 8: 67
+Caracteres produzidos pelo filho 4: 
+Caracteres produzidos pelo filho 2: 7889
+Caracteres produzidos pelo filho 6: 89
+Caracteres produzidos pelo filho 4: 0
+
+Produtor - Buffer Cheio
+
+Caracteres produzidos pelo filho 6:  
+
+Produtor - Buffer Cheio
+##
+Caracteres produzidos pelo filho 4: 
+
+Consumidor - Buffer Cheio
+##### A#B#####C######
+Caracteres produzidos pelo filho 4: BD#######################################
+Caracteres produzidos pelo filho 4: C##D#########################
+Caracteres produzidos pelo filho 4: ##E######################
+Caracteres produzidos pelo filho 6: G#BCDE
+Caracteres produzidos pelo filho 4: FFG############################
+Caracteres produzidos pelo filho 2: 
+0######
+Caracteres produzidos pelo filho 6: H##############
+Caracteres produzidos pelo filho 4: HIJ#
+Caracteres produzidos pelo filho 6: #I#############
+Caracteres produzidos pelo filho 4: #
+Caracteres produzidos pelo filho 6: JJKKLL#
+Caracteres produzidos pelo filho 2: #IJKL######
+Caracteres produzidos pelo filho 4: M
+Caracteres produzidos pelo filho 2: NMO##
+Caracteres produzidos pelo filho 6: #M#NOP#
+Caracteres produzidos pelo filho 4: NO#######
+Caracteres produzidos pelo filho 6: PQ
+Caracteres produzidos pelo filho 4: PQR
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 2: PQRST
+Caracteres produzidos pelo filho 4: ST0
+Caracteres produzidos pelo filho 6: S2T3UVW4
+Caracteres produzidos pelo filho 2: UVW
+Caracteres produzidos pelo filho 4: UVWX
+Caracteres produzidos pelo filho 6: XY
+Caracteres produzidos pelo filho 8: ZX YZ a
+Caracteres produzidos pelo filho 4: YZ ab
+Caracteres produzidos pelo filho 8: c
+Caracteres produzidos pelo filho 4: cd
+Caracteres produzidos pelo filho 6: cdefg
+Caracteres produzidos pelo filho 8: def
+Caracteres produzidos pelo filho 4: efgg
+Caracteres produzidos pelo filho 2: Y
+Caracteres produzidos pelo filho 4: hi
+Caracteres produzidos pelo filho 8: hiZ 
+Caracteres produzidos pelo filho 6: hij
+Caracteres produzidos pelo filho 4: kjlklm
+Caracteres produzidos pelo filho 8: jkalmnb
+Caracteres produzidos pelo filho 4: nopq
+Caracteres produzidos pelo filho 8: opq
+Caracteres produzidos pelo filho 4: rstuv
+Caracteres produzidos pelo filho 8: rstu
+Caracteres produzidos pelo filho 6: opqrs
+Caracteres produzidos pelo filho 4: wxyz
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 8:  t1uv
+Caracteres produzidos pelo filho 4:  
+Caracteres produzidos pelo filho 6: 12
+Caracteres produzidos pelo filho 2: tuvwx
+Caracteres produzidos pelo filho 6: 34567
+Caracteres produzidos pelo filho 4: 1
+
+Consumidor - Buffer Cheio
+ #BCDEFGHIJKLMNOPQ
+Caracteres produzidos pelo filho 8: R1S2T3UVWXYZ abc
+Caracteres produzidos pelo filho 4: d# #Aghijklmnopqrstu#wxyz #234
+Caracteres produzidos pelo filho 8: 5B67####
+
+Caracteres produzidos pelo filho 4: BC
+Caracteres produzidos pelo filho 2: yz 12
+Caracteres produzidos pelo filho 6: CDEF
+Caracteres produzidos pelo filho 8: CD
+Caracteres produzidos pelo filho 4: 345EF
+Caracteres produzidos pelo filho 6: GH
+Caracteres produzidos pelo filho 2: 3456
+Caracteres produzidos pelo filho 6: 7
+
+Consumidor - Buffer Cheio
+ ABCDEFGHIJKLMNOPQRSTUVWXYZ abcd##
+Caracteres produzidos pelo filho 8: 8gh9
+Caracteres produzidos pelo filho 4: IJKLM0ijklmnopqrs
+
+Produtor - Buffer Cheio
+tu ##wxyz 1#2#3D45E67F8G#H0IJ
+KLMNOP
+
+Produtor - Buffer Cheio
+Q R#S#TU#VDWEFGHIJXYKZL MaNbOcPQdR#S#TgUhViWjXkYlZm naobpcdq#r#sgthui#jwkxlymzn op1qr2s3t4u5#6w7x8yz# 0123
+Caracteres produzidos pelo filho 2: 48596078#0
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 4: 8 90
+Caracteres produzidos pelo filho 4: A
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 4: B
+Caracteres produzidos pelo filho 2: AAB
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 4: FGCDBBE
+Caracteres produzidos pelo filho 4: HIJ
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 4: KKL
+Caracteres produzidos pelo filho 2: MKNLMLM
+Caracteres produzidos pelo filho 4: NOPQ
+Caracteres produzidos pelo filho 2: NOPQ
+Caracteres produzidos pelo filho 8: N
+Caracteres produzidos pelo filho 2: OPRQR
+Caracteres produzidos pelo filho 4: ST
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 4: STUU
+Caracteres produzidos pelo filho 8: UVWX
+Caracteres produzidos pelo filho 4: VW
+Caracteres produzidos pelo filho 2: VXWYXZYZ
+Caracteres produzidos pelo filho 8: YZ a
+Caracteres produzidos pelo filho 2:  ab
+Caracteres produzidos pelo filho 8: c
+Caracteres produzidos pelo filho 4:  a
+Caracteres produzidos pelo filho 2: bccd
+Caracteres produzidos pelo filho 2: e
+Caracteres produzidos pelo filho 4: e
+Caracteres produzidos pelo filho 8: defg
+Caracteres produzidos pelo filho 6: H
+Caracteres produzidos pelo filho 8: h
+Caracteres produzidos pelo filho 4: 
+Caracteres produzidos pelo filho 2: fgh
+
+Consumidor - Buffer Cheio
+#
+Caracteres produzidos pelo filho 2: ijkl#############NOPQRSTUVWXYZ abcdefg
+Caracteres produzidos pelo filho 2: hmijklm#########################
+
+
+Consumidor - Buffer Cheio
+#######
+Caracteres produzidos pelo filho 2: n
+
+Consumidor - Buffer Cheio
+##############NOPQRSTUVWXYZ abcdefghijklmnopq#####################
+fghi
+Caracteres produzidos pelo filho 8: ijkl
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 4: rstopq#rst######NOPQRSTUVWXYZ abcdefg
+Caracteres produzidos pelo filho 8: hijklmnoupqrstuvwx############
+Caracteres produzidos pelo filho 4: uvwxy
+Caracteres produzidos pelo filho 2: uvwxy
+Caracteres produzidos pelo filho 8: z ##
+
+Caracteres produzidos pelo filho 4: z 1
+Caracteres produzidos pelo filho 2: 1
+Caracteres produzidos pelo filho 8: 12234345
+Caracteres produzidos pelo filho 4: 23456
+Caracteres produzidos pelo filho 8: 6789
+Caracteres produzidos pelo filho 2: 6789
+
+Produtor - Buffer Cheio
+#################
+
+Produtor - Buffer Cheio
+
+Caracteres produzidos pelo filho 6: #i#j#k#l#VWXY ZA #a#b#c#d#e#f#g#hijk####
+Caracteres produzidos pelo filho 2: #l m#An#o#p#q#r#stuv#w#x#y#zY Z1 2a3b4c5d6e7fghi890j
+Caracteres produzidos pelo filho 4: 0klm4nop5q
+Caracteres produzidos pelo filho 6: rBsCtuvwxyz 1
+Caracteres produzidos pelo filho 2: 2B3C4567890
+Caracteres produzidos pelo filho 8: 0895
+Caracteres produzidos pelo filho 4: 
+Caracteres produzidos pelo filho 2: DDEE
+Caracteres produzidos pelo filho 6: DE
+Caracteres produzidos pelo filho 6: F
+Caracteres produzidos pelo filho 4: F
+Caracteres produzidos pelo filho 2: FGHI
+Caracteres produzidos pelo filho 8: JDEFG
+Caracteres produzidos pelo filho 4: GHI
+Caracteres produzidos pelo filho 6: GHIJ
+Caracteres produzidos pelo filho 2: HI
+Caracteres produzidos pelo filho 2: J
+Caracteres produzidos pelo filho 4: KLMN
+Caracteres produzidos pelo filho 8: KLMN
+Caracteres produzidos pelo filho 6: JKLMN
+Caracteres produzidos pelo filho 6: O
+Caracteres produzidos pelo filho 4: OPQRS
+Caracteres produzidos pelo filho 2: OPQRS
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 4: OTPQ
+Caracteres produzidos pelo filho 6: PQRSRS
+Caracteres produzidos pelo filho 2: TU
+Caracteres produzidos pelo filho 8: V
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 4: VUVW
+Caracteres produzidos pelo filho 8: WXY
+Caracteres produzidos pelo filho 6: VWXYZ
+Caracteres produzidos pelo filho 2: WXYZ
+Caracteres produzidos pelo filho 4: W
+Caracteres produzidos pelo filho 8:  abXYZ 
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 4:  cadbecd
+Caracteres produzidos pelo filho 8: cde
+Caracteres produzidos pelo filho 6:  abcd
+Caracteres produzidos pelo filho 4: 
+Caracteres produzidos pelo filho 2: fg
+Caracteres produzidos pelo filho 8: efgfg
+Caracteres produzidos pelo filho 6: efghi
+Caracteres produzidos pelo filho 4: hij
+Caracteres produzidos pelo filho 6: k
+Caracteres produzidos pelo filho 8: hijk
+
+Consumidor - Buffer Cheio
+ ABCDEFGHI
+Caracteres produzidos pelo filho 2: JjKkLlMmNnOPQRSTUVWXYZ abcde
+Caracteres produzidos pelo filho 6: lfmgnhijkl
+Caracteres produzidos pelo filho 4: kmn
+
+Consumidor - Buffer Cheio
+lm
+
+Consumidor - Buffer Cheio
+  AABBCCDDoEEFFG
+
+Consumidor - Buffer Cheio
+HI JAKBLCGDHEMFNGOHPIQJRKSLTMUIVNWOXPYQZR SaTbUcVdWeXfYgZh JiajbkcldmeKLnMoNpf#O#P#Q##g#h#i#j#k#l#mn#o#p########
+Caracteres produzidos pelo filho 4: ##########
+#############
+##R#S#T ABCD
+Caracteres produzidos pelo filho 6:  AB#C##
+Caracteres produzidos pelo filho 8: # #A#B#C#D###########
+UV
+Caracteres produzidos pelo filho 2: opqWXYZ abcdefghijklmnopqr####################
+
+Caracteres produzidos pelo filho 4: rs
+Caracteres produzidos pelo filho 6: r
+Caracteres produzidos pelo filho 2: srs
+Caracteres produzidos pelo filho 8: rs
+Caracteres produzidos pelo filho 4: t
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 6: tt
+Caracteres produzidos pelo filho 2: t
+Caracteres produzidos pelo filho 6: uvwx
+Caracteres produzidos pelo filho 8: uvwx
+Caracteres produzidos pelo filho 2: uvw
+Caracteres produzidos pelo filho 4: xuvwx
+Caracteres produzidos pelo filho 2: y
+Caracteres produzidos pelo filho 6: yz 1
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 8: zy z 1
+Caracteres produzidos pelo filho 4: yz 12
+Caracteres produzidos pelo filho 6: 234
+Caracteres produzidos pelo filho 6: 567
+Caracteres produzidos pelo filho 4: 
+Caracteres produzidos pelo filho 2: 52673456
+Caracteres produzidos pelo filho 8: 23456
+Caracteres produzidos pelo filho 6: 78
+
+Produtor - Buffer Cheio
+##########
+
+Produtor - Buffer Cheio
+###########
+Caracteres produzidos pelo filho 4: 789###
+
+Produtor - Buffer Cheio
+###########################################bcdefghi#jk#lmnopqrs#t#uvwxy#z #1#2#3#4#5#67890
+Caracteres produzidos pelo filho 2: 90#b5cde#f#g#h#i#j#k##bcldmenopfqgrhsitjukvlmn
+Caracteres produzidos pelo filho 4: opwqrstuvxwyxzy z  11223344556789067
+Caracteres produzidos pelo filho 8: 89900A5B
+Caracteres produzidos pelo filho 6: C9D01i
+Caracteres produzidos pelo filho 2: EFG
+Caracteres produzidos pelo filho 8: EFG
+Caracteres produzidos pelo filho 6: EFGH
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 4: HEIFGH
+Caracteres produzidos pelo filho 2: HIJKL
+Caracteres produzidos pelo filho 4: J
+Caracteres produzidos pelo filho 8: JKLMN
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 4: OK
+Caracteres produzidos pelo filho 6: LJMKNLMN
+Caracteres produzidos pelo filho 2: KLMN
+Caracteres produzidos pelo filho 4: OP
+Caracteres produzidos pelo filho 6: QOPQ
+Caracteres produzidos pelo filho 8: OPQR
+Caracteres produzidos pelo filho 6: RS
+Caracteres produzidos pelo filho 2: RS
+Caracteres produzidos pelo filho 4: RST
+Caracteres produzidos pelo filho 2: T
+Caracteres produzidos pelo filho 4: UV
+Caracteres produzidos pelo filho 8: TUVWX
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 2: TUUVWVWX
+Caracteres produzidos pelo filho 8: XY
+Caracteres produzidos pelo filho 4: YZ ab
+Caracteres produzidos pelo filho 2: XYZ
+Caracteres produzidos pelo filho 6: X
+Caracteres produzidos pelo filho 8: Z abYZ
+Caracteres produzidos pelo filho 6: c
+Caracteres produzidos pelo filho 4: dcdeef
+Caracteres produzidos pelo filho 8: cdef
+Caracteres produzidos pelo filho 2: cdef
+Caracteres produzidos pelo filho 4: fgh
+
+Consumidor - Buffer Cheio
+ ABCDEF
+Caracteres produzidos pelo filho 2: GgHhI
+
+Consumidor - Buffer Cheio
+ JAi
+Caracteres produzidos pelo filho 6: gKjkLMBCNDOEPFQGRHSITJUKVLWMNOXPYQZR Sa
+
+Consumidor - Buffer Cheio
+TbU#VAcBdCWDXEeFfYGgHZIhJiK jLaMbNcOdPeQfgkhijRhSTiUjVWkXlYmZn #a
+Caracteres produzidos pelo filho 2: b cdef
+Caracteres produzidos pelo filho 4: #g#h#i#j#k#l#m#n#o####################lm#n############
+###
+Caracteres produzidos pelo filho 8: #g
+hijlkmnop######################
+
+Caracteres produzidos pelo filho 4: l
+Caracteres produzidos pelo filho 6: opq
+Caracteres produzidos pelo filho 2: opqrs
+Caracteres produzidos pelo filho 8: rst
+Caracteres produzidos pelo filho 4: rst
+Caracteres produzidos pelo filho 2: u
+Caracteres produzidos pelo filho 6: rstu
+Caracteres produzidos pelo filho 8: uv
+Caracteres produzidos pelo filho 2: vwx
+Caracteres produzidos pelo filho 4: vwxy
+Caracteres produzidos pelo filho 6: wxyz 
+Caracteres produzidos pelo filho 8: wxyz 
+Caracteres produzidos pelo filho 6: 1
+Caracteres produzidos pelo filho 2: z 12
+Caracteres produzidos pelo filho 4: z 12
+Caracteres produzidos pelo filho 8: 12
+Caracteres produzidos pelo filho 8: 3
+Caracteres produzidos pelo filho 8: 45
+Caracteres produzidos pelo filho 6: 3456
+Caracteres produzidos pelo filho 4: 34567
+Caracteres produzidos pelo filho 2: 34567
+Caracteres produzidos pelo filho 8: 8
+Caracteres produzidos pelo filho 6: 8
+
+Produtor - Buffer Cheio
+
+
+Produtor - Buffer Cheio
+ ################### #########################
+
+Produtor - Buffer Cheio
+ #########################################67890
+Caracteres produzidos pelo filho 4: 90#
+
+Produtor - Buffer Cheio
+ ################################################################################7#8#9#0###
+Caracteres produzidos pelo filho 6: #9#0##6# ############7#8#9#0###
+Caracteres produzidos pelo filho 8: #9#0##z# #######################################7890
+Caracteres produzidos pelo filho 2: 906
+Caracteres produzidos pelo filho 4: 
+Caracteres produzidos pelo filho 6:   AA
+Caracteres produzidos pelo filho 8:  AB
+Caracteres produzidos pelo filho 4: C
+
+Consumidor - Buffer Cheio
+
+Caracteres produzidos pelo filho 6:  ABCDEF##
+Caracteres produzidos pelo filho 4: DBE#CFDEF#######
+
+Consumidor - Buffer Cheio
+#
+
+Consumidor - Buffer Cheio
+# A#B#CABD
+Caracteres produzidos pelo filho 4: # C#
+Caracteres produzidos pelo filho 2: #B#C#D#E#F#######################################
+EFDGHE#F#G#H#########################################################################################
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 6:  #A##############
+####G#
+Caracteres produzidos pelo filho 4: H
+Caracteres produzidos pelo filho 8: ##
+GDEHFIJIJ
+Caracteres produzidos pelo filho 6: GH
+Caracteres produzidos pelo filho 2: IJ
+Caracteres produzidos pelo filho 6: KIJKLL
+Caracteres produzidos pelo filho 8: IJKL
+Caracteres produzidos pelo filho 4: IJKL
+Caracteres produzidos pelo filho 6: MNO
+Caracteres produzidos pelo filho 4: P
+Caracteres produzidos pelo filho 8: MNOPQ
+Caracteres produzidos pelo filho 2: MN
+Caracteres produzidos pelo filho 4: QORP
+Caracteres produzidos pelo filho 6: QR
+Caracteres produzidos pelo filho 2: S
+Caracteres produzidos pelo filho 4: 
+Caracteres produzidos pelo filho 8: TSTUV
+Caracteres produzidos pelo filho 6: STUVW
+Caracteres produzidos pelo filho 2: TU
+Caracteres produzidos pelo filho 8: WXY
+Caracteres produzidos pelo filho 4: WXYZ
+Caracteres produzidos pelo filho 6: V
+Caracteres produzidos pelo filho 8: WXY
+Caracteres produzidos pelo filho 4: WXY
+Caracteres produzidos pelo filho 6: WXYZ
+Caracteres produzidos pelo filho 2: VWXYZ
+Caracteres produzidos pelo filho 4: Z
+Caracteres produzidos pelo filho 8: Z
+Caracteres produzidos pelo filho 6:  ab
+Caracteres produzidos pelo filho 8:  
+Caracteres produzidos pelo filho 4:  aabbcc
+Caracteres produzidos pelo filho 2:  abc
+Caracteres produzidos pelo filho 6: def
+Caracteres produzidos pelo filho 8: defg
+Caracteres produzidos pelo filho 6: hi
+Caracteres produzidos pelo filho 2: defgh
+Caracteres produzidos pelo filho 4: defgh
+Caracteres produzidos pelo filho 8: hijk
+Caracteres produzidos pelo filho 2: ij
+Caracteres produzidos pelo filho 6: jklmn
+Caracteres produzidos pelo filho 4: ijk
+Caracteres produzidos pelo filho 2: l
+Caracteres produzidos pelo filho 8: lmno
+Caracteres produzidos pelo filho 6: lm
+Caracteres produzidos pelo filho 4: lm
+Caracteres produzidos pelo filho 2: nopq
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 4: nnooppqqr
+Caracteres produzidos pelo filho 6: nopqr
+Caracteres produzidos pelo filho 8: s
+Caracteres produzidos pelo filho 6: st
+Caracteres produzidos pelo filho 2: stuvw
+Caracteres produzidos pelo filho 4: stu
+Caracteres produzidos pelo filho 8: tuvvw
+Caracteres produzidos pelo filho 6: xyz 1
+Caracteres produzidos pelo filho 2: xyz 1
+Caracteres produzidos pelo filho 8: wxy
+Caracteres produzidos pelo filho 2: 2
+Caracteres produzidos pelo filho 6: z
+Caracteres produzidos pelo filho 2: 34
+Caracteres produzidos pelo filho 4: wx
+Caracteres produzidos pelo filho 8: y3z4
+Caracteres produzidos pelo filho 6:  123
+Caracteres produzidos pelo filho 8: 56
+Caracteres produzidos pelo filho 2: 75869789
+Caracteres produzidos pelo filho 4: 5
+Caracteres produzidos pelo filho 8: 06789
+Caracteres produzidos pelo filho 6: 4567
+
+Produtor - Buffer Cheio
+ 
+
+Produtor - Buffer Cheio
+A #A###########################################################################
+
+Consumidor - Buffer Cheio
+## ##A#########w#x#y#z# #1#2#3#4#5###w#x#6#7##y##z# #1##2##3
+Caracteres produzidos pelo filho 2: #4#056#7####
+
+Consumidor - Buffer Cheio
+### ###A#
+
+Consumidor - Buffer Cheio
+
+Caracteres produzidos pelo filho 8: ## ##A6###7############################################################w#x#y#z# #1#2#3#####4###5#6###7###################
+##############wxy#z 12#3#4#5#6w7x#y#z# #
+1234567####
+
+Caracteres produzidos pelo filho 4:  AB
+Caracteres produzidos pelo filho 2:  C
+Caracteres produzidos pelo filho 8:  ABC
+
+Consumidor - Buffer Cheio
+
+Caracteres produzidos pelo filho 6:   AABBCC
+
+Consumidor - Buffer Cheio
+D EABCDE###
+
+Consumidor - Buffer Cheio
+
+
+Consumidor - Buffer Cheio
+  ABCADBEC#D##############EF###########################################################
+Caracteres produzidos pelo filho 4: DE#F##G###
+Caracteres produzidos pelo filho 2: #D##E#F#G########w##x#y#z# #1#2w3#x#4#5#6#yz7 1#2#34#567#######
+############
+###############w
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 4:  
+Caracteres produzidos pelo filho 2: HHIIABCDx
+Caracteres produzidos pelo filho 8:  ABCD#######################y
+Caracteres produzidos pelo filho 4: Ez 1234567####
+######
+Caracteres produzidos pelo filho 2: EF#########wxyz 1234567####
+
+Caracteres produzidos pelo filho 6: EFG
+Caracteres produzidos pelo filho 8: FGH
+Caracteres produzidos pelo filho 6: IJ
+Caracteres produzidos pelo filho 4: FGHI
+Caracteres produzidos pelo filho 2: GHIJK
+Caracteres produzidos pelo filho 6: KLMN
+Caracteres produzidos pelo filho 8: IJK
+Caracteres produzidos pelo filho 2: OP
+Caracteres produzidos pelo filho 8: LMN
+Caracteres produzidos pelo filho 6: LMN
+Caracteres produzidos pelo filho 4: JKLM
+Caracteres produzidos pelo filho 2: NO
+Caracteres produzidos pelo filho 8: O
+Caracteres produzidos pelo filho 6: PQ
+Caracteres produzidos pelo filho 2: P
+Caracteres produzidos pelo filho 4: QRPQR
+Caracteres produzidos pelo filho 2: S
+Caracteres produzidos pelo filho 8: RSTU
+Caracteres produzidos pelo filho 4: ST
+Caracteres produzidos pelo filho 6: RSTUV
+Caracteres produzidos pelo filho 2: VWX
+Caracteres produzidos pelo filho 6: W
+Caracteres produzidos pelo filho 8: V
+Caracteres produzidos pelo filho 4: WYX
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 2: ZX Y
+Caracteres produzidos pelo filho 8: Z a
+Caracteres produzidos pelo filho 4: Z a
+Caracteres produzidos pelo filho 2: b
+Caracteres produzidos pelo filho 8: bc
+Caracteres produzidos pelo filho 4: cde
+Caracteres produzidos pelo filho 6: Z abc
+Caracteres produzidos pelo filho 2: cde
+Caracteres produzidos pelo filho 4: fghij
+Caracteres produzidos pelo filho 2: fgh
+Caracteres produzidos pelo filho 8: fghij
+Caracteres produzidos pelo filho 6: fgh
+Caracteres produzidos pelo filho 2: kl
+Caracteres produzidos pelo filho 4: kl
+Caracteres produzidos pelo filho 6: ijk
+Caracteres produzidos pelo filho 4: mnop
+Caracteres produzidos pelo filho 2: mnop
+Caracteres produzidos pelo filho 8: mnop
+Caracteres produzidos pelo filho 2: qrs
+Caracteres produzidos pelo filho 4: 
+Caracteres produzidos pelo filho 6: qqrr
+Caracteres produzidos pelo filho 2: s
+Caracteres produzidos pelo filho 6: s
+
+
+
+4ªexecução
+Caracteres produzidos pelo filho 2:  ABCD
+Caracteres produzidos pelo filho 6: EFGH
+Caracteres produzidos pelo filho 2: BC
+Caracteres produzidos pelo filho 6: GHIDEF
+Caracteres produzidos pelo filho 8: GHIJ
+Caracteres produzidos pelo filho 4:  A
+Caracteres produzidos pelo filho 6: JKL
+Caracteres produzidos pelo filho 8: KL
+Caracteres produzidos pelo filho 2: MNO
+Caracteres produzidos pelo filho 4: MNOP
+Caracteres produzidos pelo filho 6: MNO
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 2: PMQNROPQ
+Caracteres produzidos pelo filho 4: PQR
+Caracteres produzidos pelo filho 8: S
+Caracteres produzidos pelo filho 6: PQRS
+Caracteres produzidos pelo filho 2: ST
+Caracteres produzidos pelo filho 4: TUV
+Caracteres produzidos pelo filho 6: UVW
+Caracteres produzidos pelo filho 8: UVXWX
+Caracteres produzidos pelo filho 2: UV
+Caracteres produzidos pelo filho 4: YZWXY 
+Caracteres produzidos pelo filho 2: abc
+Caracteres produzidos pelo filho 8: YZ ab
+Caracteres produzidos pelo filho 4: ab
+Caracteres produzidos pelo filho 6: cYZ ab
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 4: ccdd
+Caracteres produzidos pelo filho 8: cd
+Caracteres produzidos pelo filho 6: cde
+Caracteres produzidos pelo filho 8: e
+Caracteres produzidos pelo filho 2: e
+Caracteres produzidos pelo filho 4: efghi
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 6: fgfghh
+Caracteres produzidos pelo filho 2: jklm
+Caracteres produzidos pelo filho 6: i
+Caracteres produzidos pelo filho 8: jikjk
+Caracteres produzidos pelo filho 6: l
+Caracteres produzidos pelo filho 4: jklmn
+Caracteres produzidos pelo filho 6: op
+Caracteres produzidos pelo filho 8: mn
+Caracteres produzidos pelo filho 2: nopqr
+Caracteres produzidos pelo filho 8: s
+Caracteres produzidos pelo filho 4: opq
+Caracteres produzidos pelo filho 6: opqrs
+Caracteres produzidos pelo filho 2: rs
+Caracteres produzidos pelo filho 8: rs
+Caracteres produzidos pelo filho 4: rst
+Caracteres produzidos pelo filho 2: u
+Caracteres produzidos pelo filho 8: tuvwx
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 4: vtwuvvwwx
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 8: xxyxzy zy z 
+Caracteres produzidos pelo filho 4: xyz 1
+Caracteres produzidos pelo filho 8: 123
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 2: 2233445
+Caracteres produzidos pelo filho 8: 45678
+Caracteres produzidos pelo filho 2: 567
+Caracteres produzidos pelo filho 4: 45678
+
+Produtor - Buffer Cheio
+
+Caracteres produzidos pelo filho 6: #5#6#7#DE#GHI
+
+Produtor - Buffer Cheio
+J#K#LMN#O#P
+Caracteres produzidos pelo filho 4: Q9RSDTEU#VGWHXYZ IaJbKcLdMeNfOgPhQijRkSlTmUnVoWpXqrsYtZu vawbxcyd#
+
+Produtor - Buffer Cheio
+e#f##g#h##i#j#k#5lDmEn#oGpH6IqJ7KrL#M#s0tNuOvP
+Caracteres produzidos pelo filho 8: w9QxR0SyTU#V7W#X#Y#Z# #a5b6c7d#e#f0gh
+Caracteres produzidos pelo filho 2: i8j9k0lmr
+
+Consumidor - Buffer Cheio
+n#o#p#q#rDsE#tG
+
+Consumidor - Buffer Cheio
+u#vH#w#x#yI#D#E###GJH#I#JK5LK6LM7NMO#PNQ#ROS0PQTRU
+Caracteres produzidos pelo filho 6: S0VTWU7VXWYXZY Za bacbdcedfegfhgihjikjlkmlnmonpoqprq
+Caracteres produzidos pelo filho 8: r ssAttuuvvwwxxyy############556677####00
+
+
+
+Consumidor - Buffer Cheio
+ ABCDE#GHIJKLMNO
+Caracteres produzidos pelo filho 2: P QARBST
+Caracteres produzidos pelo filho 8: UBVWXYZ abcdefghijklmnopqrstuvwxy######567#
+Caracteres produzidos pelo filho 6: #B0CD
+E
+
+Produtor - Buffer Cheio
+###CDE#GHIJKLMNOPQRSTUVWXYZ abcdefghijklmno
+Caracteres produzidos pelo filho 8: Cp
+Caracteres produzidos pelo filho 6:  DEqr
+Caracteres produzidos pelo filho 2: sCtDuEvwxy######567##0
+Caracteres produzidos pelo filho 4: 067
+Caracteres produzidos pelo filho 6: FGHI
+Caracteres produzidos pelo filho 2: FGHI
+Caracteres produzidos pelo filho 8: FGH
+Caracteres produzidos pelo filho 6: IJ
+Caracteres produzidos pelo filho 4: 
+Caracteres produzidos pelo filho 2: IFJGKHIJ
+Caracteres produzidos pelo filho 8: IJK
+Caracteres produzidos pelo filho 6: LMNOP
+Caracteres produzidos pelo filho 6: Q
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 6: RLSMNO
+Caracteres produzidos pelo filho 8: TUVW
+Caracteres produzidos pelo filho 6: TXUVWX
+Caracteres produzidos pelo filho 4: LMNOP
+Caracteres produzidos pelo filho 6: YZ 
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 8: YZa 
+Caracteres produzidos pelo filho 4: QRST
+Caracteres produzidos pelo filho 2: LMNOP
+Caracteres produzidos pelo filho 6: abcd
+Caracteres produzidos pelo filho 8: abcd
+Caracteres produzidos pelo filho 4: QR
+Caracteres produzidos pelo filho 6: S
+Caracteres produzidos pelo filho 8: S
+Caracteres produzidos pelo filho 4: TUV
+Caracteres produzidos pelo filho 2: efghi
+Caracteres produzidos pelo filho 2: jk
+Caracteres produzidos pelo filho 2: lmno
+Caracteres produzidos pelo filho 2: pqrs
+Caracteres produzidos pelo filho 2: t
+Caracteres produzidos pelo filho 6: T
+Caracteres produzidos pelo filho 4: UVuW
+Caracteres produzidos pelo filho 2: uvw
+Caracteres produzidos pelo filho 8: TUVW
+Caracteres produzidos pelo filho 4: xyz
+Caracteres produzidos pelo filho 6: XYZ 
+Caracteres produzidos pelo filho 2: X
+Caracteres produzidos pelo filho 4:  1YZ 
+Caracteres produzidos pelo filho 8: X
+Caracteres produzidos pelo filho 6: YZa bacd
+Caracteres produzidos pelo filho 2: 2
+Caracteres produzidos pelo filho 4: 23456
+Caracteres produzidos pelo filho 6: ef
+Caracteres produzidos pelo filho 8: 345
+
+Consumidor - Buffer Cheio
+
+Caracteres produzidos pelo filho 2: 3#4#5#6###FG###K
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 4: 66L
+Caracteres produzidos pelo filho 6: 7M677NOPQRSTUVWXYZ abcdefghij###########
+Caracteres produzidos pelo filho 4: #8###########
+Caracteres produzidos pelo filho 8: #8#90#
+
+Caracteres produzidos pelo filho 6: 8
+
+Produtor - Buffer Cheio
+######FG###KLMNOPQRSTUVW
+
+Produtor - Buffer Cheio
+X#Y#Z# #a#b#cFdGe#fg#h#Kij#
+
+Produtor - Buffer Cheio
+######
+
+Produtor - Buffer Cheio
+#######L##FG#FG#####KMN#OLKMP#LNMNQOOPPQQR#SRTSUTVU#W##XV
+
+Consumidor - Buffer Cheio
+######FG###KWLMNOPQRSTUVWXYZ abcdefghij############################
+RSTYUVZW# Xa#YbZ# c#a#bXc###Y#Z# #a#d#d#e#f##b#g
+Caracteres produzidos pelo filho 2: 89hciej0idfegfhgihij####j####################################################
+Caracteres produzidos pelo filho 6: ####9#0##d#X#
+Caracteres produzidos pelo filho 4: 9##0#################
+Caracteres produzidos pelo filho 8: 90 
+Caracteres produzidos pelo filho 2:  ABCD
+Caracteres produzidos pelo filho 6:  AB
+Caracteres produzidos pelo filho 4:  ABC
+Caracteres produzidos pelo filho 8:  ABC
+Caracteres produzidos pelo filho 2: CD
+Caracteres produzidos pelo filho 6: DEF
+Caracteres produzidos pelo filho 4: DEF
+Caracteres produzidos pelo filho 2: G
+Caracteres produzidos pelo filho 6: GH
+Caracteres produzidos pelo filho 2: HIJ
+Caracteres produzidos pelo filho 8: EFGHI
+Caracteres produzidos pelo filho 8: J
+Caracteres produzidos pelo filho 4: 
+Caracteres produzidos pelo filho 2: IJJK
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 2: IKJLKL
+Caracteres produzidos pelo filho 8: KL
+Caracteres produzidos pelo filho 4: KLM
+Caracteres produzidos pelo filho 4: N
+Caracteres produzidos pelo filho 8: O
+Caracteres produzidos pelo filho 2: MNOPQ
+Caracteres produzidos pelo filho 4: OP
+Caracteres produzidos pelo filho 8: PQR
+Caracteres produzidos pelo filho 6: NOPQR
+Caracteres produzidos pelo filho 8: S
+Caracteres produzidos pelo filho 2: S
+Caracteres produzidos pelo filho 4: STUVW
+Caracteres produzidos pelo filho 8: TUV
+Caracteres produzidos pelo filho 6: TUV
+Caracteres produzidos pelo filho 2: TUVW
+Caracteres produzidos pelo filho 4: XYZ a
+Caracteres produzidos pelo filho 8: WX
+Caracteres produzidos pelo filho 6: WXY
+Caracteres produzidos pelo filho 2: YZ ab
+Caracteres produzidos pelo filho 4: Y
+Caracteres produzidos pelo filho 8: ZYZ a bab
+Caracteres produzidos pelo filho 6: Z
+Caracteres produzidos pelo filho 8:  ca
+Caracteres produzidos pelo filho 4: d
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 8: cddeef
+Caracteres produzidos pelo filho 6: ef
+Caracteres produzidos pelo filho 6: g
+Caracteres produzidos pelo filho 4: f
+Caracteres produzidos pelo filho 8: gfhghii
+Caracteres produzidos pelo filho 2: fghij
+Caracteres produzidos pelo filho 2: k
+Caracteres produzidos pelo filho 4: jkl
+Caracteres produzidos pelo filho 8: jklmm
+Caracteres produzidos pelo filho 2: lm
+Caracteres produzidos pelo filho 6: jklm
+Caracteres produzidos pelo filho 8: nopq
+Caracteres produzidos pelo filho 4: nopq
+Caracteres produzidos pelo filho 6: nopqr
+Caracteres produzidos pelo filho 2: nopqr
+Caracteres produzidos pelo filho 6: s
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 4: rrsstutuv
+Caracteres produzidos pelo filho 6: wxy
+Caracteres produzidos pelo filho 2: tuv
+Caracteres produzidos pelo filho 6: z
+Caracteres produzidos pelo filho 4: wxyz
+Caracteres produzidos pelo filho 8: wxyz
+Caracteres produzidos pelo filho 6:  
+Caracteres produzidos pelo filho 2: 1 1
+Caracteres produzidos pelo filho 2: 2
+Caracteres produzidos pelo filho 4:  123
+Caracteres produzidos pelo filho 2: 34
+Caracteres produzidos pelo filho 6: 23456
+Caracteres produzidos pelo filho 8: 23456
+Caracteres produzidos pelo filho 6: 7
+Caracteres produzidos pelo filho 8: 8
+Caracteres produzidos pelo filho 4: 5678
+Caracteres produzidos pelo filho 6: 89
+
+Produtor - Buffer Cheio
+ #######
+
+Produtor - Buffer Cheio
+# ###########################################################################################567890##
+Caracteres produzidos pelo filho 2: #7#8#9#0######
+Caracteres produzidos pelo filho 4: # ABC
+Caracteres produzidos pelo filho 6:  ABC####567890
+Caracteres produzidos pelo filho 8: 90
+Caracteres produzidos pelo filho 4: D
+Caracteres produzidos pelo filho 6: D
+Caracteres produzidos pelo filho 4: EFG
+Caracteres produzidos pelo filho 8: EFG
+Caracteres produzidos pelo filho 2: D
+Caracteres produzidos pelo filho 6: EEFFGGH
+Caracteres produzidos pelo filho 8: HI
+
+Consumidor - Buffer Cheio
+ ABCDEFGHIJKL#########
+Caracteres produzidos pelo filho 6: 
+
+Consumidor - Buffer Cheio
+ #AH
+
+Consumidor - Buffer Cheio
+ IAJBCDEFGHIJKL############
+Caracteres produzidos pelo filho 2: #H#I
+
+Consumidor - Buffer Cheio
+# ABCBDECFDGH#I#J#K#L############################################################
+##
+Caracteres produzidos pelo filho 4: ##J#H#EFG#H#IJKLM
+Caracteres produzidos pelo filho 6: NK#L#M#N##############################################
+Caracteres produzidos pelo filho 8: #J#
+
+Caracteres produzidos pelo filho 6: O#K###################################################
+##I#J#K#L#####
+LMN
+Caracteres produzidos pelo filho 2: OPQR
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 6: SPQR
+Caracteres produzidos pelo filho 2: S
+Caracteres produzidos pelo filho 4: STUVW
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 4: T
+Caracteres produzidos pelo filho 2: TUV
+Caracteres produzidos pelo filho 6: TXUVUV
+Caracteres produzidos pelo filho 2: WXY
+Caracteres produzidos pelo filho 4: WXY
+Caracteres produzidos pelo filho 2: Z
+Caracteres produzidos pelo filho 6: WXY
+Caracteres produzidos pelo filho 8: ZWXYZ
+Caracteres produzidos pelo filho 4: Z 
+Caracteres produzidos pelo filho 6: abcd
+Caracteres produzidos pelo filho 8: a
+Caracteres produzidos pelo filho 4: abcdbcd
+Caracteres produzidos pelo filho 2: abcd
+Caracteres produzidos pelo filho 6: ef
+Caracteres produzidos pelo filho 4: efg
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 8: hefg
+Caracteres produzidos pelo filho 4: h
+Caracteres produzidos pelo filho 2: ghijk
+Caracteres produzidos pelo filho 6: ijkl
+Caracteres produzidos pelo filho 8: lmno
+Caracteres produzidos pelo filho 4: ijkl
+Caracteres produzidos pelo filho 2: l
+Caracteres produzidos pelo filho 6: mpnqorp
+Caracteres produzidos pelo filho 2: s
+Caracteres produzidos pelo filho 4: mnop
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 6: mtnuop
+Caracteres produzidos pelo filho 2: tu
+Caracteres produzidos pelo filho 2: v
+Caracteres produzidos pelo filho 4: vwxy
+Caracteres produzidos pelo filho 6: vwxyz
+Caracteres produzidos pelo filho 8: vwxyz
+Caracteres produzidos pelo filho 6:  
+Caracteres produzidos pelo filho 4: z 12
+Caracteres produzidos pelo filho 8:  1
+Caracteres produzidos pelo filho 6: 234
+Caracteres produzidos pelo filho 4: 2345
+Caracteres produzidos pelo filho 8: 23456
+Caracteres produzidos pelo filho 8: 7
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 4: 66778899
+
+Produtor - Buffer Cheio
+###############
+
+Produtor - Buffer Cheio
+##################
+
+Produtor - Buffer Cheio
+###############################################################################st########stuvwxyz 1234567890
+Caracteres produzidos pelo filho 4: 0#uv##w#x#y#z 1234#89#567##890#
+Caracteres produzidos pelo filho 8: #######stu0vwx4yz5 1234567890
+Caracteres produzidos pelo filho 6: 089z
+Caracteres produzidos pelo filho 4:  A
+Caracteres produzidos pelo filho 8:  
+Caracteres produzidos pelo filho 4: ABB
+Caracteres produzidos pelo filho 6: BCDE
+Caracteres produzidos pelo filho 8: CDE
+Caracteres produzidos pelo filho 6: FGHIJ
+Caracteres produzidos pelo filho 8: FG
+Caracteres produzidos pelo filho 2: FGHIJ
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 4: FGHHI
+Caracteres produzidos pelo filho 2: IJ
+Caracteres produzidos pelo filho 6: JKLM
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 2: JKKLLM
+Caracteres produzidos pelo filho 4: JKLMN
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 2: O
+Caracteres produzidos pelo filho 6: N
+Caracteres produzidos pelo filho 4: OOPO
+Caracteres produzidos pelo filho 6: PQRS
+Caracteres produzidos pelo filho 2: PQ
+Caracteres produzidos pelo filho 8: RPSQRS
+Caracteres produzidos pelo filho 4: PQRS
+Caracteres produzidos pelo filho 6: TU
+Caracteres produzidos pelo filho 6: V
+Caracteres produzidos pelo filho 8: VWXYZ
+Caracteres produzidos pelo filho 2: VWXYZ
+Caracteres produzidos pelo filho 4: VWXYZ
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 6:   aabbcc
+Caracteres produzidos pelo filho 2:  abc
+Caracteres produzidos pelo filho 4: de
+Caracteres produzidos pelo filho 6: def
+Caracteres produzidos pelo filho 4: g
+Caracteres produzidos pelo filho 2: defg
+Caracteres produzidos pelo filho 8: defg
+Caracteres produzidos pelo filho 6: gh
+Caracteres produzidos pelo filho 2: hijk
+Caracteres produzidos pelo filho 8: i
+Caracteres produzidos pelo filho 4: hijk
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 8: jklijklm
+Caracteres produzidos pelo filho 2: jkl
+Caracteres produzidos pelo filho 8: m
+Caracteres produzidos pelo filho 6: mn
+Caracteres produzidos pelo filho 4: 
+Caracteres produzidos pelo filho 8: opnqopqr
+Caracteres produzidos pelo filho 2: opq
+Caracteres produzidos pelo filho 6: op
+Caracteres produzidos pelo filho 8: rqsrs
+Caracteres produzidos pelo filho 2: rst
+Caracteres produzidos pelo filho 4: rst
+Caracteres produzidos pelo filho 8: u
+Caracteres produzidos pelo filho 2: uv
+Caracteres produzidos pelo filho 6: tuvwx
+Caracteres produzidos pelo filho 8: vwx
+Caracteres produzidos pelo filho 4: vwx
+Caracteres produzidos pelo filho 6: y
+Caracteres produzidos pelo filho 8: y
+Caracteres produzidos pelo filho 2: yz 12
+Caracteres produzidos pelo filho 4: z 1
+
+Consumidor - Buffer Cheio
+
+Caracteres produzidos pelo filho 8: z# #12####FGHIJKLMNOPQRSTUVWXYZ a####fghijklmnopqrstuvwxyz 1234567####
+
+Caracteres produzidos pelo filho 6: z 1
+Caracteres produzidos pelo filho 2: 3
+
+Consumidor - Buffer Cheio
+##4####5FG
+
+Consumidor - Buffer Cheio
+6###H##I#JFKGLHMINJOKPLMNOPQRSTUVWXYZ a####fghijklmno
+
+Consumidor - Buffer Cheio
+p#q#r#s#t#u#vFwGxHyIzJ K1L2M3N4O5P6Q7R#S#T#U#V
+WXYZ a####fghijklmnopqrstuvwxyz 1234567####
+QRSTU
+Caracteres produzidos pelo filho 6: V WXYZ a####fghijklmnopqrstuvwxyz 1234567####
+
+Caracteres produzidos pelo filho 4: 7345
+Caracteres produzidos pelo filho 8: 3456
+Caracteres produzidos pelo filho 6: 7
+Caracteres produzidos pelo filho 6: 8
+
+Produtor - Buffer Cheio
+######FGHIJKLMNOPQRSTUVWXYZ a####fghijklmnopqrstuvwxyz 1234567890
+Caracteres produzidos pelo filho 6: 90
+
+Produtor - Buffer Cheio
+ ##
+
+Produtor - Buffer Cheio
+# ####F#G#H#IFJGKHLIJKLMNOPQMRSN
+
+Produtor - Buffer Cheio
+ A####FGHIJKLMNOPQRSTUVWXYZ 
+Caracteres produzidos pelo filho 6:  ATBUVWXYZ a##O##fghiPja####QRSfghijkklmnopqrstTlUmVnWoXpYqZr sat#u###ufgvhwivjwkxlymzn o1p2q3r4s5tuvw6x7y8z 1x2
+Caracteres produzidos pelo filho 6: 3C4Dy5z6 7182930E90
+Caracteres produzidos pelo filho 2: 78904567890
+Caracteres produzidos pelo filho 4: 78
+Caracteres produzidos pelo filho 8: 978900
+Caracteres produzidos pelo filho 4: F
+Caracteres produzidos pelo filho 6: FGHI
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 2: JFGHI
+Caracteres produzidos pelo filho 8: JFGHIJ
+Caracteres produzidos pelo filho 4: JKLM
+Caracteres produzidos pelo filho 2: KLM
+Caracteres produzidos pelo filho 6: KL
+Caracteres produzidos pelo filho 8: MKLM
+Caracteres produzidos pelo filho 4: NOPQR
+Caracteres produzidos pelo filho 6: NOP
+Caracteres produzidos pelo filho 8: N
+Caracteres produzidos pelo filho 2: OPNOP
+Caracteres produzidos pelo filho 6: R
+Caracteres produzidos pelo filho 4: Q
+Caracteres produzidos pelo filho 2: RS
+Caracteres produzidos pelo filho 8: STU
+Caracteres produzidos pelo filho 6: TUVW
+Caracteres produzidos pelo filho 4: TUVW
+Caracteres produzidos pelo filho 8: XY
+Caracteres produzidos pelo filho 6: XYZ
+Caracteres produzidos pelo filho 2: T
+Caracteres produzidos pelo filho 6: U VWX
+Caracteres produzidos pelo filho 4: XYZ 
+Caracteres produzidos pelo filho 6: ab
+Caracteres produzidos pelo filho 2: abc
+Caracteres produzidos pelo filho 8:  abcd
+Caracteres produzidos pelo filho 2: e
+Caracteres produzidos pelo filho 8: fg
+Caracteres produzidos pelo filho 6: cdefg
+Caracteres produzidos pelo filho 4: cdefg
+Caracteres produzidos pelo filho 2: hij
+Caracteres produzidos pelo filho 6: hijkl
+Caracteres produzidos pelo filho 2: kl
+Caracteres produzidos pelo filho 8: hijk
+Caracteres produzidos pelo filho 4: hijkl
+Caracteres produzidos pelo filho 4: m
+Caracteres produzidos pelo filho 6: lmnop
+Caracteres produzidos pelo filho 2: lmnop
+Caracteres produzidos pelo filho 4: nop
+Caracteres produzidos pelo filho 8: lmnop
+Caracteres produzidos pelo filho 4: q
+Caracteres produzidos pelo filho 6: qrst
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 8: qurvswtu
+Caracteres produzidos pelo filho 4: uvw
+Caracteres produzidos pelo filho 6: uvwx
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 8: xxyy
+Caracteres produzidos pelo filho 4: 
+Caracteres produzidos pelo filho 8: yzz 
+Caracteres produzidos pelo filho 6: y
+Caracteres produzidos pelo filho 2: z  
+Caracteres produzidos pelo filho 4:  
+Caracteres produzidos pelo filho 8:  11
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 2: 223344
+Caracteres produzidos pelo filho 6: 56
+Caracteres produzidos pelo filho 8: 23
+Caracteres produzidos pelo filho 2: 45566
+Caracteres produzidos pelo filho 4: 23456
+Caracteres produzidos pelo filho 8: 7
+Caracteres produzidos pelo filho 2: 7
+Caracteres produzidos pelo filho 4: 78
+Caracteres produzidos pelo filho 8: 89
+
+Produtor - Buffer Cheio
+#####
+
+Produtor - Buffer Cheio
+#######
+
+Produtor - Buffer Cheio
+#########K#L##M#####N#O##K#PKQLMNRSOPLQR
+
+Produtor - Buffer Cheio
+#S#T#U#V#W#X###M##N#OP###K#LMQT#UV#WX#########N##RO#S#P#TQ#U#RV#S#W#XT#U##V#W#X############################################4#5#6#7#8#9#0###
+Caracteres produzidos pelo filho 6: #7#8#9#0#############4567890
+Caracteres produzidos pelo filho 4: 045#######################4###5#6#7#8#9#
+Caracteres produzidos pelo filho 6: 0 A
+Caracteres produzidos pelo filho 8: 0454567890
+Caracteres produzidos pelo filho 2: 90t
+Caracteres produzidos pelo filho 6: B
+Caracteres produzidos pelo filho 2: B
+Caracteres produzidos pelo filho 4:  ABC
+Caracteres produzidos pelo filho 8: BCDEF
+Caracteres produzidos pelo filho 2: DEFG
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 8: GCDE
+
+Consumidor - Buffer Cheio
+ ABCDEF
+Caracteres produzidos pelo filho 4: GDHI
+
+Consumidor - Buffer Cheio
+# KALBM
+Caracteres produzidos pelo filho 2: NCOHPDIEFEFQGRHSTUGVHWIX##K#L#M#N#O#P#Q#R#S#T#UVWX####################################################
+######
+Caracteres produzidos pelo filho 6: ######## #A#B#C##
+
+Caracteres produzidos pelo filho 2: JK
+Caracteres produzidos pelo filho 4: JK
+Caracteres produzidos pelo filho 6: L
+Caracteres produzidos pelo filho 8: HIJK
+Caracteres produzidos pelo filho 4: L
+Caracteres produzidos pelo filho 2: LMM
+Caracteres produzidos pelo filho 2: N
+Caracteres produzidos pelo filho 6: LMN
+Caracteres produzidos pelo filho 4: N
+Caracteres produzidos pelo filho 8: NOPQ
+Caracteres produzidos pelo filho 2: OP
+Caracteres produzidos pelo filho 6: OPQ
+Caracteres produzidos pelo filho 6: R
+Caracteres produzidos pelo filho 2: R
+Caracteres produzidos pelo filho 4: R
+Caracteres produzidos pelo filho 8: SRTSUTU
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 6: VVWW
+Caracteres produzidos pelo filho 8: V
+Caracteres produzidos pelo filho 6: XWX
+Caracteres produzidos pelo filho 2: X
+Caracteres produzidos pelo filho 4: VWXY
+Caracteres produzidos pelo filho 2: YZ 
+Caracteres produzidos pelo filho 4: 
+Caracteres produzidos pelo filho 8: YZZ 
+Caracteres produzidos pelo filho 6: YZ 
+Caracteres produzidos pelo filho 2: ab
+Caracteres produzidos pelo filho 6: abcd
+Caracteres produzidos pelo filho 4: abc
+Caracteres produzidos pelo filho 8: abcd
+Caracteres produzidos pelo filho 2: cdefg
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 4: ddefef
+Caracteres produzidos pelo filho 6: g
+Caracteres produzidos pelo filho 2: hijkl
+Caracteres produzidos pelo filho 4: 
+Caracteres produzidos pelo filho 6: hhiijj
+Caracteres produzidos pelo filho 8: hijkl
+Caracteres produzidos pelo filho 8: m
+Caracteres produzidos pelo filho 6: nmn
+Caracteres produzidos pelo filho 4: mn
+Caracteres produzidos pelo filho 2: mnopq
+Caracteres produzidos pelo filho 6: r
+Caracteres produzidos pelo filho 4: r
+Caracteres produzidos pelo filho 8: r
+Caracteres produzidos pelo filho 6: stu
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 4: ssttu
+Caracteres produzidos pelo filho 8: stu
+Caracteres produzidos pelo filho 2: v
+Caracteres produzidos pelo filho 4: v
+Caracteres produzidos pelo filho 8: wx
+Caracteres produzidos pelo filho 6: v
+Caracteres produzidos pelo filho 2: ywxy
+Caracteres produzidos pelo filho 4: zy
+Caracteres produzidos pelo filho 8: y
+Caracteres produzidos pelo filho 2: z 12
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 4: z z1 212
+Caracteres produzidos pelo filho 8: z 12
+Caracteres produzidos pelo filho 2: 34
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 8: 55
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 2: 3647567
+Caracteres produzidos pelo filho 4: 3456
+Caracteres produzidos pelo filho 8: 6778
+Caracteres produzidos pelo filho 6: 8
+
+Produtor - Buffer Cheio
+####
+Caracteres produzidos pelo filho 8: 90#####################
+Caracteres produzidos pelo filho 4: 90#######
+
+Produtor - Buffer Cheio
+#######
+
+Produtor - Buffer Cheio
+##########
+
+Produtor - Buffer Cheio
+################################################################yz 1234567890
+Caracteres produzidos pelo filho 6: 90###############################################yz 12###################3###4###5##6#7###########89#0#
+Caracteres produzidos pelo filho 2: #8y9z0 1q234567######y8z 123456
+Caracteres produzidos pelo filho 6: 7 ABC9D80
+Caracteres produzidos pelo filho 4: 090
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 8: E
+Caracteres produzidos pelo filho 6: EFG
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 8: FFGGHHII
+Caracteres produzidos pelo filho 6: HI
+Caracteres produzidos pelo filho 4: FGH
+Caracteres produzidos pelo filho 2: JKL
+Caracteres produzidos pelo filho 8: JKL
+Caracteres produzidos pelo filho 6: IJKL
+Caracteres produzidos pelo filho 2: MN
+Caracteres produzidos pelo filho 4: IJ
+Caracteres produzidos pelo filho 2: OKLM
+Caracteres produzidos pelo filho 8: MNOP
+Caracteres produzidos pelo filho 6: OPQRS
+Caracteres produzidos pelo filho 2: 
+
+Consumidor - Buffer Cheio
+P QARBCDEFGHIJKLMNOPQRSTU###########
+
+Consumidor - Buffer Cheio
+# AB#C#D######E#F#G#H#I#J#K#LM#NO
+Caracteres produzidos pelo filho 4: ##P##QRSQTU#RST#V###W#X#########
+############
+Caracteres produzidos pelo filho 8: T#U#V#W#X####
+Caracteres produzidos pelo filho 2: # #A#B###############
+
+Caracteres produzidos pelo filho 6:  A
+Caracteres produzidos pelo filho 4: CD
+Caracteres produzidos pelo filho 8: CDE
+Caracteres produzidos pelo filho 8: F
+Caracteres produzidos pelo filho 2: BCDE
+Caracteres produzidos pelo filho 6: BCDE
+Caracteres produzidos pelo filho 4: FGHIJ
+Caracteres produzidos pelo filho 8: FGH
+Caracteres produzidos pelo filho 6: K
+Caracteres produzidos pelo filho 2: FGHI
+Caracteres produzidos pelo filho 4: LM
+Caracteres produzidos pelo filho 6: LMN
+Caracteres produzidos pelo filho 8: LMN
+Caracteres produzidos pelo filho 4: O
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 2: NOOPPQQR
+Caracteres produzidos pelo filho 8: PQR
+Caracteres produzidos pelo filho 4: PQRS
+Caracteres produzidos pelo filho 8: STU
+Caracteres produzidos pelo filho 2: TUV
+Caracteres produzidos pelo filho 6: STU
+Caracteres produzidos pelo filho 8: W
+Caracteres produzidos pelo filho 4: TUVWX
+Caracteres produzidos pelo filho 2: XY
+Caracteres produzidos pelo filho 6: XYZ
+Caracteres produzidos pelo filho 2: Z
+Caracteres produzidos pelo filho 4: Z 
+Caracteres produzidos pelo filho 6: a bac
+Caracteres produzidos pelo filho 8: XYZ 
+Caracteres produzidos pelo filho 8: a
+Caracteres produzidos pelo filho 2: ab
+Caracteres produzidos pelo filho 4: cda
+Caracteres produzidos pelo filho 6: bcadbecde
+Caracteres produzidos pelo filho 6: f
+Caracteres produzidos pelo filho 8: bcd
+Caracteres produzidos pelo filho 2: f
+Caracteres produzidos pelo filho 4: f
+Caracteres produzidos pelo filho 6: ef
+Caracteres produzidos pelo filho 4: ghij
+Caracteres produzidos pelo filho 8: ghi
+Caracteres produzidos pelo filho 2: ghij
+Caracteres produzidos pelo filho 4: jk
+Caracteres produzidos pelo filho 8: jkl
+Caracteres produzidos pelo filho 6: ghijk
+Caracteres produzidos pelo filho 8: l
+Caracteres produzidos pelo filho 4: lm
+Caracteres produzidos pelo filho 6: mn
+Caracteres produzidos pelo filho 8: mno
+Caracteres produzidos pelo filho 2: lmnop
+Caracteres produzidos pelo filho 6: p
+Caracteres produzidos pelo filho 4: nopq
+Caracteres produzidos pelo filho 8: qr
+Caracteres produzidos pelo filho 2: qrs
+Caracteres produzidos pelo filho 8: t
+Caracteres produzidos pelo filho 6: q
+Caracteres produzidos pelo filho 2: rts
+Caracteres produzidos pelo filho 8: u
+Caracteres produzidos pelo filho 4: vswtuvw
+Caracteres produzidos pelo filho 2: uvw
+Caracteres produzidos pelo filho 4: 
+Caracteres produzidos pelo filho 6: xuvw
+Caracteres produzidos pelo filho 4: yz
+Caracteres produzidos pelo filho 8: xyz 1
+Caracteres produzidos pelo filho 6: yz 
+Caracteres produzidos pelo filho 4: 2
+Caracteres produzidos pelo filho 2: yz 
+Caracteres produzidos pelo filho 8: 2
+Caracteres produzidos pelo filho 4: 3
+Caracteres produzidos pelo filho 6: 34545
+Caracteres produzidos pelo filho 2: 345
+Caracteres produzidos pelo filho 2: 6
+Caracteres produzidos pelo filho 6: 6
+Caracteres produzidos pelo filho 4: 67
+Caracteres produzidos pelo filho 8: 3456
+Caracteres produzidos pelo filho 2: 789
+Caracteres produzidos pelo filho 4: 
+Caracteres produzidos pelo filho 6: 78798090
+
+Produtor - Buffer Cheio
+##BCD#######
+
+Produtor - Buffer Cheio
+####B###C#D############################################h#i#j#khlimjnk#lpmqnr#sptq#r#s#t#########################
+Caracteres produzidos pelo filho 2: #0#####
+Caracteres produzidos pelo filho 8: 7890
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 4:   AABCBC
+
+Consumidor - Buffer Cheio
+ 
+
+Consumidor - Buffer Cheio
+ 
+Caracteres produzidos pelo filho 6: AB
+
+Consumidor - Buffer Cheio
+CD EAFB#C
+
+Consumidor - Buffer Cheio
+#DE# F##A###B##C#D#E#F###########################################h#i#j#k#l#m#n##hpiqjrksltm#n###p#q#r#s#t######################
+##D##
+Caracteres produzidos pelo filho 4: ##D#
+
+Caracteres produzidos pelo filho 8:  ABACBCDEFG################################################hhiijjkklmn#pqrst##################
+
+Caracteres produzidos pelo filho 2: DlEmFnG#pqrst#####
+Caracteres produzidos pelo filho 6: #
+Caracteres produzidos pelo filho 4: DED##F#G#E#F#G######
+
+Caracteres produzidos pelo filho 8: DEFGH
+Caracteres produzidos pelo filho 4: H
+Caracteres produzidos pelo filho 6: IJ
+Caracteres produzidos pelo filho 2: HIJKL
+Caracteres produzidos pelo filho 8: IJKL
+Caracteres produzidos pelo filho 4: IJKL
+Caracteres produzidos pelo filho 2: MN
+Caracteres produzidos pelo filho 6: KLMNO
+Caracteres produzidos pelo filho 2: P
+Caracteres produzidos pelo filho 8: MNOP
+Caracteres produzidos pelo filho 4: OPQ
+Caracteres produzidos pelo filho 6: RQSRS
+Caracteres produzidos pelo filho 2: QRS
+Caracteres produzidos pelo filho 4: T
+Caracteres produzidos pelo filho 6: T
+Caracteres produzidos pelo filho 2: UV
+Caracteres produzidos pelo filho 4: WX
+Caracteres produzidos pelo filho 6: WXY
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 8: WTXUYVWYX
+Caracteres produzidos pelo filho 2: YZ
+Caracteres produzidos pelo filho 8: YZ
+Caracteres produzidos pelo filho 4: YZ
+Caracteres produzidos pelo filho 6: YZ
+Caracteres produzidos pelo filho 2:  abc
+Caracteres produzidos pelo filho 8:  abcd
+Caracteres produzidos pelo filho 4:  abcd
+Caracteres produzidos pelo filho 6:  abcd
+Caracteres produzidos pelo filho 6: ef
+Caracteres produzidos pelo filho 8: efgh
+Caracteres produzidos pelo filho 4: efghi
+Caracteres produzidos pelo filho 4: 
+Caracteres produzidos pelo filho 8: jj
+Caracteres produzidos pelo filho 4: klm
+Caracteres produzidos pelo filho 6: ijklm
+Caracteres produzidos pelo filho 8: klm
+Caracteres produzidos pelo filho 4: n
+Caracteres produzidos pelo filho 6: no
+Caracteres produzidos pelo filho 8: o
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 4: opqrppq
+Caracteres produzidos pelo filho 4: stuv
+Caracteres produzidos pelo filho 8: stuvw
+Caracteres produzidos pelo filho 6: stuvw
+Caracteres produzidos pelo filho 4: wxy
+Caracteres produzidos pelo filho 6: xy
+Caracteres produzidos pelo filho 8: xyz
+Caracteres produzidos pelo filho 6: z 12
+Caracteres produzidos pelo filho 8: z
+Caracteres produzidos pelo filho 4: z
+Caracteres produzidos pelo filho 6: 345
+Caracteres produzidos pelo filho 6: 6
+Caracteres produzidos pelo filho 8:  123
+Caracteres produzidos pelo filho 6: 456
+Caracteres produzidos pelo filho 4: 67890
+Caracteres produzidos pelo filho 6: 7
+Caracteres produzidos pelo filho 8: 456
+Caracteres produzidos pelo filho 6: 78
+Caracteres produzidos pelo filho 4: 78
+Caracteres produzidos pelo filho 8: 789
+Caracteres produzidos pelo filho 6: 9
+Caracteres produzidos pelo filho 4: 0
+
+Produtor - Buffer Cheio
+##################
+
+Produtor - Buffer Cheio
+##
+
+Produtor - Buffer Cheio
+###########################################################################################################################9#0###
+Caracteres produzidos pelo filho 6: #0#######6##################################90
+Caracteres produzidos pelo filho 4: 889090
+Caracteres produzidos pelo filho 8: 09
+Caracteres produzidos pelo filho 2:  ABC
+Caracteres produzidos pelo filho 6:  A
+Caracteres produzidos pelo filho 8: DEFG
+Caracteres produzidos pelo filho 4: DEFG
+Caracteres produzidos pelo filho 8: HI
+Caracteres produzidos pelo filho 6: BCDEF
+Caracteres produzidos pelo filho 2: BCDEF
+Caracteres produzidos pelo filho 4: HIJK
+Caracteres produzidos pelo filho 6: LM
+Caracteres produzidos pelo filho 8: JKLMN
+Caracteres produzidos pelo filho 2: LM
+Caracteres produzidos pelo filho 4: NLMN
+Caracteres produzidos pelo filho 8: OP
+Caracteres produzidos pelo filho 4: OPQ
+Caracteres produzidos pelo filho 2: O
+Caracteres produzidos pelo filho 6: POQPQRS
+Caracteres produzidos pelo filho 4: T
+Caracteres produzidos pelo filho 6: UV
+Caracteres produzidos pelo filho 2: UV
+Caracteres produzidos pelo filho 4: UVW
+Caracteres produzidos pelo filho 8: RSTUV
+Caracteres produzidos pelo filho 6: WXYZ
+Caracteres produzidos pelo filho 2: XYZ a
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 4: bXYZ a
+Caracteres produzidos pelo filho 2: b
+Caracteres produzidos pelo filho 8: WXYZ
+Caracteres produzidos pelo filho 4: cde
+Caracteres produzidos pelo filho 6: cde
+Caracteres produzidos pelo filho 2:  abc
+Caracteres produzidos pelo filho 8:  abc
+Caracteres produzidos pelo filho 4: fghij
+Caracteres produzidos pelo filho 8: k
+Caracteres produzidos pelo filho 6: def
+Caracteres produzidos pelo filho 2: defgh
+Caracteres produzidos pelo filho 4: lm
+Caracteres produzidos pelo filho 8: ghi
+Caracteres produzidos pelo filho 2: nopqr
+Caracteres produzidos pelo filho 6: ijkl
+Caracteres produzidos pelo filho 4: nopqr
+
+Consumidor - Buffer Cheio
+ ABCDE
+Caracteres produzidos pelo filho 2: FmnoG
+
+Consumidor - Buffer Cheio
+ AHBICDEFGJ
+Caracteres produzidos pelo filho 8: s
+
+Consumidor - Buffer Cheio
+Ht uABICJDEKFLGMHNIOJPKQLRMSNTOUPVQWRXSYTZU VaWbXcYdZe fagbhcidjekflgmhniojpkqlrmsntoupvqwr#s#t#u#v
+Caracteres produzidos pelo filho 4: #ws##t##u##v##w############
+##K#L#M#N
+OPQRSTUVWXYZ abcdefghijklmnopqrstuvw
+Caracteres produzidos pelo filho 8: x yA
+Caracteres produzidos pelo filho 2: B CA#
+Caracteres produzidos pelo filho 6: st
+Caracteres produzidos pelo filho 4: x#y#uvw##########
+
+Caracteres produzidos pelo filho 4: x
+Caracteres produzidos pelo filho 8: xyz 1
+Caracteres produzidos pelo filho 6: xy
+Caracteres produzidos pelo filho 2: xyz 1
+Caracteres produzidos pelo filho 6: 2
+Caracteres produzidos pelo filho 2: 2
+Caracteres produzidos pelo filho 4: z 123
+Caracteres produzidos pelo filho 8: z 123
+Caracteres produzidos pelo filho 6: 34
+Caracteres produzidos pelo filho 2: 53456
+Caracteres produzidos pelo filho 4: 4
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 4: 7586
+Caracteres produzidos pelo filho 2: 567
+Caracteres produzidos pelo filho 6: 567
+Caracteres produzidos pelo filho 2: 8
+
+Produtor - Buffer Cheio
+ #################RSTUVWXYZ abcdefghijklmnopqrstuvw
+Caracteres produzidos pelo filho 2: x yzAB
+
+Produtor - Buffer Cheio
+  A
+Caracteres produzidos pelo filho 6: 1 2A3B45B6#7#8###90#
+Caracteres produzidos pelo filho 4: 78#90###########UVWXYZ abcdefghijklmnopqrstuvwxyz 1234567890
+Caracteres produzidos pelo filho 8: 7890
+Caracteres produzidos pelo filho 2: CDE
+Caracteres produzidos pelo filho 6: CDEF
+Caracteres produzidos pelo filho 4: CDEF
+Caracteres produzidos pelo filho 6: GHI
+Caracteres produzidos pelo filho 2: GHI
+Caracteres produzidos pelo filho 6: J
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 2: GKHLIJ
+Caracteres produzidos pelo filho 4: GHIJK
+Caracteres produzidos pelo filho 6: KLMN
+Caracteres produzidos pelo filho 4: LMNOP
+Caracteres produzidos pelo filho 8: LMNOP
+Caracteres produzidos pelo filho 2: LMNOP
+Caracteres produzidos pelo filho 4: QR
+Caracteres produzidos pelo filho 6: QRSTU
+Caracteres produzidos pelo filho 2: QRS
+Caracteres produzidos pelo filho 6: T
+Caracteres produzidos pelo filho 2: TU
+Caracteres produzidos pelo filho 8: QRST
+Caracteres produzidos pelo filho 4: STUVW
+Caracteres produzidos pelo filho 2: VWXY
+Caracteres produzidos pelo filho 4: X
+Caracteres produzidos pelo filho 6: UVW
+Caracteres produzidos pelo filho 2: XYZ
+Caracteres produzidos pelo filho 6: XYZ
+Caracteres produzidos pelo filho 4: 
+Caracteres produzidos pelo filho 8: XXYYZZ a
+Caracteres produzidos pelo filho 2:  
+Caracteres produzidos pelo filho 6: bc
+Caracteres produzidos pelo filho 4: ab
+Caracteres produzidos pelo filho 2: abc
+Caracteres produzidos pelo filho 2: d
+Caracteres produzidos pelo filho 6: cdef
+Caracteres produzidos pelo filho 8: de
+Caracteres produzidos pelo filho 4: fcdef
+Caracteres produzidos pelo filho 6: ghi
+Caracteres produzidos pelo filho 2: gh
+Caracteres produzidos pelo filho 2: i
+Caracteres produzidos pelo filho 8: ghi
+Caracteres produzidos pelo filho 6: ij
+Caracteres produzidos pelo filho 4: ghij
+Caracteres produzidos pelo filho 2: jkl
+
+
+
+5ªexecução
+Caracteres produzidos pelo filho 2:  A
+Caracteres produzidos pelo filho 2: BCD
+Caracteres produzidos pelo filho 4: 
+Caracteres produzidos pelo filho 6: B
+Caracteres produzidos pelo filho 8: CDEEBCD
+Caracteres produzidos pelo filho 6: F
+Caracteres produzidos pelo filho 2: FGHI
+Caracteres produzidos pelo filho 8: FGHI
+Caracteres produzidos pelo filho 6: JK
+Caracteres produzidos pelo filho 4: FGHIJ
+Caracteres produzidos pelo filho 8: LM
+Caracteres produzidos pelo filho 2: JKLM
+Caracteres produzidos pelo filho 6: KLMN
+Caracteres produzidos pelo filho 4: NOP
+Caracteres produzidos pelo filho 2: OP
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 6: NQOPQ
+Caracteres produzidos pelo filho 4: 
+Caracteres produzidos pelo filho 8: QRRS
+Caracteres produzidos pelo filho 6: RSTUV
+Caracteres produzidos pelo filho 2: R
+Caracteres produzidos pelo filho 4: STUSTV
+Caracteres produzidos pelo filho 6: U
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 6: VSTUVW
+Caracteres produzidos pelo filho 6: W
+Caracteres produzidos pelo filho 2: VWXYZ
+Caracteres produzidos pelo filho 4: VWXYZ
+Caracteres produzidos pelo filho 8: XYZ
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 2:   aabbcd
+Caracteres produzidos pelo filho 4:  
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 8: eafge
+Caracteres produzidos pelo filho 6: ebffgghhcd
+Caracteres produzidos pelo filho 2: ijklm
+Caracteres produzidos pelo filho 6: ijkl
+Caracteres produzidos pelo filho 4: ijklm
+Caracteres produzidos pelo filho 8: i
+Caracteres produzidos pelo filho 6: no
+Caracteres produzidos pelo filho 2: mnop
+Caracteres produzidos pelo filho 6: pqrs
+Caracteres produzidos pelo filho 2: qrs
+Caracteres produzidos pelo filho 6: t
+Caracteres produzidos pelo filho 2: utvwuvx
+Caracteres produzidos pelo filho 2: w
+Caracteres produzidos pelo filho 6: xyzwxyz
+
+Consumidor - Buffer Cheio
+ ####
+
+Consumidor - Buffer Cheio
+# AB##FG#FHIJjklm
+Caracteres produzidos pelo filho 2:  ABCDGHIJKL
+Caracteres produzidos pelo filho 4:  AB
+Caracteres produzidos pelo filho 2: CE
+
+Consumidor - Buffer Cheio
+##
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 4: FF#
+Caracteres produzidos pelo filho 6: FG#H#EFGHIJKLMNOPQRSTU
+Caracteres produzidos pelo filho 8: VWXYEZF Ga
+Caracteres produzidos pelo filho 2: HIJKILM
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 4: IIJJKKLLM
+Caracteres produzidos pelo filho 2: N
+Caracteres produzidos pelo filho 4: NO
+Caracteres produzidos pelo filho 6: N
+Caracteres produzidos pelo filho 2: OO
+Caracteres produzidos pelo filho 8: NOPQ
+Caracteres produzidos pelo filho 6: R
+Caracteres produzidos pelo filho 4: PQRS
+Caracteres produzidos pelo filho 2: RSTUV
+Caracteres produzidos pelo filho 8: STUV
+Caracteres produzidos pelo filho 6: STUVW
+Caracteres produzidos pelo filho 8: X
+Caracteres produzidos pelo filho 4: YWXYZ 
+Caracteres produzidos pelo filho 6: ab
+Caracteres produzidos pelo filho 8: a
+Caracteres produzidos pelo filho 2: bWXYZ
+Caracteres produzidos pelo filho 4: abc
+Caracteres produzidos pelo filho 6:  a
+Caracteres produzidos pelo filho 8:  a
+Caracteres produzidos pelo filho 6: b
+Caracteres produzidos pelo filho 2: defg
+Caracteres produzidos pelo filho 4: bcdef
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 8: hijklK###############
+Caracteres produzidos pelo filho 4: #g#h#i#j#k#########nopqrstuvwxyz############
+
+Caracteres produzidos pelo filho 8: mnop
+Caracteres produzidos pelo filho 4: lmn
+Caracteres produzidos pelo filho 8: opqM#bh#ijk#
+Caracteres produzidos pelo filho 4: opqr
+Caracteres produzidos pelo filho 2: #hijkl##############################
+Caracteres produzidos pelo filho 6: stu##
+Caracteres produzidos pelo filho 8: ############t##tuuvrwxsyz############tu
+
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 4: stv
+Caracteres produzidos pelo filho 2: wxsytuvzv##yz #
+Caracteres produzidos pelo filho 4: # ####
+Caracteres produzidos pelo filho 8:  #####
+Caracteres produzidos pelo filho 6:  
+Caracteres produzidos pelo filho 2: 11223
+
+Caracteres produzidos pelo filho 4: 1234
+Caracteres produzidos pelo filho 8: 456
+Caracteres produzidos pelo filho 4: 56
+Caracteres produzidos pelo filho 2: 56789
+Caracteres produzidos pelo filho 6: 56789
+Caracteres produzidos pelo filho 4: 789
+
+Produtor - Buffer Cheio
+########
+
+Produtor - Buffer Cheio
+#
+
+Produtor - Buffer Cheio
+#########################
+
+Consumidor - Buffer Cheio
+################################################################
+Caracteres produzidos pelo filho 4: 094##
+
+Consumidor - Buffer Cheio
+######################
+Caracteres produzidos pelo filho 4: # #################################################
+#
+
+Produtor - Buffer Cheio
+###########
+Caracteres produzidos pelo filho 4: #AB######CD######################################################################
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 4: ########E0##7#8################################F############G####H############################################
+#
+Caracteres produzidos pelo filho 6: #I#J#K#L#M##################
+Caracteres produzidos pelo filho 4: ##I####
+Caracteres produzidos pelo filho 8: #7#89
+Caracteres produzidos pelo filho 2: 00
+Caracteres produzidos pelo filho 6: JKL
+Caracteres produzidos pelo filho 2: M
+Caracteres produzidos pelo filho 4: 
+Caracteres produzidos pelo filho 8: JKJKJK
+Caracteres produzidos pelo filho 6: LMN
+Caracteres produzidos pelo filho 4: LMN
+Caracteres produzidos pelo filho 4: 
+Caracteres produzidos pelo filho 8: OLPMQNO
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 2: OLPMQN
+Caracteres produzidos pelo filho 8: PQ
+Caracteres produzidos pelo filho 4: PQR
+Caracteres produzidos pelo filho 6: PQ
+Caracteres produzidos pelo filho 8: RRSS
+Caracteres produzidos pelo filho 4: STUVW
+Caracteres produzidos pelo filho 6: T
+Caracteres produzidos pelo filho 8: TUVW
+Caracteres produzidos pelo filho 8: XY
+Caracteres produzidos pelo filho 4: UV
+Caracteres produzidos pelo filho 6: WXUVWYXY
+Caracteres produzidos pelo filho 8: Z 
+Caracteres produzidos pelo filho 8: ab
+Caracteres produzidos pelo filho 4: Z abc
+Caracteres produzidos pelo filho 6: Z abc
+Caracteres produzidos pelo filho 8: d
+Caracteres produzidos pelo filho 4: def
+Caracteres produzidos pelo filho 6: defg
+Caracteres produzidos pelo filho 8: ghi
+Caracteres produzidos pelo filho 4: g
+Caracteres produzidos pelo filho 6: jkhijl
+Caracteres produzidos pelo filho 4: mno
+Caracteres produzidos pelo filho 6: mnop
+Caracteres produzidos pelo filho 4: pqr
+Caracteres produzidos pelo filho 6: qrstu
+Caracteres produzidos pelo filho 6: v
+Caracteres produzidos pelo filho 4: stuv
+Caracteres produzidos pelo filho 6: wxy
+Caracteres produzidos pelo filho 4: w
+Caracteres produzidos pelo filho 6: xy
+Caracteres produzidos pelo filho 6: z
+Caracteres produzidos pelo filho 4: xy
+
+Consumidor - Buffer Cheio
+##z###E####JKLMNO
+
+Consumidor - Buffer Cheio
+##PQ##RS#ETUVW#X###JKYLZ aMNOPbcdefQ
+Caracteres produzidos pelo filho 6:  RghSTUiVWXYZj
+Caracteres produzidos pelo filho 4:   klmnoapqbcrsdefghtuivwjxyz#####klmnopqr#
+Caracteres produzidos pelo filho 4: A#stuvw#x###y#
+z############
+
+Caracteres produzidos pelo filho 6: ABCDE
+Caracteres produzidos pelo filho 4: B
+Caracteres produzidos pelo filho 6: CDE
+Caracteres produzidos pelo filho 4: CDEF
+Caracteres produzidos pelo filho 6: FG
+Caracteres produzidos pelo filho 4: GHI
+Caracteres produzidos pelo filho 4: JKL
+Caracteres produzidos pelo filho 6: HIJKLO
+Caracteres produzidos pelo filho 4: MN
+Caracteres produzidos pelo filho 2: O
+Caracteres produzidos pelo filho 8: jklm
+Caracteres produzidos pelo filho 4: On
+Caracteres produzidos pelo filho 2: PQR
+Caracteres produzidos pelo filho 4: PQRS
+Caracteres produzidos pelo filho 8: PQRS
+Caracteres produzidos pelo filho 8: T
+Caracteres produzidos pelo filho 2: STUVW
+Caracteres produzidos pelo filho 4: 
+Caracteres produzidos pelo filho 6: SPQTURSVW
+Caracteres produzidos pelo filho 2: XY
+Caracteres produzidos pelo filho 2: Z
+Caracteres produzidos pelo filho 6: Z
+Caracteres produzidos pelo filho 4:  abc
+Caracteres produzidos pelo filho 2:  abcTUVWX
+Caracteres produzidos pelo filho 8: TUVW
+Caracteres produzidos pelo filho 6: def
+Caracteres produzidos pelo filho 2: XYZ a
+Caracteres produzidos pelo filho 6: b
+Caracteres produzidos pelo filho 4: XYZ a
+Caracteres produzidos pelo filho 2: bcd
+Caracteres produzidos pelo filho 6: bcd
+Caracteres produzidos pelo filho 8: ghijk
+Caracteres produzidos pelo filho 2: ef
+Caracteres produzidos pelo filho 4: bcde
+Caracteres produzidos pelo filho 2: f
+Caracteres produzidos pelo filho 8: l
+Caracteres produzidos pelo filho 6: lmnom
+Caracteres produzidos pelo filho 4: fgno
+Caracteres produzidos pelo filho 4: hi
+Caracteres produzidos pelo filho 2: pqrs
+Caracteres produzidos pelo filho 8: hi
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 4: jhi
+Caracteres produzidos pelo filho 8: jjkl
+Caracteres produzidos pelo filho 2: tuvwx
+Caracteres produzidos pelo filho 4: 
+Caracteres produzidos pelo filho 6: kklm
+Caracteres produzidos pelo filho 8: klmn
+Caracteres produzidos pelo filho 2: lmn
+Caracteres produzidos pelo filho 4: 
+Caracteres produzidos pelo filho 6: lmnol
+Caracteres produzidos pelo filho 8: opq
+Caracteres produzidos pelo filho 6: pq
+Caracteres produzidos pelo filho 6: r
+Caracteres produzidos pelo filho 8: rst
+Caracteres produzidos pelo filho 2: opqr
+Caracteres produzidos pelo filho 8: stuv
+Caracteres produzidos pelo filho 2: stuvwmn
+Caracteres produzidos pelo filho 8: xyz
+Caracteres produzidos pelo filho 6: 
+
+Consumidor - Buffer Cheio
+############
+Caracteres produzidos pelo filho 2: xyz u#vw#
+
+Consumidor - Buffer Cheio
+#######################
+
+Consumidor - Buffer Cheio
+ ########XY#Z# #a#b#c#d#e###f
+Caracteres produzidos pelo filho 6:  ghij#kl##########XYZ abcdefghijklmnopqrstuvwxyz 1234#######
+
+Caracteres produzidos pelo filho 2: mnopqrs#tuvwxyz 12#3
+Caracteres produzidos pelo filho 8:  1234#456#######
+Caracteres produzidos pelo filho 4: X12
+3
+Caracteres produzidos pelo filho 2: 6
+Caracteres produzidos pelo filho 6: 56Y7Z abc4d5efghijklmnopqrstuvwxy
+Caracteres produzidos pelo filho 8: 67z 123456
+Caracteres produzidos pelo filho 8: 8978
+
+Produtor - Buffer Cheio
+ #9##
+
+Produtor - Buffer Cheio
+# #######################################X#Y#Z# XaYbZc daebfcgdheifjgkhlimjnkolpmqnrosptqurvswtxuyvzw x1y2z3 4152637485960789
+Caracteres produzidos pelo filho 6: 089
+Caracteres produzidos pelo filho 2: 089l0w
+
+Produtor - Buffer Cheio
+ #######################XYZ abcdefghijklmnopqrstuvwxyz 1234567
+Caracteres produzidos pelo filho 6: 8 90
+Caracteres produzidos pelo filho 4: 89050
+
+Caracteres produzidos pelo filho 2: ABC
+Caracteres produzidos pelo filho 8: ABC
+Caracteres produzidos pelo filho 6: ABCD
+Caracteres produzidos pelo filho 4: ABCDE
+Caracteres produzidos pelo filho 2: EFGH
+Caracteres produzidos pelo filho 8: DEFG
+Caracteres produzidos pelo filho 6: EFGHI
+Caracteres produzidos pelo filho 8: J
+Caracteres produzidos pelo filho 4: HIJK
+Caracteres produzidos pelo filho 2: HIJK
+Caracteres produzidos pelo filho 8: LMN
+Caracteres produzidos pelo filho 6: KLM
+Caracteres produzidos pelo filho 4: LMNO
+Caracteres produzidos pelo filho 8: NO
+Caracteres produzidos pelo filho 2: NO
+Caracteres produzidos pelo filho 6: NOP
+Caracteres produzidos pelo filho 2: Q
+Caracteres produzidos pelo filho 6: Q
+Caracteres produzidos pelo filho 4: PQRS
+Caracteres produzidos pelo filho 8: PQRST
+Caracteres produzidos pelo filho 4: T
+Caracteres produzidos pelo filho 8: UUV
+Caracteres produzidos pelo filho 2: TVUWVW
+Caracteres produzidos pelo filho 6: TUVW
+Caracteres produzidos pelo filho 6: X
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 6: XYYZZ 
+Caracteres produzidos pelo filho 4: XYZ
+Caracteres produzidos pelo filho 2: XYZ a a
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 6:  bacbc
+Caracteres produzidos pelo filho 4: 
+Caracteres produzidos pelo filho 8: b acbdcd
+Caracteres produzidos pelo filho 6: d
+Caracteres produzidos pelo filho 2: d
+Caracteres produzidos pelo filho 4: efg
+Caracteres produzidos pelo filho 6: efg
+Caracteres produzidos pelo filho 2: efgh
+Caracteres produzidos pelo filho 8: efgh
+Caracteres produzidos pelo filho 4: ijk
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 2: iijkjk
+Caracteres produzidos pelo filho 4: lm
+Caracteres produzidos pelo filho 8: ijklm
+Caracteres produzidos pelo filho 4: n
+Caracteres produzidos pelo filho 8: o
+Caracteres produzidos pelo filho 6: lmno
+Caracteres produzidos pelo filho 2: lmno
+Caracteres produzidos pelo filho 8: pqr
+Caracteres produzidos pelo filho 4: p
+Caracteres produzidos pelo filho 6: qprqrs
+Caracteres produzidos pelo filho 8: st
+
+Consumidor - Buffer Cheio
+ ABCDEFGHIJKLMNOPQRSTUV
+Caracteres produzidos pelo filho 2: W
+Caracteres produzidos pelo filho 6: tXuvYZ abcd
+Caracteres produzidos pelo filho 4: tefghijklmnopqrstuvwx##############
+
+
+Consumidor - Buffer Cheio
+ pAqrsuB
+Caracteres produzidos pelo filho 8: tvuvwx
+
+Consumidor - Buffer Cheio
+C DAEBFCDEFGH
+Caracteres produzidos pelo filho 6: wIxJyKLMNOPQRSTUVWX
+Caracteres produzidos pelo filho 4: Y
+
+Consumidor - Buffer Cheio
+ ZAB CDEF Ga
+Caracteres produzidos pelo filho 2: bHIJKL MNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxy############
+Caracteres produzidos pelo filho 8: #A
+BCGHIJKcLMNOPQRSTUV
+Caracteres produzidos pelo filho 2: WAXYdZe abc
+Caracteres produzidos pelo filho 4: deAfBgChDijklmnopqrstfg
+Caracteres produzidos pelo filho 6: hAijuBkClDmEnv
+Caracteres produzidos pelo filho 4: owpxqy
+Caracteres produzidos pelo filho 8: #D####E#FG##r#stuvwxy##F###
+Caracteres produzidos pelo filho 2: ###F#GHIJ#
+#######
+
+Caracteres produzidos pelo filho 8: H
+Caracteres produzidos pelo filho 4: IJ
+Caracteres produzidos pelo filho 2: I
+Caracteres produzidos pelo filho 6: JHKIJK
+Caracteres produzidos pelo filho 4: L
+Caracteres produzidos pelo filho 2: LM
+Caracteres produzidos pelo filho 8: KLM
+Caracteres produzidos pelo filho 6: NNOO
+Caracteres produzidos pelo filho 4: NOPQ
+Caracteres produzidos pelo filho 2: NPOP
+Caracteres produzidos pelo filho 8: QRS
+Caracteres produzidos pelo filho 8: T
+Caracteres produzidos pelo filho 2: QRST
+Caracteres produzidos pelo filho 4: QRST
+Caracteres produzidos pelo filho 6: TUVWX
+Caracteres produzidos pelo filho 6: Y
+Caracteres produzidos pelo filho 8: UVWX
+Caracteres produzidos pelo filho 4: UVWXY
+Caracteres produzidos pelo filho 6: YZ
+Caracteres produzidos pelo filho 2: UVWXY
+Caracteres produzidos pelo filho 8: YZ 
+Caracteres produzidos pelo filho 2: Z
+Caracteres produzidos pelo filho 4: Z
+Caracteres produzidos pelo filho 6: Z
+Caracteres produzidos pelo filho 2:  ab
+Caracteres produzidos pelo filho 8:  ab
+Caracteres produzidos pelo filho 4: 
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 6: c  adbabcc
+Caracteres produzidos pelo filho 8: cde
+Caracteres produzidos pelo filho 4: f
+Caracteres produzidos pelo filho 2: defg
+Caracteres produzidos pelo filho 8: fg
+Caracteres produzidos pelo filho 6: defgh
+Caracteres produzidos pelo filho 8: i
+Caracteres produzidos pelo filho 4: ghij
+Caracteres produzidos pelo filho 2: ij
+Caracteres produzidos pelo filho 6: klm
+Caracteres produzidos pelo filho 8: klm
+Caracteres produzidos pelo filho 8: n
+Caracteres produzidos pelo filho 2: n
+Caracteres produzidos pelo filho 6: n
+Caracteres produzidos pelo filho 4: klmn
+Caracteres produzidos pelo filho 8: op
+Caracteres produzidos pelo filho 2: opq
+Caracteres produzidos pelo filho 8: r
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 6: ropq
+Caracteres produzidos pelo filho 4: opqr
+Caracteres produzidos pelo filho 8: stu
+Caracteres produzidos pelo filho 6: stu
+Caracteres produzidos pelo filho 4: stuv
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 6: vwx
+Caracteres produzidos pelo filho 2: wstuv
+Caracteres produzidos pelo filho 4: xyz
+Caracteres produzidos pelo filho 6: wxyz
+Caracteres produzidos pelo filho 8: wxyz 
+Caracteres produzidos pelo filho 6:  12
+Caracteres produzidos pelo filho 2: wxyz 
+Caracteres produzidos pelo filho 4:  12
+Caracteres produzidos pelo filho 8: 12
+Caracteres produzidos pelo filho 6: 34
+Caracteres produzidos pelo filho 2: 345
+Caracteres produzidos pelo filho 6: 6
+
+Consumidor - Buffer Cheio
+ A####################VWXYZ abcdefghijklmnopqrstuvwxyz 1
+Caracteres produzidos pelo filho 4: 23344556678###
+
+Caracteres produzidos pelo filho 8: 34567
+Caracteres produzidos pelo filho 2:  AB
+Caracteres produzidos pelo filho 6: 7890
+
+Produtor - Buffer Cheio
+############
+
+Produtor - Buffer Cheio
+#############################
+Caracteres produzidos pelo filho 4: #7#8#9VWVXW
+Caracteres produzidos pelo filho 6: YX YZ abcZde fagbhcidjekflgmhniojpkqlrstuvwmxnyz o1p2q3r4s5t6u7v8w9x0yz 
+Caracteres produzidos pelo filho 8: 1243546567890
+Caracteres produzidos pelo filho 2: ABz
+Caracteres produzidos pelo filho 4: A
+Caracteres produzidos pelo filho 8: A
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 4: BCDAB
+Caracteres produzidos pelo filho 2: BBCCDD
+Caracteres produzidos pelo filho 4: E
+Caracteres produzidos pelo filho 2: E
+Caracteres produzidos pelo filho 8: EF
+Caracteres produzidos pelo filho 6: EF
+Caracteres produzidos pelo filho 4: FGH
+Caracteres produzidos pelo filho 8: I
+Caracteres produzidos pelo filho 6: I
+Caracteres produzidos pelo filho 4: I
+Caracteres produzidos pelo filho 2: FGHI
+Caracteres produzidos pelo filho 8: JK
+Caracteres produzidos pelo filho 6: JKL
+Caracteres produzidos pelo filho 8: L
+Caracteres produzidos pelo filho 2: LMNOP
+Caracteres produzidos pelo filho 4: JKLM
+Caracteres produzidos pelo filho 8: MNO
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 6: NMONPOQ
+Caracteres produzidos pelo filho 8: PQ
+Caracteres produzidos pelo filho 4: PQRST
+Caracteres produzidos pelo filho 4: U
+Caracteres produzidos pelo filho 6: RST
+Caracteres produzidos pelo filho 4: 
+Caracteres produzidos pelo filho 2: RSTUUV
+Caracteres produzidos pelo filho 8: RSTU
+Caracteres produzidos pelo filho 6: UVW
+Caracteres produzidos pelo filho 8: V
+Caracteres produzidos pelo filho 6: WX
+Caracteres produzidos pelo filho 8: WXY
+Caracteres produzidos pelo filho 2: VWXYZ
+Caracteres produzidos pelo filho 4: VWXYZ
+Caracteres produzidos pelo filho 8:  
+Caracteres produzidos pelo filho 2:  a
+Caracteres produzidos pelo filho 6: YZ a
+Caracteres produzidos pelo filho 4: abc
+Caracteres produzidos pelo filho 6: b
+Caracteres produzidos pelo filho 2: bcde
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 4: bccded
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 2: eeffgghh
+Caracteres produzidos pelo filho 4: efghi
+Caracteres produzidos pelo filho 8: e
+Caracteres produzidos pelo filho 2: figjhki
+Caracteres produzidos pelo filho 2: l
+Caracteres produzidos pelo filho 6: mjklm
+Caracteres produzidos pelo filho 4: jk
+Caracteres produzidos pelo filho 8: lmlnmn
+Caracteres produzidos pelo filho 6: op
+Caracteres produzidos pelo filho 4: opq
+Caracteres produzidos pelo filho 2: nopqr
+Caracteres produzidos pelo filho 8: opq
+Caracteres produzidos pelo filho 4: rs
+Caracteres produzidos pelo filho 6: qrstu
+Caracteres produzidos pelo filho 2: rst
+Caracteres produzidos pelo filho 8: rst
+Caracteres produzidos pelo filho 2: u
+Caracteres produzidos pelo filho 6: uv
+Caracteres produzidos pelo filho 8: uv
+Caracteres produzidos pelo filho 2: vwxy
+Caracteres produzidos pelo filho 4: vwxyz
+Caracteres produzidos pelo filho 8: wxyz 
+Caracteres produzidos pelo filho 6: wxyz 
+Caracteres produzidos pelo filho 2:  12
+Caracteres produzidos pelo filho 4:  12
+Caracteres produzidos pelo filho 6: 34
+Caracteres produzidos pelo filho 8: 12345
+Caracteres produzidos pelo filho 4: 345
+Caracteres produzidos pelo filho 2: 345
+Caracteres produzidos pelo filho 4: 
+Caracteres produzidos pelo filho 6: 667789
+Caracteres produzidos pelo filho 8: 67890
+Caracteres produzidos pelo filho 2: 678
+
+Produtor - Buffer Cheio
+ ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmno
+
+Produtor - Buffer Cheio
+p qArBsCtDuEvFwGxHyIzJ K1L2M3N4O5P6Q7R8S9T#UV
+Caracteres produzidos pelo filho 4: WX7Y5Zy zabcdefghijklmnopqrstuvwxyz 123456789#
+Caracteres produzidos pelo filho 6: 789 
+Caracteres produzidos pelo filho 2:  A
+
+Consumidor - Buffer Cheio
+ ABCDEFGHIJKLMNOPQ
+
+Consumidor - Buffer Cheio
+ A
+
+Consumidor - Buffer Cheio
+B CADBECFDGEHFIGJKRLHMINJOKPLQMRNSOTPUVSWXYTZU VabQcdefR
+
+Produtor - Buffer Cheio
+S AWgTXhijUklmVnWoXpYqZr satbucvdwexfygzh i1j2k3l4m5n6o7p8q9r0st
+uvw
+Caracteres produzidos pelo filho 2: xyBz 
+Caracteres produzidos pelo filho 6: 12B345
+
+Consumidor - Buffer Cheio
+67 8A9B0CD
+EFGH
+Caracteres produzidos pelo filho 4: IBYCDEFGHIJKLMNOZPQRSTUVWXYZ abBCDEJK LMcaNbOcPdQeRSTUdVfegWfXgYhhiijZk jalkmlnbmcondpoeqprqfsrtgshutivuwjxvwxyz 1234567890
+Caracteres produzidos pelo filho 8: 9090klymnzo p1q2r3s4t5u6vwxy7z8 91023
+4567890
+
+Caracteres produzidos pelo filho 2:  AB
+Caracteres produzidos pelo filho 6:  ABCC
+Caracteres produzidos pelo filho 4:  AB
+Caracteres produzidos pelo filho 6: DE
+Caracteres produzidos pelo filho 2: CD
+Caracteres produzidos pelo filho 8:  ABCD
+Caracteres produzidos pelo filho 4: FGH
+Caracteres produzidos pelo filho 6: F
+Caracteres produzidos pelo filho 8: GIHI
+Caracteres produzidos pelo filho 2: I
+Caracteres produzidos pelo filho 4: JK
+Caracteres produzidos pelo filho 6: JKL
+Caracteres produzidos pelo filho 8: JKL
+Caracteres produzidos pelo filho 6: M
+Caracteres produzidos pelo filho 2: JKLM
+Caracteres produzidos pelo filho 8: NO
+Caracteres produzidos pelo filho 4: MNOPQ
+Caracteres produzidos pelo filho 8: R
+Caracteres produzidos pelo filho 2: NOPQ
+Caracteres produzidos pelo filho 6: NOPQ
+Caracteres produzidos pelo filho 4: ST
+Caracteres produzidos pelo filho 8: RST
+Caracteres produzidos pelo filho 4: UU
+Caracteres produzidos pelo filho 6: UVWXY
+Caracteres produzidos pelo filho 8: VWX
+Caracteres produzidos pelo filho 2: UVWXY
+Caracteres produzidos pelo filho 4: VWXY
+Caracteres produzidos pelo filho 6: Z
+Caracteres produzidos pelo filho 8: Z 
+Caracteres produzidos pelo filho 2: Z 
+Caracteres produzidos pelo filho 4:  ab
+Caracteres produzidos pelo filho 2: c
+Caracteres produzidos pelo filho 8: c
+Caracteres produzidos pelo filho 6:  
+Caracteres produzidos pelo filho 4: cab
+Caracteres produzidos pelo filho 2: de
+Caracteres produzidos pelo filho 8: def
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 4: dfgefhig
+Caracteres produzidos pelo filho 2: fghij
+Caracteres produzidos pelo filho 8: gh
+Caracteres produzidos pelo filho 4: i
+Caracteres produzidos pelo filho 8: i
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 4: jikj
+Caracteres produzidos pelo filho 6: ijklm
+Caracteres produzidos pelo filho 4: n
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 6: nn
+Caracteres produzidos pelo filho 8: lmno
+Caracteres produzidos pelo filho 6: opqr
+Caracteres produzidos pelo filho 6: st
+Caracteres produzidos pelo filho 4: opqr
+Caracteres produzidos pelo filho 8: pqrst
+Caracteres produzidos pelo filho 2: pqrst
+Caracteres produzidos pelo filho 8: u
+Caracteres produzidos pelo filho 6: uvwx
+Caracteres produzidos pelo filho 6: yz 
+Caracteres produzidos pelo filho 4: uvw
+Caracteres produzidos pelo filho 8: xyyz 
+Caracteres produzidos pelo filho 2: yz 
+Caracteres produzidos pelo filho 6: z
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 4: 1 12
+Caracteres produzidos pelo filho 2:  12
+Caracteres produzidos pelo filho 6:  12
+Caracteres produzidos pelo filho 2: 34
+Caracteres produzidos pelo filho 4: 34567
+Caracteres produzidos pelo filho 8: 34567
+Caracteres produzidos pelo filho 6: 3456
+Caracteres produzidos pelo filho 2: 8
+Caracteres produzidos pelo filho 8: 89
+Caracteres produzidos pelo filho 4: 78
+
+Produtor - Buffer Cheio
+ #########################
+Caracteres produzidos pelo filho 4:  ##########
+
+Produtor - Buffer Cheio
+ 
+
+Produtor - Buffer Cheio
+# ###################################################################################################################
+Caracteres produzidos pelo filho 2: 90s#########################################
+Caracteres produzidos pelo filho 6: 90
+Caracteres produzidos pelo filho 8: 9067
+Caracteres produzidos pelo filho 4:  
+Caracteres produzidos pelo filho 2:  ABCD
+
+Consumidor - Buffer Cheio
+ AB
+
+Consumidor - Buffer Cheio
+ 
+
+Consumidor - Buffer Cheio
+ABCDCD ####
+
+Consumidor - Buffer Cheio
+ #A#B#C#AD#
+Caracteres produzidos pelo filho 6: #
+Caracteres produzidos pelo filho 2: #AABBBC#
+Caracteres produzidos pelo filho 8: ABC#C###C###########D##############################################
+Caracteres produzidos pelo filho 4: A#BC#D########################################
+####################
+Caracteres produzidos pelo filho 2: #D#E#
+FG#H#############
+Caracteres produzidos pelo filho 4: ########
+Caracteres produzidos pelo filho 8: #E#####
+Caracteres produzidos pelo filho 2: H
+Caracteres produzidos pelo filho 6: DEEF##############F##G#G####################HI######
+Caracteres produzidos pelo filho 4: ##IJ########################
+########
+
+Caracteres produzidos pelo filho 6: 
+Caracteres produzidos pelo filho 4: KKLL
+Caracteres produzidos pelo filho 2: JKLMN
+Caracteres produzidos pelo filho 8: KLMNO
+Caracteres produzidos pelo filho 2: 
+Caracteres produzidos pelo filho 6: MNOPQ
+Caracteres produzidos pelo filho 4: MNOPPQ
+Caracteres produzidos pelo filho 8: PQR
+Caracteres produzidos pelo filho 2: Q
+Caracteres produzidos pelo filho 4: RSQTRUSTU
+Caracteres produzidos pelo filho 6: QRSTU
+Caracteres produzidos pelo filho 8: STU
+Caracteres produzidos pelo filho 6: VW
+Caracteres produzidos pelo filho 2: VW
+Caracteres produzidos pelo filho 8: 
+Caracteres produzidos pelo filho 4: VVWWX
+Caracteres produzidos pelo filho 2: Y
+
+
