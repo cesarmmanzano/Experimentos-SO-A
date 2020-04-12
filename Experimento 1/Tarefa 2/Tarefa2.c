@@ -100,7 +100,9 @@ int main( int argc, char *argv[] )
 	char buffer_sleep[20];
 	char buffer_iterations[20];
 	char buffer_microSecond[20]; 
-
+	
+	pid_t vet[NO_OF_CHILDREN];
+	int i = 0;
 
 	/*
 	 * Criacao dos processos filhos
@@ -109,7 +111,8 @@ int main( int argc, char *argv[] )
 	pid_t rtn = 1;
 	for( count = 0; count < NO_OF_CHILDREN; count++ ) {
 		if( rtn != 0 ) {
-			rtn = fork();
+			vet[i] = rtn = fork();
+			i++;
 		} else {
 			break;
 		}
@@ -138,8 +141,10 @@ int main( int argc, char *argv[] )
 		/*
 		 * Sou pai, aguardo o termino dos filhos
 		 */
-		for( count = 0; count < NO_OF_CHILDREN; count++ ) {
-			wait(NULL);
+		usleep(1800000);
+
+		for( i = 0; i < NO_OF_CHILDREN; i++ ) {
+			kill(vet[i], SIGKILL);
 
 		}
 	}
