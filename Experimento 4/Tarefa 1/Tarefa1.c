@@ -117,11 +117,11 @@ int myremove() {
  */
 void *produce(void *threadid) {
   
-  //int *t_id = (int *)(threadid);
+  int *t_id = threadid;
   int sum;
   int ret = 0;
 
-  printf("Produtor #%d iniciou...\n", threadid);
+  printf("Produtor #%d iniciou...\n", *t_id);
 
   	while (cont_p < NO_OF_ITERATIONS) {
     		ret = myadd(10);
@@ -135,7 +135,7 @@ void *produce(void *threadid) {
 		 }
   	}
 
-  printf("Soma produzida pelo Produtor #%d : %d\n", threadid, sum);
+  printf("Soma produzida pelo Produtor #%d : %d\n", *t_id, sum);
   pthread_exit(NULL);
 
 }
@@ -146,11 +146,11 @@ void *produce(void *threadid) {
  */
 void *consume(void *threadid) {
   
-  //int *t_id = (int *)(threadid);
+  int *t_id = threadid;
   int sum = 0;
   int ret;
 
-  printf("Consumidor #%d iniciou...\n", threadid);
+  printf("Consumidor #%d iniciou...\n", *t_id);
 
   	while (cont_c > NO_OF_ITERATIONS) {
     		ret = myremove();
@@ -160,7 +160,7 @@ void *consume(void *threadid) {
     		}
   	}
 
-  	printf("Soma do que foi consumido pelo Consumidor #%d : %d\n", threadid, sum);
+  	printf("Soma do que foi consumido pelo Consumidor #%d : %d\n", *t_id, sum);
   	pthread_exit(NULL);
 
 }
@@ -176,6 +176,7 @@ int main(int argc, char *argv[]) {
 
   int tp, tc;
   int i;
+  int temp1[NUM_THREADS], temp2[NUM_THREADS];
 
   start = &buffer[0];
   wp = start + SIZEOFBUFFER - 1;
@@ -185,7 +186,8 @@ int main(int argc, char *argv[]) {
 
 	    	/* Tenta criar um thread consumidor */
 		/* Retorna 0  se foi criada com sucesso e 1 caso contrario */
-	    	tc = pthread_create(&consumers[i], NULL, consume, (void *)i+1);
+		temp1[i] = i + 1;
+	    	tc = pthread_create(&consumers[i], NULL, consume, (void *)&temp1[i]);
 		
 		/* 
 		 * Pergunta 3: para que serve cada um dos argumentos usados com pthread_create?
@@ -198,20 +200,23 @@ int main(int argc, char *argv[]) {
 
     		/* Tenta criar um thread produtor */
 		/* Retorna 0  se foi criada com sucesso e 1 caso contrario */
-    		tp = pthread_create(&producers[i], NULL, produce, (void *)i+1);
+		temp2[i] = i + 1;
+    		tp = pthread_create(&producers[i], NULL, produce, (void *)&temp2[i]);
     		if (tp) {
       			printf("ERRO: impossivel criar um thread rodutor\n");
       			exit(-1);
     		}
 		
-		//pthread_join(consumers[i], NULL);
-		//pthread_join(producers[i], NULL);
   	}
-
-  //usleep(200000);
-  printf("Terminando a thread main()\n");
-  pthread_exit(NULL);
-  //exit(0);
+	
+	for (i = 0; i < NUM_THREADS; i++) {
+		pthread_join(consumers[i], NULL);
+		pthread_join(producers[i], NULL);
+	}
+	
+  //printf("Terminando a thread main()\n");
+  //pthread_exit(NULL);
+  exit(0);
 
   /* 
    * Pergunta 4: O que ocorre com as threads criadas, se ainda
