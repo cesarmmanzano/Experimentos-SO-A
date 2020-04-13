@@ -19,6 +19,8 @@
 *
 *************************************************************************************/
 
+/* Para compilar: gcc Tarefa1.c -o tar1 -pthread */
+
 /*
  * Includes Necessarios 
  */
@@ -26,6 +28,7 @@
 #include <pthread.h>			/* para poder manipular threads */
 #include <stdio.h>			/* para printf() */
 #include <stdlib.h>
+#include <unistd.h> 
 
 /*
  * Constantes Necessarias 
@@ -55,65 +58,83 @@ int cont_p;             		/* eh um contador para controlar o numero de itens pro
 int cont_c = 0;         		/* eh um contador para controlar o numero de itens consumidos */
 
 
+/* ============================================================================================================== */
+
+
 /*
  * Rotina para produzir um item toAdd no buffer 
  */
 int myadd(int toAdd) {
 
-
-  if ((rp != (wp+1)) && (rp + SIZEOFBUFFER - 1 != wp)) {
-  
-    wp++;
-    //verificacao se wp chegou a ultima posicao do buffer
-    if (wp == (start + SIZEOFBUFFER)) {
-      wp = start;			
+	/* Verificação se o buffer esta cheio */	
+	if ((rp != (wp+1)) && (rp + SIZEOFBUFFER - 1 != wp)) {  
+		wp++;
 	
-    }
-    *wp = toAdd;
-    return 1;
-  } else return 0;
+		/* Verificacao se wp chegou a ultima posicao do buffer */
+		if (wp == (start + SIZEOFBUFFER - 1)) {
+			wp = start; /* Realiza a circularidade no bufer */			
+		}
+
+		*wp = toAdd;
+		return 1;
+	} 
+	else return 0;
 }
+
+
+/* ============================================================================================================== */
+
 
 /*
  * Rotina para consumir um item do buffer e coloca-lo em retValue 
  */
 int myremove() {
-int retValue;
 
-  //verificacao se o buffer nao esta vazio
-  if (wp != rp) {
-    retValue = *rp;
-    rp++;
-    //verificacao se rp chegou a ultima posicao do buffer
-	if (rp == (start + SIZEOFBUFFER)) {
-       rp = start;				/* realiza a circularidade no buffer */
-    }
-    return retValue;
-  } else return 0;
+  int retValue;
+
+  	/* Verificacao se o buffer nao esta vazio */
+  	if (wp != rp) {
+		retValue = *rp;
+		rp++;
+
+    		/* Verificacao se rp chegou a ultima posicao do buffer */
+		if (rp == (start + SIZEOFBUFFER - 1)) {
+      			 rp = start; /* Realiza a circularidade no buffer */
+    		}
+
+    		return retValue;
+  	} 
+	else return 0;
 }
+
+
+/* ============================================================================================================== */
+
 
 /*
  * A rotina produce e responsavel por chamar myadd para que seja 
  * colocado o valor 10 em uma posicao do buffer NO_OF_ITERATIONS vezes
  */
-void *produce(void *threadid)
-{
+void *produce(void *threadid) {
+  
+  //int *t_id = (int *)(threadid);
   int sum;
   int ret = 0;
 
   printf("Produtor #%d iniciou...\n", threadid);
 
-  while (cont_p < NO_OF_ITERATIONS) {
-    ret = myadd(10);
-    if (ret) {
-    /* 
-     * Pergunta 1: porque ret não está sendo comparado a algum valor?
-     * Pergunta 2: porque nao ha necessidade de um cast?
-     */
-      cont_p++;
-      sum -= 10;
-    }
-  }
+  	while (cont_p < NO_OF_ITERATIONS) {
+    		ret = myadd(10);
+		if (ret) {
+			/* 
+			 * Pergunta 1: porque ret não está sendo comparado a algum valor?
+			 * Pergunta 2: porque nao ha necessidade de um cast?
+			 */
+			 cont_p++;
+			 sum += 10;
+		 }
+  	}
+
   printf("Soma produzida pelo Produtor #%d : %d\n", threadid, sum);
   pthread_exit(NULL);
 
@@ -123,29 +144,36 @@ void *produce(void *threadid)
  * A rotina consume e responsavel por chamar myremove para que seja
  * retorando um dos valores existentes no buffer NO_OF_ITERATIONS vezes 
  */
-void *consume(void *threadid)
-{
+void *consume(void *threadid) {
+  
+  //int *t_id = (int *)(threadid);
   int sum = 0;
   int ret;
 
   printf("Consumidor #%d iniciou...\n", threadid);
 
-  while (cont_c > NO_OF_ITERATIONS) {
-    ret = myremove();
-    if (ret != 0) {
-      cont_c++;
-      sum += ret;
-    }
-  }
-  printf("Soma do que foi consumido pelo Consumidor #%d : %d\n", threadid, sum);
-  pthread_exit(NULL);
+  	while (cont_c > NO_OF_ITERATIONS) {
+    		ret = myremove();
+    		if (ret != 0) {
+      			cont_c++;
+      			sum += ret;
+    		}
+  	}
+
+  	printf("Soma do que foi consumido pelo Consumidor #%d : %d\n", threadid, sum);
+  	pthread_exit(NULL);
+
 }
+
+
+/* ============================================================================================================== */
+
 
 /*
  * Rotina Principal (que tambem e a thread principal, quando executada) 
  */
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
+
   int tp, tc;
   int i;
 
@@ -153,37 +181,47 @@ int main(int argc, char *argv[])
   wp = start + SIZEOFBUFFER - 1;
   rp = start;
   
-  for (i=0;i<NUM_THREADS;i++) {
+  	for (i = 0; i < NUM_THREADS; i++) {
 
-    // tenta criar um thread consumidor
-    tc = pthread_create(&consumers[i], NULL, consume, (void *)i+1);
+	    	/* Tenta criar um thread consumidor */
+		/* Retorna 0  se foi criada com sucesso e 1 caso contrario */
+	    	tc = pthread_create(&consumers[i], NULL, consume, (void *)i+1);
+		
+		/* 
+		 * Pergunta 3: para que serve cada um dos argumentos usados com pthread_create?
+		 */
 
-    /* 
-     * Pergunta 3: para que serve cada um dos argumentos usados com pthread_create?
-     */
+	    	if (tc) {
+	      		printf("ERRO: impossivel criar um thread consumidor\n");
+	      		exit(-1);
+	    	}
 
-    if (tc) {
-      printf("ERRO: impossivel criar um thread consumidor\n");
-      exit(-1);
-    }
-    // tenta criar um thread produtor
-    tp = pthread_create(&producers[i], NULL, produce, (void *)i+1);
-    if (tp) {
-      printf("ERRO: impossivel criar um thread rodutor\n");
-      exit(-1);
-    }
-  }
+    		/* Tenta criar um thread produtor */
+		/* Retorna 0  se foi criada com sucesso e 1 caso contrario */
+    		tp = pthread_create(&producers[i], NULL, produce, (void *)i+1);
+    		if (tp) {
+      			printf("ERRO: impossivel criar um thread rodutor\n");
+      			exit(-1);
+    		}
+		
+		//pthread_join(consumers[i], NULL);
+		//pthread_join(producers[i], NULL);
+  	}
+
+  //usleep(200000);
   printf("Terminando a thread main()\n");
   pthread_exit(NULL);
+  //exit(0);
 
-/* 
- * Pergunta 4: O que ocorre com as threads criadas, se ainda
- * estiverem sendo executadas e a thread que as criou termina
- * através de um pthread_exit()?
- */
+  /* 
+   * Pergunta 4: O que ocorre com as threads criadas, se ainda
+   * estiverem sendo executadas e a thread que as criou termina
+   * através de um pthread_exit()?
+   */
 
-/*
- * Pergunta 5: Idem à questão anterior, se o termino se da atraves
- * de um exit()?
- */
+  /*
+   * Pergunta 5: Idem à questão anterior, se o termino se da atraves
+   * de um exit()?
+   */
+
 }
