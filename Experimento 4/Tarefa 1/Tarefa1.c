@@ -19,6 +19,7 @@
 *
 *************************************************************************************/
 
+/* Lembrar do -pthread para compilar */
 /* Para compilar: gcc Tarefa1.c -o tar1 -pthread */
 
 /*
@@ -50,11 +51,11 @@ pthread_t producers[NUM_THREADS];
 /*
  * Variaveis Necessarias 
  */
-int buffer[SIZEOFBUFFER];		/* Este e um buffer circular	*/
+int buffer[SIZEOFBUFFER];		/* Este e um buffer circular */
 int *start;				/* apontara para a primeira posicao do buffer */
 int *rp;				/* eh o apontador para o proximo item do buffer a ser consumido */
 int *wp;				/* eh o apontador para o proximo item do buffer a ser produzido */
-int cont_p;             		/* eh um contador para controlar o numero de itens produzidos */
+int cont_p = 0;             		/* eh um contador para controlar o numero de itens produzidos */
 int cont_c = 0;         		/* eh um contador para controlar o numero de itens consumidos */
 
 
@@ -68,10 +69,11 @@ int myadd(int toAdd) {
 
 	/* Verificação se o buffer esta cheio */	
 	if ((rp != (wp+1)) && (rp + SIZEOFBUFFER - 1 != wp)) {  
+		
 		wp++;
-	
+
 		/* Verificacao se wp chegou a ultima posicao do buffer */
-		if (wp == (start + SIZEOFBUFFER - 1)) {
+		if (wp == (start + SIZEOFBUFFER)) {
 			wp = start; /* Realiza a circularidade no bufer */			
 		}
 
@@ -94,11 +96,12 @@ int myremove() {
 
   	/* Verificacao se o buffer nao esta vazio */
   	if (wp != rp) {
+		
 		retValue = *rp;
-		rp++;
+		rp++;	
 
     		/* Verificacao se rp chegou a ultima posicao do buffer */
-		if (rp == (start + SIZEOFBUFFER - 1)) {
+		if (rp == (start + SIZEOFBUFFER)) {
       			 rp = start; /* Realiza a circularidade no buffer */
     		}
 
@@ -118,13 +121,15 @@ int myremove() {
 void *produce(void *threadid) {
   
   int *t_id = threadid;
-  int sum;
+  int sum = 0;
   int ret = 0;
 
-  printf("Produtor #%d iniciou...\n", *t_id);
+  //printf("Produtor #%d iniciou...\n", *t_id);
 
   	while (cont_p < NO_OF_ITERATIONS) {
-    		ret = myadd(10);
+    		
+		ret = myadd(10);
+
 		if (ret) {
 			/* 
 			 * Pergunta 1: porque ret não está sendo comparado a algum valor?
@@ -148,12 +153,14 @@ void *consume(void *threadid) {
   
   int *t_id = threadid;
   int sum = 0;
-  int ret;
+  int ret = 0;
 
-  printf("Consumidor #%d iniciou...\n", *t_id);
+  //printf("Consumidor #%d iniciou...\n", *t_id);
 
-  	while (cont_c > NO_OF_ITERATIONS) {
-    		ret = myremove();
+  	while (cont_c < NO_OF_ITERATIONS) {
+    		
+		ret = myremove();
+
     		if (ret != 0) {
       			cont_c++;
       			sum += ret;
@@ -179,7 +186,7 @@ int main(int argc, char *argv[]) {
   int temp1[NUM_THREADS], temp2[NUM_THREADS];
 
   start = &buffer[0];
-  wp = start + SIZEOFBUFFER - 1;
+  wp = start;
   rp = start;
   
   	for (i = 0; i < NUM_THREADS; i++) {
@@ -203,7 +210,7 @@ int main(int argc, char *argv[]) {
 		temp2[i] = i + 1;
     		tp = pthread_create(&producers[i], NULL, produce, (void *)&temp2[i]);
     		if (tp) {
-      			printf("ERRO: impossivel criar um thread rodutor\n");
+      			printf("ERRO: impossivel criar um thread produtor\n");
       			exit(-1);
     		}
 		
@@ -214,8 +221,8 @@ int main(int argc, char *argv[]) {
 		pthread_join(producers[i], NULL);
 	}
 	
-  //printf("Terminando a thread main()\n");
-  //pthread_exit(NULL);
+  printf("Terminando a thread main()\n");
+  pthread_exit(NULL);
   exit(0);
 
   /* 
