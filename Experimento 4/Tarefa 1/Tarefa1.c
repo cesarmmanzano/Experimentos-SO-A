@@ -25,18 +25,17 @@
 /*
  * Includes Necessarios 
  */
-
 #include <pthread.h>			/* para poder manipular threads */
 #include <stdio.h>			/* para printf() */
 #include <stdlib.h>
-#include <unistd.h> 
+#include <stdbool.h>
 
 /*
  * Constantes Necessarias 
  */
-#define NUM_THREADS     10
-#define SIZEOFBUFFER    50
-#define NO_OF_ITERATIONS 100
+#define NUM_THREADS		10
+#define SIZEOFBUFFER		50
+#define NO_OF_ITERATIONS	100
 
 /*
  * O tipo pthread_t permite a declaração de uma variável que recebe
@@ -58,7 +57,6 @@ int *wp;				/* eh o apontador para o proximo item do buffer a ser produzido */
 int cont_p = 0;             		/* eh um contador para controlar o numero de itens produzidos */
 int cont_c = 0;         		/* eh um contador para controlar o numero de itens consumidos */
 
-
 /* ============================================================================================================== */
 
 
@@ -67,20 +65,22 @@ int cont_c = 0;         		/* eh um contador para controlar o numero de itens con
  */
 int myadd(int toAdd) {
 
-	/* Verificação se o buffer esta cheio */	
-	if ((rp != (wp+1)) && (rp + SIZEOFBUFFER - 1 != wp)) {  
-		
+	/* Verificação se o buffer esta cheio -> caso nao esteja entra no if */	
+	if ((rp != (wp+1)) && (rp + SIZEOFBUFFER - 1 != wp)) {  	
+			
 		wp++;
 
 		/* Verificacao se wp chegou a ultima posicao do buffer */
 		if (wp == (start + SIZEOFBUFFER)) {
-			wp = start; /* Realiza a circularidade no bufer */			
+			wp = start; /* Realiza a circularidade no bufer */		
 		}
-
+			
 		*wp = toAdd;
+			
 		return 1;
 	} 
 	else return 0;
+
 }
 
 
@@ -92,22 +92,23 @@ int myadd(int toAdd) {
  */
 int myremove() {
 
-  int retValue;
+  //int retValue;
 
-  	/* Verificacao se o buffer nao esta vazio */
-  	if (wp != rp) {
-		
-		retValue = *rp;
+	/* Verificacao se o buffer nao esta vazio -> caso nao esteja entra no if */
+	if(wp != rp) {	
+
+		int retValue = *rp;
 		rp++;	
-
-    		/* Verificacao se rp chegou a ultima posicao do buffer */
+	    	
+		/* Verificacao se rp chegou a ultima posicao do buffer */
 		if (rp == (start + SIZEOFBUFFER)) {
-      			 rp = start; /* Realiza a circularidade no buffer */
-    		}
+	      		rp = start; /* Realiza a circularidade no buffer */	
+	    	}
 
-    		return retValue;
-  	} 
+	    	return retValue;
+	} 
 	else return 0;
+
 }
 
 
@@ -145,6 +146,10 @@ void *produce(void *threadid) {
 
 }
 
+
+/* ============================================================================================================== */
+
+
 /*
  * A rotina consume e responsavel por chamar myremove para que seja
  * retorando um dos valores existentes no buffer NO_OF_ITERATIONS vezes 
@@ -154,7 +159,7 @@ void *consume(void *threadid) {
   int *t_id = threadid;
   int sum = 0;
   int ret = 0;
-
+  cont_c = 0;
   //printf("Consumidor #%d iniciou...\n", *t_id);
 
   	while (cont_c < NO_OF_ITERATIONS) {
@@ -163,7 +168,7 @@ void *consume(void *threadid) {
 
     		if (ret != 0) {
       			cont_c++;
-      			sum += ret;
+      			sum += 10;
     		}
   	}
 
@@ -181,26 +186,23 @@ void *consume(void *threadid) {
  */
 int main(int argc, char *argv[]) {
 
-  int tp, tc;
   int i;
   int temp1[NUM_THREADS], temp2[NUM_THREADS];
 
   start = &buffer[0];
-  wp = start;
+  wp = start + SIZEOFBUFFER - 1;
   rp = start;
   
   	for (i = 0; i < NUM_THREADS; i++) {
-
-	    	/* Tenta criar um thread consumidor */
-		/* Retorna 0  se foi criada com sucesso e 1 caso contrario */
-		temp1[i] = i + 1;
-	    	tc = pthread_create(&consumers[i], NULL, consume, (void *)&temp1[i]);
 		
 		/* 
 		 * Pergunta 3: para que serve cada um dos argumentos usados com pthread_create?
 		 */
 
-	    	if (tc) {
+		/* Tenta criar um thread consumidor */
+		/* Retorna 0  se foi criada com sucesso e 1 caso contrario */
+		temp1[i] = i + 1;
+	    	if (pthread_create(&consumers[i], NULL, consume, (void *)&temp1[i])) {
 	      		printf("ERRO: impossivel criar um thread consumidor\n");
 	      		exit(-1);
 	    	}
@@ -208,8 +210,7 @@ int main(int argc, char *argv[]) {
     		/* Tenta criar um thread produtor */
 		/* Retorna 0  se foi criada com sucesso e 1 caso contrario */
 		temp2[i] = i + 1;
-    		tp = pthread_create(&producers[i], NULL, produce, (void *)&temp2[i]);
-    		if (tp) {
+    		if (pthread_create(&producers[i], NULL, produce, (void *)&temp2[i])) {
       			printf("ERRO: impossivel criar um thread produtor\n");
       			exit(-1);
     		}
@@ -217,13 +218,15 @@ int main(int argc, char *argv[]) {
   	}
 	
 	for (i = 0; i < NUM_THREADS; i++) {
+		//pthread_detach(consumers[i]);
+		//pthread_detach(producers[i]);
 		pthread_join(consumers[i], NULL);
 		pthread_join(producers[i], NULL);
 	}
 	
-  printf("Terminando a thread main()\n");
+  printf("\nTerminando a thread main()\n");
   pthread_exit(NULL);
-  exit(0);
+  //exit(0);
 
   /* 
    * Pergunta 4: O que ocorre com as threads criadas, se ainda
