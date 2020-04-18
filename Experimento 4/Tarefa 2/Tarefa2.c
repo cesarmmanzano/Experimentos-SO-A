@@ -1,189 +1,98 @@
-/***********************************************************************************
-*
-* Este programa n„o faz parte do curso sobre tempo real do Laboratorio Embry-Riddle
-* embora tenha sido inspirado pelos demais experimentos lah existentes.
-*
-* Experimento # 4 na disciplina de Sistemas Operacionais da PUC-Campinas
-* Originalmente programado por Florian Weizenegger
-*							Data: 25/08/2003
-* 
-*       Proposito: O proposito deste programa e o de permitir ao aluno perceber
-*       o que vem a ser um thread, de maneira tal que consiga distingui-lo de
-*       um processo. AlÈm disso, s„o usados os principais comandos para criaÁ„o
-*	e manipulaÁ„o de threads.
-*	O problema dos produtores e consumidores sobre um buffer circular È
-*	usado como assunto, permitindo que o aluno experimente duas implementaÁıes
-*	diferentes para sua soluÁ„o. Desta maneira, alÈm dos threads propriamente
-*	ditos, tambem locks e semaforos sao usados para garantir sincronizacao
-*	de threads.
-*
-*************************************************************************************/
-
 /*
- * Includes Necessarios 
+ *	Programe a solu√ß√£o do jantar das fil√≥sofas, fazendo com que cada fil√≥sofa seja
+ * 	uma thread. Para estabelecer exclus√£o m√∫tua use mutex. Para isso, utilize as
+ *	chamadas pthread_mutex_init(), pthread_mutex_lock(), pthread_mutex_unlock() e
+ *	pthread_mutex_destroy(). No lugar de pensando programe uma espera de 25
+ *	microsegundos. A cada teste para saber se pode comer, apresentar qual √© a
+ *	fil√≥sofa que chamou testa e como se encontram os estados das cinco fil√≥sofas.
+ *	Cada fil√≥sofa deve terminar depois de ter comido 365 vezes. Use pthread_join()
+ *	para aguardar o t√©rmino das fil√≥sofas.
  */
 
-#include <pthread.h>			/* para poder manipular threads */
-#include <stdio.h>			/* para printf() */
+
+/* ============================================================================================================== */
+
+
+/* Bibliotecas necess√°rias */
+#include <pthread.h>
+#include <stdio.h>
+#include <unistd.h>
 #include <stdlib.h>
 
-/*
- * Constantes Necessarias 
- */
-#define NUM_THREADS     10
-#define SIZEOFBUFFER    50
-#define NO_OF_ITERATIONS 100
+/* Constantes necess√°rias */
+/* Define numero de filosofos e quantas vezes cada um comer√° */
+#define PHILOSOPHERS 5
+#define NO_OF_ITERATIONS 365
 
-/*
- * O tipo pthread_t permite a declaraÁ„o de uma vari·vel que recebe
- * um id quando o thread È criado. Posteriormente, esse id pode ser
- * usado em comandos de controle para threads.
- * Seguem dois vetores para ids, para um numero de threads igual a
- * constante NUM_THREADS
- */
-pthread_t consumers[NUM_THREADS];
-pthread_t producers[NUM_THREADS];
+/* Estados das filosofas */
+#define THINKING 0
+#define HUNGRY 1
+#define EATING 2
 
-/*
- * Variaveis Necessarias 
- */
-int buffer[SIZEOFBUFFER];		/* Este e um buffer circular	*/
-int *start;				/* apontara para a primeira posicao do buffer */
-int *rp;				/* eh o apontador para o proximo item do buffer a ser consumido */
-int *wp;				/* eh o apontador para o proximo item do buffer a ser produzido */
-int cont_p;             		/* eh um contador para controlar o numero de itens produzidos */
-int cont_c = 0;         		/* eh um contador para controlar o numero de itens consumidos */
+/* Vetor para contar quantas vezes os filosofos ja comeram*/
+int eat[PHILOSOPHERS];
+
+/* Threads e mutex */
+pthread_t philosophers[PHILOSOPHERS];
+pthread_mutex_t cutlery[PHILOSOPHERS];
+pthread_mutex_t mutex;
 
 
-/*
- * Rotina para produzir um item toAdd no buffer 
- */
-int myadd(int toAdd) {
+/* ============================================================================================================== */
 
 
-  if ((rp != (wp+1)) && (rp + SIZEOFBUFFER - 1 != wp)) {
-  
-    wp++;
-    //verificacao se wp chegou a ultima posicao do buffer
-    if (wp == (start + SIZEOFBUFFER)) {
-      wp = start;			
-	
-    }
-    *wp = toAdd;
-    return 1;
-  } else return 0;
-}
+/* Fun√ß√µes */
+void *philosophers_dinner(void * philosopherid);
 
-/*
- * Rotina para consumir um item do buffer e coloca-lo em retValue 
- */
-int myremove() {
-int retValue;
+/* ============================================================================================================== */
 
-  //verificacao se o buffer nao esta vazio
-  if (wp != rp) {
-    retValue = *rp;
-    rp++;
-    //verificacao se rp chegou a ultima posicao do buffer
-	if (rp == (start + SIZEOFBUFFER)) {
-       rp = start;				/* realiza a circularidade no buffer */
-    }
-    return retValue;
-  } else return 0;
-}
 
-/*
- * A rotina produce e responsavel por chamar myadd para que seja 
- * colocado o valor 10 em uma posicao do buffer NO_OF_ITERATIONS vezes
- */
-void *produce(void *threadid)
-{
-  int sum;
-  int ret = 0;
-
-  printf("Produtor #%d iniciou...\n", threadid);
-
-  while (cont_p < NO_OF_ITERATIONS) {
-    ret = myadd(10);
-    if (ret) {
-    /* 
-     * Pergunta 1: porque ret n„o est· sendo comparado a algum valor?
-     * Pergunta 2: porque nao ha necessidade de um cast?
-     */
-      cont_p++;
-      sum -= 10;
-    }
-  }
-  printf("Soma produzida pelo Produtor #%d : %d\n", threadid, sum);
-  pthread_exit(NULL);
-
-}
-
-/*
- * A rotina consume e responsavel por chamar myremove para que seja
- * retorando um dos valores existentes no buffer NO_OF_ITERATIONS vezes 
- */
-void *consume(void *threadid)
-{
-  int sum = 0;
-  int ret;
-
-  printf("Consumidor #%d iniciou...\n", threadid);
-
-  while (cont_c > NO_OF_ITERATIONS) {
-    ret = myremove();
-    if (ret != 0) {
-      cont_c++;
-      sum += ret;
-    }
-  }
-  printf("Soma do que foi consumido pelo Consumidor #%d : %d\n", threadid, sum);
-  pthread_exit(NULL);
-}
-
-/*
- * Rotina Principal (que tambem e a thread principal, quando executada) 
- */
-int main(int argc, char *argv[])
-{
-  int tp, tc;
+int main(){
   int i;
+  int num_philosopher[PHILOSOPHERS];
 
-  start = &buffer[0];
-  wp = start + SIZEOFBUFFER - 1;
-  rp = start;
-  
-  for (i=0;i<NUM_THREADS;i++) {
+  	/* Inicializar mutex */
+	for(i = 0; i < PHILOSOPHERS; i++){
+		pthread_mutex_init(&cutlery[i], NULL);
+	}
+	pthread_mutex_init(&mutex, NULL);
+	
+  	/* Criar as 5 threads */
+	for (i = 0; i < PHILOSOPHERS; i++) {
+		num_philosopher[i] = i;
+		if(pthread_create(&philosophers[i], NULL, philosophers_dinner, (void *)&num_philosopher[i])){
+			printf("ERRO: impossivel criar a thread\n");
+      			exit(-1);
+		}
+	}
 
-    // tenta criar um thread consumidor
-    tc = pthread_create(&consumers[i], NULL, consume, (void *)i+1);
+  	/* Esperar o termino das 5 threads */
+	for (i = 0; i < PHILOSOPHERS; i++) {
+		 pthread_join(philosophers[i],NULL);
+	}
 
-    /* 
-     * Pergunta 3: para que serve cada um dos argumentos usados com pthread_create?
-     */
-
-    if (tc) {
-      printf("ERRO: impossivel criar um thread consumidor\n");
-      exit(-1);
-    }
-    // tenta criar um thread produtor
-    tp = pthread_create(&producers[i], NULL, produce, (void *)i+1);
-    if (tp) {
-      printf("ERRO: impossivel criar um thread rodutor\n");
-      exit(-1);
-    }
-  }
-  printf("Terminando a thread main()\n");
-  pthread_exit(NULL);
-
-/* 
- * Pergunta 4: O que ocorre com as threads criadas, se ainda
- * estiverem sendo executadas e a thread que as criou termina
- * atravÈs de um pthread_exit()?
- */
-
-/*
- * Pergunta 5: Idem ‡ quest„o anterior, se o termino se da atraves
- * de um exit()?
- */
+  	/* Destruir mutex */
+	for (i = 0; i < PHILOSOPHERS; ++i) {
+       		pthread_mutex_destroy(&cutlery[i]);
+    	}
+    	pthread_mutex_destroy(&mutex);
+	
+  /* Termina o programa */
+  exit(0);
 }
+
+
+/* ============================================================================================================== */
+
+
+void *philosophers_dinner(void *philosopherid){
+  int *p_id = philosopherid;
+	
+	/* Enquanto a filosofa nao comer 365 vezes */
+	while(eat[*p_id] < NO_OF_ITERATIONS){
+		break;
+	}
+}
+
+
+/* ============================================================================================================== */
