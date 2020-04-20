@@ -55,7 +55,6 @@ void *PhilosophersDinner(void * philosopherid);
 void TakeForks(int i);
 void PutForks(int i);
 void CheckEat(int i);
-void PrintState();
 
 
 /* ============================================================================================================== */
@@ -142,7 +141,7 @@ void *PhilosophersDinner(void *philosopher_id){
 /* ============================================================================================================== */
 
 
-/* Função que pega os talheres */
+/* Função que pega os garfos */
 void TakeForks(int i){
 	/* Trava a filosofa, verifica se pode comer e depois destrava */
 	pthread_mutex_lock(&mutex);
@@ -158,7 +157,7 @@ void TakeForks(int i){
 /* ============================================================================================================== */
 
 
-/* Função que coloca os talheres */
+/* Função que coloca os garfos */
 void PutForks(int i){
 	pthread_mutex_lock(&mutex);
 	info_philosophers.state[i] = THINKING;
@@ -171,30 +170,26 @@ void PutForks(int i){
 /* ============================================================================================================== */
 
 
-/* Função que verifica se a filosofa pode comer */
+/* Função que verifica se a filósofa pode comer */
 void CheckEat(int i){
-	PrintState();
+	
+	/* Ao iniciar a função, printa o estado de cada filósofa */
+	printf("\n\nEstado de cada filósofa");
+	
+	for(int j = 0; j < PHILOSOPHERS; j++){
+		if(info_philosophers.state[j] == THINKING) printf("\nFilósofa %d está pensando", j + 1);
+		if(info_philosophers.state[j] == HUNGRY) printf("\nFilósofa %d está com fome", j + 1);
+		if(info_philosophers.state[j] == EATING) printf("\nFilósofa %d está comendo", j + 1);
+	}
+
+	/* Verifica se a filosofa pode comer */
 	if(info_philosophers.state[i] == HUNGRY && info_philosophers.state[(i + 4) % PHILOSOPHERS] != EATING && info_philosophers.state[(i + 1) % PHILOSOPHERS] != EATING){
+		
+		/* Se puder, muda estado e incrementa quantidade de vezes que comeu */
 		info_philosophers.eat[i]++;
 		info_philosophers.state[i] = EATING;
+		
+		/* Destrava garfo */
 		pthread_mutex_unlock(&forks[i]);
 	}
 }
-
-
-/* ============================================================================================================== */
-
-
-/* Função que printa o estado de cada filosofa */
-void PrintState(){
-	printf("\n\nEstado de cada filosofa");
-	
-	for(int i = 0; i < PHILOSOPHERS; i++){
-		if(info_philosophers.state[i] == THINKING) printf("\nFilósofa %d está pensando", i + 1);
-		if(info_philosophers.state[i] == HUNGRY) printf("\nFilósofa %d está com fome", i + 1);
-		if(info_philosophers.state[i] == EATING) printf("\nFilósofa %d está comendo", i + 1);
-	}
-}
-
-
-/* ============================================================================================================== */
