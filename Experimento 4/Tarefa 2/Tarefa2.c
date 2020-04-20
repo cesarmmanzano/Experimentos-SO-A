@@ -44,7 +44,7 @@ info_p info_philosophers;
 /* Threads e mutex */
 pthread_t philosophers[PHILOSOPHERS];	/* Cada filosofa é uma thread */
 pthread_mutex_t forks[PHILOSOPHERS];	/* Trava os talheres*/
-pthread_mutex_t mutex;			/* Trava thread */
+pthread_mutex_t mutex;			/* Trava para entrada na regiao critica */
 
 
 /* ============================================================================================================== */
@@ -143,9 +143,10 @@ void *PhilosophersDinner(void *philosopher_id){
 
 /* Função que pega os garfos */
 void TakeForks(int i){
-	/* Trava a filosofa, verifica se pode comer e depois destrava */
+
+	/* Trava por conta da RC, verifica se pode comer e depois destrava */
 	pthread_mutex_lock(&mutex);
-	info_philosophers.state[i] = HUNGRY;
+	info_philosophers.state[i] = HUNGRY; /* Esta esperando sua vez de comer */
 	CheckEat(i);
 	pthread_mutex_unlock(&mutex);
 	
@@ -159,8 +160,10 @@ void TakeForks(int i){
 
 /* Função que coloca os garfos */
 void PutForks(int i){
+
+	/* Trava por conta da RC, verifica se o vizinho da direita e da esquerda podem comer e depois destrava */
 	pthread_mutex_lock(&mutex);
-	info_philosophers.state[i] = THINKING;
+	info_philosophers.state[i] = THINKING; /* Filósofa volta a pensar */
 	CheckEat((i + 4) % PHILOSOPHERS);
 	CheckEat((i + 1) % PHILOSOPHERS);
 	pthread_mutex_unlock(&mutex);
@@ -182,7 +185,7 @@ void CheckEat(int i){
 		if(info_philosophers.state[j] == EATING) printf("\nFilósofa %d está comendo", j + 1);
 	}
 
-	/* Verifica se a filosofa pode comer */
+	/* Verifica se a filósofa pode comer */
 	if(info_philosophers.state[i] == HUNGRY && info_philosophers.state[(i + 4) % PHILOSOPHERS] != EATING && info_philosophers.state[(i + 1) % PHILOSOPHERS] != EATING){
 		
 		/* Se puder, muda estado e incrementa quantidade de vezes que comeu */
