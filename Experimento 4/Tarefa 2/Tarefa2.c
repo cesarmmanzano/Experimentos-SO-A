@@ -38,12 +38,12 @@
 typedef struct {
   	int eat[PHILOSOPHERS];		/* Vetor para contar quantas vezes as filosofas ja comeram*/
 	int state[PHILOSOPHERS];	/* Vetor para armazenar o estado de cada filosofa */	
-}philo;
-philo info_philosophers;
+}info_p;
+info_p info_philosophers;
 
 /* Threads e mutex */
 pthread_t philosophers[PHILOSOPHERS];	/* Cada filosofa é uma thread */
-pthread_mutex_t cutlery[PHILOSOPHERS];	/* Trava os talheres*/
+pthread_mutex_t forks[PHILOSOPHERS];	/* Trava os talheres*/
 pthread_mutex_t mutex;			/* Trava thread */
 
 
@@ -52,8 +52,10 @@ pthread_mutex_t mutex;			/* Trava thread */
 
 /* Funções */
 void *PhilosophersDinner(void * philosopherid);
+void TakeForks(int i);
+void PutForks(int i);
+void CheckEat(int i);
 void PrintState();
-void CheckEat();
 
 
 /* ============================================================================================================== */
@@ -80,7 +82,7 @@ int main(){
 
   	/* Inicializar mutex */
 	for(i = 0; i < PHILOSOPHERS; i++){
-		pthread_mutex_init(&cutlery[i], NULL);
+		pthread_mutex_init(&forks[i], NULL);
 	}
 	pthread_mutex_init(&mutex, NULL);
 	
@@ -100,7 +102,7 @@ int main(){
 
   	/* Destruir mutex */
 	for (i = 0; i < PHILOSOPHERS; ++i) {
-       		pthread_mutex_destroy(&cutlery[i]);
+       		pthread_mutex_destroy(&forks[i]);
     	}
     	pthread_mutex_destroy(&mutex);
 	
@@ -113,29 +115,56 @@ int main(){
 /* ============================================================================================================== */
 
 
-void *PhilosophersDinner(void *philosopherid){
-  int *p_id = philosopherid;
+void *PhilosophersDinner(void *philosopher_id){
+  int *p_id = philosopher_id;
 
 	/* Espera cada filosofa comer 365 vezes */
 	while(info_philosophers.eat[*p_id] < NO_OF_ITERATIONS){
-		/* Cada filosofa pensa e pega os talheres */
 		
 		/* Pensa */
 		info_philosophers.state[*p_id] = THINKING;
 		usleep(THINKING_TIME);
 		
-		/* Pega os talheres */
-		//TakeCutlery();
-		//PutCutlery();
+		/* Pega e coloca os talheres */
+		TakeForks(*p_id);
+		PutForks(*p_id);
 
-		break;
+		//break;
 	}
 	
 	/* Quando a filósofa acabar de comer, imprime */
-	printf("Filósofa %d acabou de comer\n", *p_id + 1);		
+	printf("\n\n=========== Filósofa %d acabou de comer ===========\n", *p_id + 1);		
 
 	/* Encerra thread */
 	pthread_exit(NULL);
+}
+
+/* ============================================================================================================== */
+
+
+/* Função que pega os talheres */
+void TakeForks(int i){
+	/* Trava a filosofa, verifica se pode comer e depois destrava */
+	pthread_mutex_lock(&mutex);
+	info_philosophers.state[i] = HUNGRY;
+	CheckEat(i);
+	pthread_mutex_unlock(&mutex);
+	
+	/* Trava o garfo */
+	pthread_mutex_lock(&forks[i]);
+}
+
+
+/* ============================================================================================================== */
+
+
+/* Função que coloca os talheres */
+void PutForks(int i){
+	pthread_mutex_lock(&mutex);
+	info_philosophers.state[i] = THINKING;
+	CheckEat((i + 4) % PHILOSOPHERS);
+	CheckEat((i + 1) % PHILOSOPHERS);
+	pthread_mutex_unlock(&mutex);
 }
 
 
@@ -143,12 +172,14 @@ void *PhilosophersDinner(void *philosopherid){
 
 
 /* Função que verifica se a filosofa pode comer */
-void CheckEat(){
+void CheckEat(int i){
 	PrintState();
+	if(info_philosophers.state[i] == HUNGRY && info_philosophers.state[(i + 4) % PHILOSOPHERS] != EATING && info_philosophers.state[(i + 1) % PHILOSOPHERS] != EATING){
+		info_philosophers.eat[i]++;
+		info_philosophers.state[i] = EATING;
+		pthread_mutex_unlock(&forks[i]);
+	}
 }
-
-
-/* ============================================================================================================== */
 
 
 /* ============================================================================================================== */
@@ -156,12 +187,12 @@ void CheckEat(){
 
 /* Função que printa o estado de cada filosofa */
 void PrintState(){
-	printf("\nEstado de cada filosofa");
+	printf("\n\nEstado de cada filosofa");
 	
 	for(int i = 0; i < PHILOSOPHERS; i++){
-		if(info_philosophers.state[i] == THINKING) printf("Filósofa %d está pensando", i + 1);
-		if(info_philosophers.state[i] == HUNGRY) printf("Filósofa %d está com fome", i + 1);
-		if(info_philosophers.state[i] == EATING) printf("Filósofa %d está comendo", i + 1);
+		if(info_philosophers.state[i] == THINKING) printf("\nFilósofa %d está pensando", i + 1);
+		if(info_philosophers.state[i] == HUNGRY) printf("\nFilósofa %d está com fome", i + 1);
+		if(info_philosophers.state[i] == EATING) printf("\nFilósofa %d está comendo", i + 1);
 	}
 }
 
