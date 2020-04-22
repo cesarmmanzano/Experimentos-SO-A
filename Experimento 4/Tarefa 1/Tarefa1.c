@@ -28,7 +28,6 @@
 #include <pthread.h>			/* para poder manipular threads */
 #include <stdio.h>			/* para printf() */
 #include <stdlib.h>
-#include <stdbool.h>
 
 /*
  * Constantes Necessarias 
@@ -67,17 +66,17 @@ int myadd(int toAdd) {
 
 	/* Verificação se o buffer esta cheio -> caso nao esteja entra no if */	
 	if ((rp != (wp+1)) && (rp + SIZEOFBUFFER - 1 != wp)) {  	
-			
-		wp++;
 
 		/* Verificacao se wp chegou a ultima posicao do buffer */
 		if (wp == (start + SIZEOFBUFFER)) {
 			wp = start; /* Realiza a circularidade no bufer */		
 		}
-			
+		
 		*wp = toAdd;
-			
+		wp++;
+		
 		return 1;
+
 	} 
 	else return 0;
 
@@ -93,19 +92,19 @@ int myadd(int toAdd) {
 int myremove() {
 
   //int retValue;
-
+	
 	/* Verificacao se o buffer nao esta vazio -> caso nao esteja entra no if */
 	if(wp != rp) {	
 
 		int retValue = *rp;
 		rp++;	
-	    	
+		    	
 		/* Verificacao se rp chegou a ultima posicao do buffer */
 		if (rp == (start + SIZEOFBUFFER)) {
-	      		rp = start; /* Realiza a circularidade no buffer */	
-	    	}
+		      	rp = start; /* Realiza a circularidade no buffer */	
+		}
+		return retValue;
 
-	    	return retValue;
 	} 
 	else return 0;
 
@@ -160,6 +159,7 @@ void *consume(void *threadid) {
   int sum = 0;
   int ret = 0;
   cont_c = 0;
+
   //printf("Consumidor #%d iniciou...\n", *t_id);
 
   	while (cont_c < NO_OF_ITERATIONS) {
@@ -168,7 +168,7 @@ void *consume(void *threadid) {
 
     		if (ret != 0) {
       			cont_c++;
-      			sum += 10;
+      			sum += ret;
     		}
   	}
 
@@ -187,10 +187,10 @@ void *consume(void *threadid) {
 int main(int argc, char *argv[]) {
 
   int i;
-  int temp1[NUM_THREADS], temp2[NUM_THREADS];
+  int num_thread1[NUM_THREADS], num_thread2[NUM_THREADS];
 
   start = &buffer[0];
-  wp = start + SIZEOFBUFFER - 1;
+  wp = start;
   rp = start;
   
   	for (i = 0; i < NUM_THREADS; i++) {
@@ -201,16 +201,16 @@ int main(int argc, char *argv[]) {
 
 		/* Tenta criar um thread consumidor */
 		/* Retorna 0  se foi criada com sucesso e 1 caso contrario */
-		temp1[i] = i + 1;
-	    	if (pthread_create(&consumers[i], NULL, consume, (void *)&temp1[i])) {
+		num_thread1[i] = i + 1;
+	    	if (pthread_create(&consumers[i], NULL, consume, (void *)&num_thread1[i])) {
 	      		printf("ERRO: impossivel criar um thread consumidor\n");
 	      		exit(-1);
 	    	}
 
     		/* Tenta criar um thread produtor */
 		/* Retorna 0  se foi criada com sucesso e 1 caso contrario */
-		temp2[i] = i + 1;
-    		if (pthread_create(&producers[i], NULL, produce, (void *)&temp2[i])) {
+		num_thread2[i] = i + 1;
+    		if (pthread_create(&producers[i], NULL, produce, (void *)&num_thread2[i])) {
       			printf("ERRO: impossivel criar um thread produtor\n");
       			exit(-1);
     		}
