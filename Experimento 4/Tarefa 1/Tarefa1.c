@@ -56,6 +56,7 @@ int *wp;				/* eh o apontador para o proximo item do buffer a ser produzido */
 int cont_p = 0;             		/* eh um contador para controlar o numero de itens produzidos */
 int cont_c = 0;         		/* eh um contador para controlar o numero de itens consumidos */
 
+
 /* ============================================================================================================== */
 
 
@@ -64,8 +65,10 @@ int cont_c = 0;         		/* eh um contador para controlar o numero de itens con
  */
 int myadd(int toAdd) {
 
+  int delta = (cont_p - cont_c);
+
 	/* Verificação se o buffer esta cheio -> caso nao esteja entra no if */	
-	if ((rp != (wp+1)) && (rp + SIZEOFBUFFER - 1 != wp)) {  	
+	if (SIZEOFBUFFER > delta) {  	
 
 		/* Verificacao se wp chegou a ultima posicao do buffer */
 		if (wp == (start + SIZEOFBUFFER)) {
@@ -91,18 +94,20 @@ int myadd(int toAdd) {
  */
 int myremove() {
 
-  //int retValue;
+  int retValue;
+  int delta = (cont_c - cont_p);
 	
 	/* Verificacao se o buffer nao esta vazio -> caso nao esteja entra no if */
-	if(wp != rp) {	
+	if(SIZEOFBUFFER > delta) {	
 
-		int retValue = *rp;
+		retValue = *rp;
 		rp++;	
 		    	
 		/* Verificacao se rp chegou a ultima posicao do buffer */
 		if (rp == (start + SIZEOFBUFFER)) {
 		      	rp = start; /* Realiza a circularidade no buffer */	
 		}
+
 		return retValue;
 
 	} 
@@ -172,8 +177,8 @@ void *consume(void *threadid) {
     		}
   	}
 
-  	printf("Soma do que foi consumido pelo Consumidor #%d : %d\n", *t_id, sum);
-  	pthread_exit(NULL);
+  printf("Soma do que foi consumido pelo Consumidor #%d : %d\n", *t_id, sum);
+  pthread_exit(NULL);
 
 }
 
@@ -218,10 +223,17 @@ int main(int argc, char *argv[]) {
   	}
 	
 	for (i = 0; i < NUM_THREADS; i++) {
-		//pthread_detach(consumers[i]);
-		//pthread_detach(producers[i]);
-		pthread_join(consumers[i], NULL);
-		pthread_join(producers[i], NULL);
+		
+		if(pthread_join(consumers[i], NULL)){
+			printf("ERRO: chamada pthread_join() falhou\n");
+			exit(-1);		
+		}
+
+		if(pthread_join(producers[i], NULL)){
+			printf("ERRO: chamada pthread_join() falhou\n");	
+			exit(-1);	
+		}
+
 	}
 	
   printf("\nTerminando a thread main()\n");
