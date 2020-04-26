@@ -55,7 +55,7 @@ int *rp;				/* eh o apontador para o proximo item do buffer a ser consumido */
 int *wp;				/* eh o apontador para o proximo item do buffer a ser produzido */
 int cont_p = 0;             		/* eh um contador para controlar o numero de itens produzidos */
 int cont_c = 0;         		/* eh um contador para controlar o numero de itens consumidos */
-
+		
 
 /* ============================================================================================================== */
 
@@ -128,6 +128,7 @@ void *produce(void *threadid) {
   int *t_id = threadid;
   int sum = 0;
   int ret = 0;
+  int noProduce = 0;
   //cont_p = 0;
 
   //printf("Produtor #%d iniciou...\n", *t_id);
@@ -143,10 +144,15 @@ void *produce(void *threadid) {
 			 */
 			 cont_p++;
 			 sum += 10;
-		 }
+		}
+		else{
+			noProduce++;	
+		}
   	}
 
   printf("Soma produzida pelo Produtor #%d : %d\n", *t_id, sum);
+  printf("--Produtor #%d deixou de produzir %d vezes\n", *t_id, noProduce);
+
   pthread_exit(NULL);
 
 }
@@ -164,6 +170,7 @@ void *consume(void *threadid) {
   int *t_id = threadid;
   int sum = 0;
   int ret = 0;
+  int noConsume = 0;
   //cont_c = 0;
 
   //printf("Consumidor #%d iniciou...\n", *t_id);
@@ -176,9 +183,14 @@ void *consume(void *threadid) {
       			cont_c++;
       			sum += ret;
     		}
+		else{
+			noConsume++;
+		}
   	}
 
   printf("Soma do que foi consumido pelo Consumidor #%d : %d\n", *t_id, sum);
+  printf("--Consumidor #%d deixou de consumir %d vezes\n", *t_id, noConsume);
+
   pthread_exit(NULL);
 
 }
@@ -198,7 +210,7 @@ int main(int argc, char *argv[]) {
   start = &buffer[0];
   wp = start;
   rp = start;
-  
+
   	for (i = 0; i < NUM_THREADS; i++) {
 		
 		/* 
