@@ -128,6 +128,7 @@ void *produce(void *threadid) {
   int *t_id = threadid;
   int sum = 0;
   int ret = 0;
+  //cont_p = 0;
 
   //printf("Produtor #%d iniciou...\n", *t_id);
 
@@ -163,7 +164,7 @@ void *consume(void *threadid) {
   int *t_id = threadid;
   int sum = 0;
   int ret = 0;
-  cont_c = 0;
+  //cont_c = 0;
 
   //printf("Consumidor #%d iniciou...\n", *t_id);
 
