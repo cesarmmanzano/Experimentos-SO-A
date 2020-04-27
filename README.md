@@ -4,7 +4,7 @@
 Criação de processos
 
 ### Experimento 2
-Comunicação entre processos (IPC)
+Comunicação entre processos (IPC), utilizando fila de mensagens
 
 ### Experimento 3
 Utilização de Semáforos e memória compartilhada
