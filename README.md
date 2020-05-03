@@ -12,7 +12,7 @@ Utilização de Semáforos e memória compartilhada
 ### Experimento 4
 Utilização de threads e resolução do jantar dos filósofosv
 
-### Experimento 4
+### Experimento 5
 Resolução do problema do Barbeiro Dorminhoco
 
 ### Desenvolvedores
