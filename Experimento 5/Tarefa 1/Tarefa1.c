@@ -60,7 +60,8 @@ void unlockSem(int);
 int main(){
     
     pid_t rtn_b, rtn_c;
-    pid_t barber[BARBERS], client[CLIENTS];
+    pid_t barber_pid[BARBERS], client_pid[CLIENTS];
+
     int i;
 
     /* Construindo a estrutura de controle do semáforo */
@@ -78,7 +79,7 @@ int main(){
     rtn_b = 1;
     for(i = 0; i < BARBERS; i++){
         if( rtn_b != 0 ) {
-			barber[i] = rtn_b = fork();
+			barber_pid[i] = rtn_b = fork();
 		} else {
 			break;
 		}
@@ -87,7 +88,7 @@ int main(){
     rtn_c = 1;
     for(i = 0; i < CLIENTS; i++){
         if( rtn_c != 0 ) {
-			client[i] = rtn_c = fork();
+			client_pid[i] = rtn_c = fork();
 		} else {
 			break;
 		}
@@ -96,7 +97,6 @@ int main(){
     /* Verifica se o processo é pai ou filho */
     if(rtn_b == 0){
         //chama função barbeiro
-        printf("barbeiro\n");
     }else{
         for(i = 0; i < BARBERS; i++){
             wait(NULL);
@@ -105,7 +105,6 @@ int main(){
 
     if(rtn_c == 0){
         //chama função cliente
-        printf("cliente\n");
     }else{
         for(i = 0; i < CLIENTS; i++){
             wait(NULL);
@@ -114,11 +113,11 @@ int main(){
 
     /* Matando os processos*/
     for(i = 0; i < BARBERS; i++){
-        kill(barber[i], SIGKILL);
+        kill(barber_pid[i], SIGKILL);
     }
 
     for(i = 0; i < CLIENTS; i++){
-        kill(client[i], SIGKILL);
+        kill(client_pid[i], SIGKILL);
     }
 
     /* Destroi/Remove semáforo */
