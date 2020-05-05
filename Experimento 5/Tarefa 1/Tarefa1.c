@@ -1,7 +1,9 @@
 /* ========================= BIBLIOTECAS ========================= */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 #include <errno.h>          /* errno and error codes */
 #include <unistd.h>         /* Para fork() */
 #include <signal.h>         /* Para kill(), sigsuspend(), outros */
@@ -16,22 +18,22 @@
 /* ========================= CONSTANTES ========================= */
 
 #define BARBERS 2
-#define CUSTOMERS 20
+#define CUSTOMERS 1
 #define CHAIRS 7
 
 #define MESSAGE_MTYPE 1
 #define MESSAGE_QUEUE_ID_BARBER 3102
 #define MESSAGE_QUEUE_ID_CUSTOMER 3103
 
-#define PROTECT
-#define SEM_KEY_BARBER      0x1243
-#define SEM_KEY_CUSTOMER	0x1244
+#define SEM_KEY_BARBER 1243
+#define SEM_KEY_CUSTOMER 1244
 
-#define SHM_KEY	0x1432
+#define SHM_KEY	1432
+#define SHM_KEY 1432
 
-#define SHM_KEY 0x1432
+#define PERMISSION 0666 
 
-#define PERMISSION 0666
+#define MAXSTRINGSIZE 1023
 
 /* ========================= VARIÁVEIS E SIMILARES ========================= */
 
@@ -43,13 +45,17 @@ int g_sem_id_customer;
 
 //Fila de mensagens
 typedef struct {
-	unsigned int msg_no;
+	unsigned int barber_no;
 	struct timeval send_time;
+    char msgBarber[MAXSTRINGSIZE];
+    int arraySize;
 } data_t_barber; 
 
 typedef struct {
-	unsigned int msg_no;
+	unsigned int customer_no;
 	struct timeval send_time;
+    char msgCostumer[MAXSTRINGSIZE];
+    int ArraySize;
 } data_t_customer; 
 
 typedef struct {
@@ -61,7 +67,22 @@ typedef struct {
 int g_shm_id;
 int *g_shm_addr;
 
+//Para controlar barbeiro
+bool work = true;
+
+//Vetores com o numero dos barbeiros e clientes
+pid_t barber_number[BARBERS], customer_number[CUSTOMERS];
+ 
 /* ========================= FUNÇÕES ========================= */
+
+void barber(int, int, int);
+void customer(int, int, int);
+void cut_hair();
+void apreciate_hair();
+
+void randomArray(int[], int);
+void arrayToString(int[], char[], int);
+void StringToArray(int[], char[], int);  
 
 void semaphoreStruct();
 void createSem(int*, int);
@@ -75,17 +96,11 @@ void removeMessageQueue(int);
 void createSharedMemory(int, int*, int**);
 void removeSharedMemory(int);
 
-void barber();
-void customer();
-void cut_hair();
-void apreciate_hair();
-
 /* ========================= MAIN ========================= */
 
 int main(){
     
-    pid_t rtn_b, rtn_c;
-    pid_t barber_pid[BARBERS], customer_pid[CUSTOMERS];
+    pid_t rtn;
 
     int queue_id_barber;
     int queue_id_customer;
@@ -113,50 +128,50 @@ int main(){
     createSharedMemory(SHM_KEY, &g_shm_id, &g_shm_addr);
 
     /* Declara os processos filhos (barbeiros e clientes) */
-    rtn_b = 1;
+    rtn = 1;
     for(i = 0; i < BARBERS; i++){
-        if( rtn_b != 0 ) {
-		    barber_pid[i] = rtn_b = fork();
+        if( rtn != 0 ) {
+
+		    barber_number[i] = rtn = fork();
+
+            if(rtn == 0){
+                barber(queue_id_barber, queue_id_customer, i);
+            }
+
 	    } else {
 		    break;
 	    }
     }
 
-    rtn_c = 1;
+    rtn = 1;
     for(i = 0; i < CUSTOMERS; i++){
-        if( rtn_c != 0 ) {
-		    customer_pid[i] = rtn_c = fork();
+        if( rtn != 0 ) {
+
+		    customer_number[i] = rtn = fork();
+
+            if(rtn == 0){
+                customer(queue_id_customer, queue_id_barber, i);
+            }
+
 	    } else {
 		    break;
 	    }
     }
 
-    /* Verifica se o processo é pai ou filho */
-    if(rtn_b == 0){
-        barber();
-    }else{
-        for(i = 0; i < BARBERS; i++){
-            wait(NULL);
+    /* Espera o término dos filhos */
+    if(rtn != 0){
+
+        for(int k = 0; k < CUSTOMERS; k++){
+                wait(NULL);
         }
-    }
-
-    if(rtn_c == 0){
-        customer();
-    }else{
-        for(i = 0; i < CUSTOMERS; i++){
-            wait(NULL);
+        work = false; /* Para de trabalhar */
+        
+        /* Matando os processos*/
+        for(int k = 0; k < BARBERS; k++){
+            kill(barber_number[k], SIGKILL);
         }
-    }
 
-    /* Matando os processos*/
-    for(i = 0; i < BARBERS; i++){
-        kill(barber_pid[i], SIGKILL);
     }
-
-    for(i = 0; i < CUSTOMERS; i++){
-        kill(customer_pid[i], SIGKILL);
-    }
-
     /* Remove semáforos */
     removeSem(g_sem_id_barber);
     removeSem(g_sem_id_customer);
@@ -169,6 +184,98 @@ int main(){
     removeSharedMemory(g_shm_id);
     
     return 0;
+}
+
+/* ========================= FUNÇÕES REFERENTES AO BARBEIRO E CLIENTES ========================= */
+
+void barber(int queue_id_barber, int queue_id_customer, int barber){
+
+    usleep(1000);
+
+    barber++;
+
+    msgbuf_t message_send;    /* Mensagem que envia */
+    msgbuf_t message_receive;  /* Mensagem que recebe */
+    data_t_barber *data_ptr_send = (data_t_barber *)(message_send.mtext);
+    data_t_customer *data_ptr_receive = (data_t_customer *)(message_receive.mtext);
+
+    /* Enquanto estiver trabalhando, recebe mensagens do cliente */
+    /*while(work){
+        if( msgrcv(queue_id_barber,(struct msgbuf_t *)&message_receive, sizeof(data_t_customer), MESSAGE_MTYPE, 0) == -1 ) {
+			fprintf(stderr, "Impossivel receber mensagem!\n");
+			exit(1);
+		}
+    }*/
+
+    /* Apronta dados para enviar mensagem ao cliente */
+
+    /* Início da RC */
+    //lockSem(g_sem_id_barber);
+    //unlockSem(g_sem_id_barber);
+
+}
+
+void customer(int queue_id_customer, int queue_id_barber, int customer){
+
+    usleep(1000); 
+
+    customer++;
+
+    int sizeString = (rand() % 1021) + 2; /* Tamanho da string que será passada ao barbeiro */
+    int array[sizeString]; /* Armazena valores gerados */
+    char string[sizeString]; /* String que será passada ao barbeiro */
+
+    msgbuf_t message_send; /* Mensagem que envia */
+    msgbuf_t message_receive; /* Mensagem que recebe */
+    data_t_barber *data_ptr_send = (data_t_barber *)(message_send.mtext); /* Ponteiro para os dados */
+    data_t_customer *data_ptr_receive = (data_t_customer *)(message_receive.mtext); /* Ponteiro para os dados */
+
+    struct timeval start_time; /* Instante em que entra e senta na sala */
+    struct timeval end_time; /* Instante em que inicia o corte */
+
+    /* Gera vetor aleatorio e converte para string */
+    randomArray(array, sizeString);
+    //arrayToString(array, string, sizeString);
+
+    /* Pega tempo atual */
+    gettimeofday(&start_time, NULL);
+
+    /* Início da RC */
+    //lockSem(g_sem_id_barber);
+    //unlockSem(g_sem_id_barber);
+
+}
+
+void cut_hair(){
+
+}
+
+void apreciate_hair(){
+
+}
+
+/* ========================= FUNÇÕES AUXILIARES ========================= */
+
+/* Gera um vetor aleatorio de inteiros */
+void randomArray(int array[], int size){
+
+    for(int i = 0; i < size; i++){
+        array[i] = (rand() % 1021) + 2;
+        printf("%d ", array[i]);
+    } 
+
+    printf("\n\n");
+
+}
+
+/* Converte um vetor de inteiros para string */
+void arrayToString(int array[], char string[], int size){
+
+}
+
+/*Converte string para vetor */
+void StringToArray(int array[], char string[], int size){
+
 }
 
 /* ========================= FUNÇÕES REFERENTES AOS SEMÁFOROS ========================= */
@@ -209,28 +316,24 @@ void removeSem(int g_sem_id){
 /* Bloqueia semaforo */
 void lockSem(int g_sem_id){
 
-  #ifdef PROTECT
         if( semop( g_sem_id, g_lock_op, 1 ) == -1 ) {
             fprintf(stderr,"chamada semop() falhou, impossivel bloquear o semaforo!\n");
             exit(1);
         }
-  #endif
 
 }
 
 /* Desbloqueia semáforo */
 void unlockSem(int g_sem_id){
 
-  #ifdef PROTECT
         if( semop( g_sem_id, g_unlock_op, 1 ) == -1 ) {
             fprintf(stderr,"chamada semop() falhou, impossivel desbloquear o semaforo!\n");
             exit(1);
         }
-  #endif
 
 }
 
-/* ========================= FUNÇÕES REFERENTES A FILA DE MENSAGENS ========================= */
+/* ========================= FUNÇÕES REFERENTES À FILA DE MENSAGENS ========================= */
 
 /* Cria fila de Mensagens */
 void createMessageQueue(int *queue_id, key_t key){
@@ -246,13 +349,13 @@ void createMessageQueue(int *queue_id, key_t key){
 void removeMessageQueue(int queue_id){
 
     if( msgctl(queue_id,IPC_RMID,NULL) == -1 ) {
-		fprintf(stderr,"Impossivel remover a fila!\n");
+		fprintf(stderr,"Impossivel remover a fila de mensagens!\n");
 		exit(1);
 	}
                     
 }
 
-/* ========================= FUNÇÕES REFERENTES A MEMÓRIA COMPARTILHADA ========================= */
+/* ========================= FUNÇÕES REFERENTES À MEMÓRIA COMPARTILHADA ========================= */
 
 /* Cria memória compartilhada */
 void createSharedMemory(int shm_key, int *g_shm_id, int **g_shm_addr){
@@ -276,15 +379,5 @@ void removeSharedMemory(int g_shm_id){
         fprintf(stderr,"Impossivel remover o segmento de memoria compartilhada!\n");
         exit(1);
     }
-
-}
-
-/* ========================= FUNÇÕES REFERENTES AO BARBEIRO E CLIENTES ========================= */
-
-void barber(){
-
-}
-
-void customer(){
 
 }
