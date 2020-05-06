@@ -33,29 +33,29 @@
 
 #define PERMISSION 0666 
 
-#define MAXSTRINGSIZE 1023
+#define MAXSTRINGSIZE 4092
 
 /* ========================= VARIÁVEIS E SIMILARES ========================= */
 
-//Semáforo
+/* Semáforo */
 struct sembuf g_lock_op[1];	
 struct sembuf g_unlock_op[1];
 int g_sem_id_barber;
 int g_sem_id_customer;
 
-//Fila de mensagens
+/* Fila de mensagens */
+/* Barbeiro envia para cliente */
 typedef struct {
 	unsigned int barber_no;
-	struct timeval send_time;
     char msgBarber[MAXSTRINGSIZE];
     int arraySize;
 } data_t_barber; 
 
+/* Cliente envia para barbeiro */
 typedef struct {
 	unsigned int customer_no;
-	struct timeval send_time;
-    char msgCostumer[MAXSTRINGSIZE];
-    int ArraySize;
+    char msgCustomer[MAXSTRINGSIZE];
+    int arraySize;
 } data_t_customer; 
 
 typedef struct {
@@ -63,26 +63,22 @@ typedef struct {
 	char mtext[5000];
 } msgbuf_t;
 
-//Memoria Compartilhada
+/* Memoria Compartilhada */
 int g_shm_id;
 int *g_shm_addr;
 
-//Para controlar barbeiro
+/* Para controlar barbeiro */
 bool work = true;
-
-//Vetores com o numero dos barbeiros e clientes
-pid_t barber_number[BARBERS], customer_number[CUSTOMERS];
  
 /* ========================= FUNÇÕES ========================= */
 
 void barber(int, int, int);
-void customer(int, int, int);
-void cut_hair();
+void customer(int, int, int, int);
+void cut_hair(int[], char[], int);
 void apreciate_hair();
 
 void randomArray(int[], int);
-void arrayToString(int[], char[], int);
-void StringToArray(int[], char[], int);  
+void arrayToString(int[], char[], int); 
 
 void semaphoreStruct();
 void createSem(int*, int);
@@ -101,6 +97,9 @@ void removeSharedMemory(int);
 int main(){
     
     pid_t rtn;
+
+    /* Vetores com os pids dos barbeiros e clientes */
+    pid_t barber_number[BARBERS], customer_number[CUSTOMERS];
 
     int queue_id_barber;
     int queue_id_customer;
@@ -144,13 +143,13 @@ int main(){
     }
 
     rtn = 1;
-    for(i = 0; i < CUSTOMERS; i++){
+    for(int j = 0; j < CUSTOMERS; j++){
         if( rtn != 0 ) {
 
 		    customer_number[i] = rtn = fork();
 
             if(rtn == 0){
-                customer(queue_id_customer, queue_id_barber, i);
+                customer(queue_id_customer, queue_id_barber, i, j);
             }
 
 	    } else {
@@ -200,12 +199,14 @@ void barber(int queue_id_barber, int queue_id_customer, int barber){
     data_t_customer *data_ptr_receive = (data_t_customer *)(message_receive.mtext);
 
     /* Enquanto estiver trabalhando, recebe mensagens do cliente */
-    /*while(work){
-        if( msgrcv(queue_id_barber,(struct msgbuf_t *)&message_receive, sizeof(data_t_customer), MESSAGE_MTYPE, 0) == -1 ) {
+    while(work){
+
+        if( msgrcv(queue_id_barber, (struct msgbuf_t *)&message_receive, sizeof(data_t_barber), MESSAGE_MTYPE, 0) == -1 ) {
 			fprintf(stderr, "Impossivel receber mensagem!\n");
 			exit(1);
 		}
-    }*/
+
+    }
 
     /* Apronta dados para enviar mensagem ao cliente */
 
@@ -215,7 +216,7 @@ void barber(int queue_id_barber, int queue_id_customer, int barber){
 
 }
 
-void customer(int queue_id_customer, int queue_id_barber, int customer){
+void customer(int queue_id_customer, int queue_id_barber, int barber, int customer){
 
     usleep(1000); 
 
@@ -223,30 +224,66 @@ void customer(int queue_id_customer, int queue_id_barber, int customer){
 
     int sizeString = (rand() % 1021) + 2; /* Tamanho da string que será passada ao barbeiro */
     int array[sizeString]; /* Armazena valores gerados */
-    char string[sizeString]; /* String que será passada ao barbeiro */
+    char string[sizeString*4]; /* String que será passada ao barbeiro */
 
     msgbuf_t message_send; /* Mensagem que envia */
     msgbuf_t message_receive; /* Mensagem que recebe */
-    data_t_barber *data_ptr_send = (data_t_barber *)(message_send.mtext); /* Ponteiro para os dados */
-    data_t_customer *data_ptr_receive = (data_t_customer *)(message_receive.mtext); /* Ponteiro para os dados */
+    data_t_barber *data_ptr_receive = (data_t_barber *)(message_send.mtext); /* Ponteiro para os dados */
+    data_t_customer *data_ptr_send = (data_t_customer *)(message_receive.mtext); /* Ponteiro para os dados */
 
     struct timeval start_time; /* Instante em que entra e senta na sala */
     struct timeval end_time; /* Instante em que inicia o corte */
 
     /* Gera vetor aleatorio e converte para string */
     randomArray(array, sizeString);
-    //arrayToString(array, string, sizeString);
+    arrayToString(array, string, sizeString);
 
     /* Pega tempo atual */
     gettimeofday(&start_time, NULL);
 
     /* Início da RC */
-    //lockSem(g_sem_id_barber);
-    //unlockSem(g_sem_id_barber);
+    lockSem(g_sem_id_barber);
+    
+    if(*g_shm_addr >= 7){
+        
+        /* Cliente não atendido */
+        unlockSem(g_sem_id_barber);
+        exit(0);
+
+    }else{
+        
+        /*Cliente atendido*/
+        *g_shm_addr = *g_shm_addr + 1;
+        unlockSem(g_sem_id_barber);
+
+        // Apronta os dados para enviar mensagem
+        message_send.mtype = MESSAGE_MTYPE;
+	    data_ptr_send->customer_no = customer;
+	    strcpy(data_ptr_send->msgCustomer, string);
+	    data_ptr_send->arraySize = sizeString;
+
+        if( msgsnd(queue_id_barber, (struct msgbuf_t *)&message_send, sizeof(data_t_customer), 0) == -1 ) {
+		    fprintf(stderr, "Impossivel enviar mensagem!\n");
+		    exit(1);
+	    }
+
+    }
+
+    /* Cliente recebe mensagem -> acabou de cortar o cabelo */
+    if( msgrcv(queue_id_barber, (struct msgbuf_t *)&message_receive, sizeof(data_t_barber), MESSAGE_MTYPE, 0) == -1 ) {
+		fprintf(stderr, "Impossivel receber mensagem!\n");
+		exit(1);
+	}
+    gettimeofday(&end_time, NULL);
 
 }
 
-void cut_hair(){
+/*Converte string para vetor */
+void cut_hair(int array[], char string[], int size){
+
+    for(int i = 0; i < size; i++) {
+        array[i] = string[i] - '0';
+    }
 
 }
 
@@ -261,20 +298,19 @@ void randomArray(int array[], int size){
 
     for(int i = 0; i < size; i++){
         array[i] = (rand() % 1021) + 2;
-        printf("%d ", array[i]);
+        //printf("%d ", array[i]);
     } 
-
-    printf("\n\n");
+    //printf("\n\n");
 
 }
 
 /* Converte um vetor de inteiros para string */
 void arrayToString(int array[], char string[], int size){
 
-}
-
-/*Converte string para vetor */
-void StringToArray(int array[], char string[], int size){
+    int n = 0;
+    for(int i = 0; i < size; i++) {
+        n+=sprintf(&string[n], "%d", array[i]);
+    }
 
 }
 
