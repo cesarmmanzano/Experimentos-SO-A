@@ -35,6 +35,8 @@
 
 #define MAXSTRINGSIZE 4092
 
+#define MICRO_PER_SECOND 1000000
+
 /* ========================= VARIÁVEIS E SIMILARES ========================= */
 
 /* Semáforo */
@@ -73,12 +75,15 @@ bool work = true;
 /* ========================= FUNÇÕES ========================= */
 
 void barber(int, int, int);
-void customer(int, int, int, int);
+void customer(int, int, int);
 void cut_hair(int[], char[], int);
-void apreciate_hair();
+void apreciate_hair(int, int, float);
 
 void randomArray(int[], int);
 void arrayToString(int[], char[], int); 
+void quicksort();
+
+/* == IPC == */
 
 void semaphoreStruct();
 void createSem(int*, int);
@@ -99,7 +104,7 @@ int main(){
     pid_t rtn;
 
     /* Vetores com os pids dos barbeiros e clientes */
-    pid_t barber_number[BARBERS], customer_number[CUSTOMERS];
+    pid_t barber_pid[BARBERS], customer_pid[CUSTOMERS];
 
     int queue_id_barber;
     int queue_id_customer;
@@ -131,7 +136,7 @@ int main(){
     for(i = 0; i < BARBERS; i++){
         if( rtn != 0 ) {
 
-		    barber_number[i] = rtn = fork();
+		    barber_pid[i] = rtn = fork();
 
             if(rtn == 0){
                 barber(queue_id_barber, queue_id_customer, i);
@@ -143,13 +148,13 @@ int main(){
     }
 
     rtn = 1;
-    for(int j = 0; j < CUSTOMERS; j++){
+    for( i = 0; i < CUSTOMERS; i++){
         if( rtn != 0 ) {
 
-		    customer_number[i] = rtn = fork();
+		    customer_pid[i] = rtn = fork();
 
             if(rtn == 0){
-                customer(queue_id_customer, queue_id_barber, i, j);
+                customer(queue_id_customer, queue_id_barber, i);
             }
 
 	    } else {
@@ -163,14 +168,24 @@ int main(){
         for(int k = 0; k < CUSTOMERS; k++){
                 wait(NULL);
         }
+
+        for(int k = 0; k < BARBERS; k++){
+                wait(NULL);
+        }
+
         work = false; /* Para de trabalhar */
         
         /* Matando os processos*/
+        for(int k = 0; k < CUSTOMERS; k++){
+            kill(customer_pid[k], SIGKILL);
+        }
+
         for(int k = 0; k < BARBERS; k++){
-            kill(barber_number[k], SIGKILL);
+            kill(barber_pid[k], SIGKILL);
         }
 
     }
+
     /* Remove semáforos */
     removeSem(g_sem_id_barber);
     removeSem(g_sem_id_customer);
@@ -216,7 +231,7 @@ void barber(int queue_id_barber, int queue_id_customer, int barber){
 
 }
 
-void customer(int queue_id_customer, int queue_id_barber, int barber, int customer){
+void customer(int queue_id_customer, int queue_id_barber, int customer){
 
     usleep(1000); 
 
@@ -224,7 +239,9 @@ void customer(int queue_id_customer, int queue_id_barber, int barber, int custom
 
     int sizeString = (rand() % 1021) + 2; /* Tamanho da string que será passada ao barbeiro */
     int array[sizeString]; /* Armazena valores gerados */
-    char string[sizeString*4]; /* String que será passada ao barbeiro */
+    char stringtoBarber[sizeString*4]; /* String que será passada ao barbeiro */
+    char stringOrdered[sizeString*4]; /* String que conterá a string organizada */
+    int arrayOrdered[sizeString]; /* Vetor de inteiros ordenado*/
 
     msgbuf_t message_send; /* Mensagem que envia */
     msgbuf_t message_receive; /* Mensagem que recebe */
@@ -232,11 +249,11 @@ void customer(int queue_id_customer, int queue_id_barber, int barber, int custom
     data_t_customer *data_ptr_send = (data_t_customer *)(message_receive.mtext); /* Ponteiro para os dados */
 
     struct timeval start_time; /* Instante em que entra e senta na sala */
-    struct timeval end_time; /* Instante em que inicia o corte */
+    struct timeval stop_time; /* Instante em que inicia o corte */
 
     /* Gera vetor aleatorio e converte para string */
     randomArray(array, sizeString);
-    arrayToString(array, string, sizeString);
+    arrayToString(array, stringtoBarber, sizeString);
 
     /* Pega tempo atual */
     gettimeofday(&start_time, NULL);
@@ -259,7 +276,7 @@ void customer(int queue_id_customer, int queue_id_barber, int barber, int custom
         // Apronta os dados para enviar mensagem
         message_send.mtype = MESSAGE_MTYPE;
 	    data_ptr_send->customer_no = customer;
-	    strcpy(data_ptr_send->msgCustomer, string);
+	    strcpy(data_ptr_send->msgCustomer, stringtoBarber);
 	    data_ptr_send->arraySize = sizeString;
 
         if( msgsnd(queue_id_barber, (struct msgbuf_t *)&message_send, sizeof(data_t_customer), 0) == -1 ) {
@@ -269,12 +286,20 @@ void customer(int queue_id_customer, int queue_id_barber, int barber, int custom
 
     }
 
-    /* Cliente recebe mensagem -> acabou de cortar o cabelo */
+    /* Cliente recebe mensagem do barbeiro -> acabou de cortar o cabelo */
     if( msgrcv(queue_id_barber, (struct msgbuf_t *)&message_receive, sizeof(data_t_barber), MESSAGE_MTYPE, 0) == -1 ) {
 		fprintf(stderr, "Impossivel receber mensagem!\n");
 		exit(1);
 	}
-    gettimeofday(&end_time, NULL);
+    gettimeofday(&stop_time, NULL);
+
+    float time;
+    time = (float)(stop_time.tv_sec  - start_time.tv_sec);
+	time += (stop_time.tv_usec - start_time.tv_usec)/(float)MICRO_PER_SECOND; 
+
+    apreciate_hair(data_ptr_receive->barber_no, customer, time);
+
+    exit(0);
 
 }
 
@@ -287,8 +312,9 @@ void cut_hair(int array[], char string[], int size){
 
 }
 
-void apreciate_hair(){
-
+/* Imprime informações */
+void apreciate_hair(int barber, int customer, float time){
+    //
 }
 
 /* ========================= FUNÇÕES AUXILIARES ========================= */
@@ -312,6 +338,10 @@ void arrayToString(int array[], char string[], int size){
         n+=sprintf(&string[n], "%d", array[i]);
     }
 
+}
+
+void quicksort(){
+    //
 }
 
 /* ========================= FUNÇÕES REFERENTES AOS SEMÁFOROS ========================= */
