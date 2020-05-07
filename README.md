@@ -10,10 +10,12 @@ Comunicação entre processos (IPC), utilizando fila de mensagens
 Utilização de Semáforos e memória compartilhada
 
 ### Experimento 4
-Utilização de threads e resolução do jantar dos filósofosv
+Utilização de threads e resolução do jantar dos filósofos
 
 ### Experimento 5
-Resolução do problema do Barbeiro Dorminhoco
+Resolução do problema do Barbeiro Dorminhoco de dois modos:
+1 - Usando processos filhos, semáforos, fila de mensagens e memória compartilhada
+2 - Usando threads, mutex e semáforos
 
 ### Desenvolvedores
 [Beatriz Morelatto Lorente](https://github.com/BiaLorente)
