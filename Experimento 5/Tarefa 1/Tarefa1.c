@@ -208,6 +208,9 @@ void barber(int queue_id_barber, int queue_id_customer, int barber){
 
     barber++;
 
+    char stringReceived[MAXSTRINGSIZE*5]; /* Recebe string do cliente */
+
+
     msgbuf_t message_send;    /* Mensagem que envia */
     msgbuf_t message_receive;  /* Mensagem que recebe */
     data_t_barber *data_ptr_send = (data_t_barber *)(message_send.mtext);
@@ -223,11 +226,30 @@ void barber(int queue_id_barber, int queue_id_customer, int barber){
 
     }
 
+    /* Pega informações da mensagem */
+    strcpy(stringReceived, data_ptr_receive->msgCustomer);
+    int array[data_ptr_receive->arraySize];
+    cut_hair(array, stringReceived, data_ptr_receive->arraySize);
+    quicksort();
+    arrayToString(array, stringReceived, data_ptr_receive->arraySize);
+
     /* Apronta dados para enviar mensagem ao cliente */
+    message_send.mtype = MESSAGE_MTYPE;
+	data_ptr_send->barber_no = barber;
+	strcpy(data_ptr_send->msgBarber, stringReceived);
+	data_ptr_send->arraySize = data_ptr_receive->arraySize;
+
+    if( msgsnd(queue_id_customer, (struct msgbuf_t *)&message_send, sizeof(data_t_barber), 0) == -1 ) {
+		fprintf(stderr, "Impossivel enviar mensagem!\n");
+	    exit(1);
+	}
 
     /* Início da RC */
-    //lockSem(g_sem_id_barber);
-    //unlockSem(g_sem_id_barber);
+    lockSem(g_sem_id_barber);
+    
+    *g_shm_addr = *g_shm_addr - 1;
+
+    unlockSem(g_sem_id_barber);
 
 }
 
@@ -239,8 +261,8 @@ void customer(int queue_id_customer, int queue_id_barber, int customer){
 
     int sizeString = (rand() % 1021) + 2; /* Tamanho da string que será passada ao barbeiro */
     int array[sizeString]; /* Armazena valores gerados */
-    char stringtoBarber[sizeString*4]; /* String que será passada ao barbeiro */
-    char stringOrdered[sizeString*4]; /* String que conterá a string organizada */
+    char stringtoBarber[sizeString*5]; /* String que será passada ao barbeiro */
+    char stringOrdered[sizeString*5]; /* String que conterá a string organizada */
     int arrayOrdered[sizeString]; /* Vetor de inteiros ordenado*/
 
     msgbuf_t message_send; /* Mensagem que envia */
@@ -335,7 +357,10 @@ void arrayToString(int array[], char string[], int size){
 
     int n = 0;
     for(int i = 0; i < size; i++) {
-        n+=sprintf(&string[n], "%d", array[i]);
+        int x = sprintf(&string[n], "%d", array[i]);
+        strcat(&string[n+x], " ");
+		n = n + x;
+		n++;
     }
 
 }
