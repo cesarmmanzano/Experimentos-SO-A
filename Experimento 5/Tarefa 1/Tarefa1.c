@@ -140,7 +140,7 @@ int main(){
 		    barber_pid[i] = rtn = fork();
 
             if(rtn == 0){
-                barber(queue_id_barber, queue_id_customer, i);
+                barber(queue_id_barber, queue_id_customer, i + 1);
             }
 
 	    } else {
@@ -155,7 +155,7 @@ int main(){
 		    customer_pid[i] = rtn = fork();
 
             if(rtn == 0){
-                customer(queue_id_customer, queue_id_barber, i);
+                customer(queue_id_customer, queue_id_barber, i + 1);
             }
 
 	    } else {
@@ -166,23 +166,15 @@ int main(){
     /* Espera o término dos filhos */
     if(rtn != 0){
 
-        for(int k = 0; k < CUSTOMERS; k++){
-                wait(NULL);
-        }
-
-        for(int k = 0; k < BARBERS; k++){
+        for(i = 0; i < CUSTOMERS; i++){
                 wait(NULL);
         }
 
         work = false; /* Para de trabalhar */
         
         /* Matando os processos*/
-        for(int k = 0; k < CUSTOMERS; k++){
-            kill(customer_pid[k], SIGKILL);
-        }
-
-        for(int k = 0; k < BARBERS; k++){
-            kill(barber_pid[k], SIGKILL);
+        for(i = 0; i < BARBERS; i++){
+            kill(barber_pid[i], SIGKILL);
         }
 
     }
@@ -205,12 +197,7 @@ int main(){
 
 void barber(int queue_id_barber, int queue_id_customer, int barber){
 
-    usleep(1000);
-
-    barber++;
-
     char stringReceived[MAXSTRINGSIZE*5]; /* Recebe string do cliente */
-
 
     msgbuf_t message_send;    /* Mensagem que envia */
     msgbuf_t message_receive;  /* Mensagem que recebe */
@@ -256,10 +243,6 @@ void barber(int queue_id_barber, int queue_id_customer, int barber){
 
 void customer(int queue_id_customer, int queue_id_barber, int customer){
 
-    usleep(1000); 
-
-    customer++;
-
     int sizeString = (rand() % 1021) + 2; /* Tamanho da string que será passada ao barbeiro */
     int array[sizeString]; /* Armazena valores gerados */
     char stringtoBarber[sizeString*5]; /* String que será passada ao barbeiro */
@@ -282,19 +265,19 @@ void customer(int queue_id_customer, int queue_id_barber, int customer){
     gettimeofday(&start_time, NULL);
 
     /* Início da RC */
-    lockSem(g_sem_id_barber);
+    lockSem(g_sem_id_customer);
     
     if(*g_shm_addr >= 7){
         
         /* Cliente não atendido */
-        unlockSem(g_sem_id_barber);
+        unlockSem(g_sem_id_customer);
         exit(0);
 
     }else{
         
         /*Cliente atendido*/
         *g_shm_addr = *g_shm_addr + 1;
-        unlockSem(g_sem_id_barber);
+        unlockSem(g_sem_id_customer);
 
         // Apronta os dados para enviar mensagem
         message_send.mtype = MESSAGE_MTYPE;
