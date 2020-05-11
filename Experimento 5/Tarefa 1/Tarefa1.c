@@ -81,7 +81,8 @@ void apreciate_hair(int, int, float);
 
 void randomArray(int[], int);
 void arrayToString(int[], char[], int); 
-void quicksort();
+void bbsort(int[], int);
+void clearString(char[], int);
 
 /* == IPC == */
 
@@ -230,7 +231,7 @@ void barber(int queue_id_barber, int queue_id_customer, int barber){
     strcpy(stringReceived, data_ptr_receive->msgCustomer);
     int array[data_ptr_receive->arraySize];
     cut_hair(array, stringReceived, data_ptr_receive->arraySize);
-    quicksort();
+    bbsort(array, data_ptr_receive->arraySize);
     arrayToString(array, stringReceived, data_ptr_receive->arraySize);
 
     /* Apronta dados para enviar mensagem ao cliente */
@@ -328,9 +329,26 @@ void customer(int queue_id_customer, int queue_id_barber, int customer){
 /*Converte string para vetor */
 void cut_hair(int array[], char string[], int size){
 
-    for(int i = 0; i < size; i++) {
-        array[i] = string[i] - '0';
-    }
+    int i, j = 0, k;
+    char temp[5];
+
+    for(i = 0; i < size; i++){
+		printf("\n");
+		k = 0;
+		clearString(temp, 5);
+		for(j = j; j < strlen(string); j++){
+			if(string[j] != ' '){
+				temp[k] = string[j];
+				k++;
+			}else{
+				array[i] = atoi(temp);
+				j++;
+				break;
+			}
+
+		}
+
+	}
 
 }
 
@@ -365,8 +383,31 @@ void arrayToString(int array[], char string[], int size){
 
 }
 
-void quicksort(){
-    //
+void bbsort(int array[], int size){
+    
+    int temp;
+
+    for(int i = 0; i < (size - 1); i++){
+
+        for(int j = (size - 2); j >= i; j--){
+
+            if(array[j+1] > array[j]){
+                temp = array[j];
+                array[j] = array[j+1];
+                array[j+1] = temp;
+            }
+
+        }
+
+    }
+}
+
+void clearString(char str[], int size){
+	
+	for(int i = 0; i < size; i++){
+		str[i] = '\0';
+	}
+
 }
 
 /* ========================= FUNÇÕES REFERENTES AOS SEMÁFOROS ========================= */
