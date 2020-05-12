@@ -101,8 +101,6 @@ void removeSharedMemory(int);
 /* ========================= MAIN ========================= */
 
 int main(int argc, char *argv[]){
-    
-    printf("oi");
 
     pid_t rtn;
 
