@@ -100,8 +100,10 @@ void removeSharedMemory(int);
 
 /* ========================= MAIN ========================= */
 
-int main(){
+int main(int argc, char *argv[]){
     
+    printf("oi");
+
     pid_t rtn;
 
     /* Vetores com os pids dos barbeiros e clientes */
@@ -134,12 +136,13 @@ int main(){
 
     /* Declara os processos filhos (barbeiros e clientes) */
     rtn = 1;
-    for(i = 0; i < BARBERS; i++){
+    for(i = 0; i < BARBERS + CUSTOMERS; i++){
         if( rtn != 0 ) {
 
 		    barber_pid[i] = rtn = fork();
-
+            
             if(rtn == 0){
+                
                 barber(queue_id_barber, queue_id_customer, i + 1);
             }
 
@@ -173,6 +176,10 @@ int main(){
         work = false; /* Para de trabalhar */
         
         /* Matando os processos*/
+        for(i = 0; i < CUSTOMERS; i++){
+            kill(customer_pid[i], SIGKILL);
+        }
+
         for(i = 0; i < BARBERS; i++){
             kill(barber_pid[i], SIGKILL);
         }
@@ -197,6 +204,8 @@ int main(){
 
 void barber(int queue_id_barber, int queue_id_customer, int barber){
 
+    printf("====================");
+    
     char stringReceived[MAXSTRINGSIZE*5]; /* Recebe string do cliente */
 
     msgbuf_t message_send;    /* Mensagem que envia */
@@ -239,6 +248,8 @@ void barber(int queue_id_barber, int queue_id_customer, int barber){
 
     unlockSem(g_sem_id_barber);
 
+    exit(0);
+    
 }
 
 void customer(int queue_id_customer, int queue_id_barber, int customer){
@@ -258,7 +269,9 @@ void customer(int queue_id_customer, int queue_id_barber, int customer){
     struct timeval stop_time; /* Instante em que inicia o corte */
 
     /* Gera vetor aleatorio e converte para string */
-    randomArray(array, sizeString);
+    for(int i = 0; i < sizeString; i++){
+        array[i] = (rand() % 1021) + 2;  
+    } 
     arrayToString(array, stringtoBarber, sizeString);
 
     /* Pega tempo atual */
@@ -293,11 +306,14 @@ void customer(int queue_id_customer, int queue_id_barber, int customer){
     }
 
     /* Cliente recebe mensagem do barbeiro -> acabou de cortar o cabelo */
-    if( msgrcv(queue_id_barber, (struct msgbuf_t *)&message_receive, sizeof(data_t_barber), MESSAGE_MTYPE, 0) == -1 ) {
+    if( msgrcv(queue_id_customer, (struct msgbuf_t *)&message_receive, sizeof(data_t_barber), MESSAGE_MTYPE, 0) == -1 ) {
 		fprintf(stderr, "Impossivel receber mensagem!\n");
 		exit(1);
 	}
     gettimeofday(&stop_time, NULL);
+
+    strcpy(stringOrdered, data_ptr_receive->msgBarber);
+    cut_hair(arrayOrdered, stringOrdered, data_ptr_receive->arraySize);
 
     float time;
     time = (float)(stop_time.tv_sec  - start_time.tv_sec);
@@ -312,7 +328,9 @@ void customer(int queue_id_customer, int queue_id_barber, int customer){
 /*Converte string para vetor */
 void cut_hair(int array[], char string[], int size){
 
-    int i, j = 0, k;
+    int i, k;
+    unsigned int j = 0;
+
     char temp[5];
 
     for(i = 0; i < size; i++){
@@ -337,7 +355,12 @@ void cut_hair(int array[], char string[], int size){
 
 /* Imprime informações */
 void apreciate_hair(int barber, int customer, float time){
-    //
+    printf("\n");
+    printf("Cliente #%d foi atendido pelo barbeiro #%d", customer, barber);
+    printf("\nTempo aproximado para o cliente ser atendido: %.2f", time);
+    printf("\nString a ser ordenada: ");
+    printf("\nString Ordenada:");
+    printf("\n");
 }
 
 /* ========================= FUNÇÕES AUXILIARES ========================= */
