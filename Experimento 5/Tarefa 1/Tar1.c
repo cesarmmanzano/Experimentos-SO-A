@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include <time.h>           /* Pata time() */
 #include <errno.h>          /* errno and error codes */
 #include <unistd.h>         /* Para fork() */
 #include <signal.h>         /* Para kill(), sigsuspend(), outros */
@@ -28,7 +29,7 @@
 
 #define PERMISSION 0666 
 
-#define MAXSTRINGSIZE 5120
+#define MAXSTRINGSIZE 126
 
 #define MICRO_PER_SECOND 1000000
 
@@ -51,7 +52,7 @@ typedef struct {
 
 typedef struct {
 	long mtype;
-	char mtext[5555];
+	char mtext[5000];
 } msgbuf_t;
 
 /* Memoria Compartilhada */
@@ -75,8 +76,6 @@ void clearString(char[], int);
 /* ========================= MAIN ========================= */
 
 int main() {
-
-    printf("oi");
     
     pid_t rtn;
 
@@ -96,7 +95,7 @@ int main() {
 	}
 
     /* Cria memoria compartilhada */
-    if( (g_shm_id = shmget(SHM_KEY, sizeof(int), IPC_CREAT | 0666)) == -1 ) {
+    if( (g_shm_id = shmget(SHM_KEY, sizeof(int), IPC_CREAT | PERMISSION)) == -1 ) {
 		fprintf(stderr,"Impossivel criar o segmento de memoria compartilhada!\n");
 		exit(1);
 	}
@@ -217,6 +216,7 @@ void barber(int queue_id, int barber){
 
 void customer(int queue_id, int customer){
 
+    srand (time(NULL));
     int sizeString = (rand() % 24) + 1; /* Tamanho da string que será passada ao barbeiro */
     int array[sizeString]; /* Armazena valores gerados */
     char stringtoBarber[sizeString*5]; /* String que será passada ao barbeiro */
@@ -232,6 +232,7 @@ void customer(int queue_id, int customer){
     struct timeval stop_time; /* Instante em que inicia o corte */
 
     /* Gera vetor aleatorio e converte para string */
+    srand (time(NULL));
     for(int i = 0; i < sizeString; i++){
         array[i] = (rand() % 1021) + 2;  
     } 
