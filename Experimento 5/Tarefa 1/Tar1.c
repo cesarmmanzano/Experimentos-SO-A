@@ -30,7 +30,7 @@
 
 #define PERMISSION 0666 
 
-#define MAXSTRINGSIZE 126
+#define MAXSTRINGSIZE 5120
 
 #define MICRO_PER_SECOND 1000000
 
@@ -53,7 +53,7 @@ typedef struct {
 
 typedef struct {
 	long mtype;
-	char mtext[5000];
+	char mtext[5555];
 } msgbuf_t;
 
 /* Memoria Compartilhada */
@@ -61,7 +61,7 @@ int g_shm_id;
 int *g_shm_addr;
 
 /* Para controlar barbeiro */
-bool isWorking = true;
+//bool isWorking = true;
  
 /* ========================= FUNÇÕES ========================= */
 
@@ -144,12 +144,12 @@ int main() {
                 wait(NULL);
         }
 
-        isWorking = false; /* Para de trabalhar */
+        //isWorking = false; /* Para de trabalhar */
         
         /* Matando os processos */
         for(i = 0; i < BARBERS; i++){
             wait(NULL);
-            kill(barber_pid[i], SIGKILL);
+
         }
 
     }else{
@@ -184,14 +184,11 @@ void barber(int queue_id, int barber){
     data_t_customer *data_ptr_receive = (data_t_customer *)(message_receive.mtext);
 
     /* Enquanto estiver trabalhando, recebe mensagens do cliente */
-    while(isWorking){
 
-        if( msgrcv(queue_id, (struct msgbuf_t *)&message_receive, sizeof(data_t_barber), MESSAGE_MTYPE_B, 0) == -1 ) {
-			fprintf(stderr, "Impossivel receber mensagem!\n");
-			exit(1);
-		}
-
-    }
+    if( msgrcv(queue_id, (struct msgbuf_t *)&message_receive, sizeof(data_t_barber), MESSAGE_MTYPE_B, 0) == -1 ) {
+		fprintf(stderr, "Impossivel receber mensagem!\n");
+		exit(1);
+	}
 
     /* Pega informações da mensagem */
     strcpy(stringReceived, data_ptr_receive->msgCustomer);
@@ -221,7 +218,7 @@ void barber(int queue_id, int barber){
 void customer(int queue_id, int customer){
 
     srand (time(NULL));
-    int sizeString = (rand() % 24) + 1; /* Tamanho da string que será passada ao barbeiro */
+    int sizeString = (rand() % 1021) + 1; /* Tamanho da string que será passada ao barbeiro */
     int array[sizeString]; /* Armazena valores gerados */
     char stringtoBarber[sizeString*5]; /* String que será passada ao barbeiro */
     char stringOrdered[sizeString*5]; /* String que conterá a string organizada */
