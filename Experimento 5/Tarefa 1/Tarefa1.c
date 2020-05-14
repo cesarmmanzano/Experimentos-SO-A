@@ -59,16 +59,13 @@ typedef struct {
 /* Memoria Compartilhada */
 int g_shm_id;
 int *g_shm_addr;
-
-/* Para controlar barbeiro */
-//bool isWorking = true;
  
 /* ========================= FUNÇÕES ========================= */
 
 void barber(int, int);
 void customer(int, int);
 void cut_hair(int[], char[], int);
-void apreciate_hair(int, int, float);
+void apreciate_hair(int, int, float, int[], int[], int);
 
 void arrayToString(int[], char[], int); 
 void bbsort(int[], int);
@@ -143,8 +140,6 @@ int main() {
         for(i = 0; i < CUSTOMERS; i++){
                 wait(NULL);
         }
-
-        //isWorking = false; /* Para de trabalhar */
         
         /* Matando os processos */
         for(i = 0; i < BARBERS; i++){
@@ -183,8 +178,7 @@ void barber(int queue_id, int barber){
     data_t_barber *data_ptr_send = (data_t_barber *)(message_send.mtext);
     data_t_customer *data_ptr_receive = (data_t_customer *)(message_receive.mtext);
 
-    /* Enquanto estiver trabalhando, recebe mensagens do cliente */
-
+    /* Recebe mensagens do cliente */
     if( msgrcv(queue_id, (struct msgbuf_t *)&message_receive, sizeof(data_t_barber), MESSAGE_MTYPE_B, 0) == -1 ) {
 		fprintf(stderr, "Impossivel receber mensagem!\n");
 		exit(1);
@@ -281,7 +275,7 @@ void customer(int queue_id, int customer){
     time = (float)(stop_time.tv_sec  - start_time.tv_sec);
 	time += (stop_time.tv_usec - start_time.tv_usec)/(float)MICRO_PER_SECOND; 
 
-    apreciate_hair(data_ptr_receive->barber_no, customer, time);
+    apreciate_hair(data_ptr_receive->barber_no, customer, time, array, arrayOrdered, sizeString);
 
     exit(0);
 
@@ -315,12 +309,18 @@ void cut_hair(int array[], char string[], int size){
 }
 
 /* Imprime informações */
-void apreciate_hair(int barber, int customer, float time){
+void apreciate_hair(int barber, int customer, float time, int array[], int arrayOrdered[], int size){
     printf("\n");
     printf("Cliente #%d foi atendido pelo barbeiro #%d", customer, barber);
     printf("\nTempo aproximado para o cliente ser atendido: %.2f", time);
-    printf("\nString a ser ordenada: ");
-    printf("\nString Ordenada:");
+    printf("\nString a ser ordenada:\n");
+    for(int i = 0; i < size; i++){
+        printf("%d ",array[i]);
+    }
+    printf("\nString Ordenada:\n");
+    for(int i = 0; i < size; i++){
+        printf("%d ",arrayOrdered[i]);
+    }
     printf("\n");
 }
 
@@ -339,6 +339,7 @@ void arrayToString(int array[], char string[], int size){
 
 }
 
+/* Ordena vetor */
 void bbsort(int array[], int size){
     
     int temp;
@@ -358,6 +359,7 @@ void bbsort(int array[], int size){
     }
 }
 
+/* Limpa string */
 void clearString(char string[], int size){
 	
 	for(int i = 0; i < size; i++){
