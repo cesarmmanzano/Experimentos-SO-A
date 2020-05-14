@@ -22,7 +22,8 @@
 #define CUSTOMERS 1
 #define CHAIRS 7
 
-#define MESSAGE_MTYPE 1
+#define MESSAGE_MTYPE_B 1
+#define MESSAGE_MTYPE_C 2
 #define MESSAGE_QUEUE_ID 3102
 
 #define SHM_KEY	0x1432
@@ -113,7 +114,7 @@ int main() {
 		    barber_pid[i] = rtn = fork();
             
             if(rtn == 0){
-                barber(queue_id,  i + 1);
+                barber(queue_id, i + 1);
             }
 
 	    } else {
@@ -147,14 +148,17 @@ int main() {
         
         /* Matando os processos */
         for(i = 0; i < BARBERS; i++){
+            wait(NULL);
             kill(barber_pid[i], SIGKILL);
         }
 
+    }else{
+        exit(0);
     }
 
 
     /* Remove fila de mensagens */
-    if( msgctl(queue_id,IPC_RMID,NULL) == -1 ) {
+    if( msgctl(queue_id, IPC_RMID, NULL) == -1 ) {
 		fprintf(stderr,"Impossivel remover a fila de mensagens!\n");
 		exit(1);
 	}
@@ -182,7 +186,7 @@ void barber(int queue_id, int barber){
     /* Enquanto estiver trabalhando, recebe mensagens do cliente */
     while(isWorking){
 
-        if( msgrcv(queue_id, (struct msgbuf_t *)&message_receive, sizeof(data_t_barber), MESSAGE_MTYPE, 0) == -1 ) {
+        if( msgrcv(queue_id, (struct msgbuf_t *)&message_receive, sizeof(data_t_barber), MESSAGE_MTYPE_B, 0) == -1 ) {
 			fprintf(stderr, "Impossivel receber mensagem!\n");
 			exit(1);
 		}
@@ -197,7 +201,7 @@ void barber(int queue_id, int barber){
     arrayToString(array, stringReceived, data_ptr_receive->arraySize);
 
     /* Apronta dados para enviar mensagem ao cliente */
-    message_send.mtype = MESSAGE_MTYPE;
+    message_send.mtype = MESSAGE_MTYPE_C;
 	data_ptr_send->barber_no = barber;
 	strcpy(data_ptr_send->msgBarber, stringReceived);
 	data_ptr_send->arraySize = data_ptr_receive->arraySize;
@@ -254,7 +258,7 @@ void customer(int queue_id, int customer){
         *g_shm_addr = *g_shm_addr + 1;
 
         /* Apronta os dados para enviar mensagem */
-        message_send.mtype = MESSAGE_MTYPE;
+        message_send.mtype = MESSAGE_MTYPE_B;
 	    data_ptr_send->customer_no = customer;
 	    strcpy(data_ptr_send->msgCustomer, stringtoBarber);
 	    data_ptr_send->arraySize = sizeString;
@@ -267,7 +271,7 @@ void customer(int queue_id, int customer){
     }
 
     /* Cliente recebe mensagem do barbeiro -> acabou de cortar o cabelo */
-    if( msgrcv(queue_id, (struct msgbuf_t *)&message_receive, sizeof(data_t_barber), MESSAGE_MTYPE, 0) == -1 ) {
+    if( msgrcv(queue_id, (struct msgbuf_t *)&message_receive, sizeof(data_t_barber), MESSAGE_MTYPE_C, 0) == -1 ) {
 		fprintf(stderr, "Impossivel receber mensagem!\n");
 		exit(1);
 	}
@@ -357,10 +361,10 @@ void bbsort(int array[], int size){
     }
 }
 
-void clearString(char str[], int size){
+void clearString(char string[], int size){
 	
 	for(int i = 0; i < size; i++){
-		str[i] = '\0';
+		string[i] = '\0';
 	}
 
 }
