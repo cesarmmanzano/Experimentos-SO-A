@@ -218,7 +218,7 @@ void barber(int queue_id, int barber){
 void customer(int queue_id, int customer){
 
     srand (time(NULL));
-    int sizeString = (rand() % 1021) + 1; /* Tamanho da string que será passada ao barbeiro */
+    int sizeString = (rand() % 1021) + 2; /* Tamanho da string que será passada ao barbeiro */
     int array[sizeString]; /* Armazena valores gerados */
     char stringtoBarber[sizeString*5]; /* String que será passada ao barbeiro */
     char stringOrdered[sizeString*5]; /* String que conterá a string organizada */
