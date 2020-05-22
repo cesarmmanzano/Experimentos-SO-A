@@ -3,18 +3,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdbool.h>
-#include <time.h>           /* Pata time() */
+#include <time.h>           /* for time() */
 #include <errno.h>          /* errno and error codes */
-#include <unistd.h>         /* Para fork() */
-#include <signal.h>         /* Para kill(), sigsuspend(), outros */
-#include <wait.h>           /* Para wait() */
-#include <sys/time.h>	    /* Para gettimeofday() */
-#include <sys/types.h>	    /* Para wait(), msgget(), msgctl() */
-#include <sys/ipc.h>	    /* Para msgget(), msgctl() */
-#include <sys/msg.h>	    /* Para msgget(), msgctl() */
-//#include <sys/sem.h>        /* Para semget(), semop(), semctl() */
-#include <sys/shm.h>        /* Para shmget(), shmat(), shmctl() */
+#include <unistd.h>         /* for fork() */
+#include <signal.h>         /* for kill(), sigsuspend(), outros */
+#include <wait.h>           /* for wait() */
+#include <sys/time.h>	    /* for gettimeofday() */
+#include <sys/types.h>	    /* for wait(), msgget(), msgctl() */
+#include <sys/ipc.h>	    /* for all IPC function calls */
+#include <sys/msg.h>	    /* for msgget(), msgctl() */
+#include <sys/shm.h>        /* for shmget(), shmat(), shmctl() */
 
 /* ========================= CONSTANTES ========================= */
 
@@ -24,13 +22,10 @@
 
 #define MESSAGE_MTYPE_B 1
 #define MESSAGE_MTYPE_C 2
-#define MESSAGE_QUEUE_ID 3102
 
-#define SHM_KEY	0x1432
+#define PERMISSION 0666
 
-#define PERMISSION 0666 
-
-#define MAXSTRINGSIZE 5120
+#define MAXSTRINGSIZE 5115
 
 #define MICRO_PER_SECOND 1000000
 
@@ -40,6 +35,7 @@
 /* Barbeiro envia para cliente */
 typedef struct {
 	unsigned int barber_no;
+    unsigned int customer_no;
     char msgBarber[MAXSTRINGSIZE];
     int arraySize;
 } data_t_barber; 
@@ -56,14 +52,16 @@ typedef struct {
 	char mtext[5555];
 } msgbuf_t;
 
+int queue_id;
+
 /* Memoria Compartilhada */
 int g_shm_id;
 int *g_shm_addr;
  
 /* ========================= FUNÇÕES ========================= */
 
-void barber(int, int);
-void customer(int, int);
+void barber(int);
+void customer(int);
 void cut_hair(int[], char[], int);
 void apreciate_hair(int, int, float, int[], int[], int);
 
@@ -74,15 +72,15 @@ void clearString(char[], int);
 /* ========================= MAIN ========================= */
 
 int main() {
-    
+
     pid_t rtn;
 
     /* Vetores com os pids dos barbeiros e clientes */
     pid_t barber_pid[BARBERS];
     //pid_t customer_pid[CUSTOMERS];
 
-    int queue_id;
-    key_t key_msg = MESSAGE_QUEUE_ID;
+    key_t key_msg = ftok("/tmp", 'a');
+    key_t key_shm = ftok("/tmp", 'b');
 
     int i;
 
@@ -92,8 +90,8 @@ int main() {
 		exit(1);
 	}
 
-    /* Cria memoria compartilhada */
-    if( (g_shm_id = shmget(SHM_KEY, sizeof(int), IPC_CREAT | PERMISSION)) == -1 ) {
+    /* Cria memória compartilhada */
+    if( (g_shm_id = shmget(key_shm, sizeof(int), IPC_CREAT | PERMISSION)) == -1 ) {
 		fprintf(stderr,"Impossivel criar o segmento de memoria compartilhada!\n");
 		exit(1);
 	}
@@ -111,7 +109,7 @@ int main() {
 		    barber_pid[i] = rtn = fork();
             
             if(rtn == 0){
-                barber(queue_id, i + 1);
+                barber(i + 1);
             }
 
 	    } else {
@@ -126,7 +124,7 @@ int main() {
 		    rtn = fork();
 
             if(rtn == 0){
-                customer(queue_id, i + 1);
+                customer(i + 1);
             }
 
 	    } else {
@@ -137,12 +135,11 @@ int main() {
     /* Espera o término dos filhos */
     if(rtn != 0){
 
-        for(i = 0; i < CUSTOMERS; i++){
+        for(int i = 0; i < CUSTOMERS; i++){
                 wait(NULL);
         }
         
-        /* Matando os processos */
-        for(i = 0; i < BARBERS; i++){
+        for(int i = 0; i < BARBERS; i++){
             wait(NULL);
 
         }
@@ -169,8 +166,8 @@ int main() {
 
 /* ========================= FUNÇÕES REFERENTES AO BARBEIRO E CLIENTES ========================= */
 
-void barber(int queue_id, int barber){
-    
+void barber(int barber){
+
     char stringReceived[MAXSTRINGSIZE]; /* Recebe string do cliente */
 
     msgbuf_t message_send;    /* Mensagem que envia */
@@ -183,7 +180,7 @@ void barber(int queue_id, int barber){
 		fprintf(stderr, "Impossivel receber mensagem!\n");
 		exit(1);
 	}
-
+    
     /* Pega informações da mensagem */
     strcpy(stringReceived, data_ptr_receive->msgCustomer);
     int array[data_ptr_receive->arraySize];
@@ -194,6 +191,7 @@ void barber(int queue_id, int barber){
     /* Apronta dados para enviar mensagem ao cliente */
     message_send.mtype = MESSAGE_MTYPE_C;
 	data_ptr_send->barber_no = barber;
+    data_ptr_send->customer_no = data_ptr_receive->customer_no;
 	strcpy(data_ptr_send->msgBarber, stringReceived);
 	data_ptr_send->arraySize = data_ptr_receive->arraySize;
 
@@ -209,7 +207,7 @@ void barber(int queue_id, int barber){
     
 }
 
-void customer(int queue_id, int customer){
+void customer(int customer){
 
     srand (time(NULL));
     int sizeString = (rand() % 1021) + 2; /* Tamanho da string que será passada ao barbeiro */
@@ -229,7 +227,7 @@ void customer(int queue_id, int customer){
     /* Gera vetor aleatorio e converte para string */
     srand (time(NULL));
     for(int i = 0; i < sizeString; i++){
-        array[i] = (rand() % 1021) + 2;  
+        array[i] = (rand() % 1021) + 2; 
     } 
     arrayToString(array, stringtoBarber, sizeString);
 
@@ -237,7 +235,7 @@ void customer(int queue_id, int customer){
     gettimeofday(&start_time, NULL);
 
     /* Início da RC */
-    if(*g_shm_addr >= 7){
+    if(*g_shm_addr >= CHAIRS){
         
         /* Cliente não atendido */
         printf("Cliente #%d nao foi atendido", customer);
@@ -245,7 +243,7 @@ void customer(int queue_id, int customer){
 
     }else{
         
-        /*Cliente atendido*/
+        /* Cliente atendido */
         *g_shm_addr = *g_shm_addr + 1;
 
         /* Apronta os dados para enviar mensagem */
@@ -275,7 +273,7 @@ void customer(int queue_id, int customer){
     time = (float)(stop_time.tv_sec  - start_time.tv_sec);
 	time += (stop_time.tv_usec - start_time.tv_usec)/(float)MICRO_PER_SECOND; 
 
-    apreciate_hair(data_ptr_receive->barber_no, customer, time, array, arrayOrdered, sizeString);
+    apreciate_hair(data_ptr_receive->barber_no, data_ptr_receive->customer_no, time, array, arrayOrdered, sizeString);
 
     exit(0);
 
