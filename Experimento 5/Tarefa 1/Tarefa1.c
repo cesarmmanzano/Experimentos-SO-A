@@ -77,7 +77,7 @@ int main() {
     pid_t rtn;
 
     /* Vetores com os pids dos barbeiros e clientes */
-    pid_t barber_pid[BARBERS];
+    //pid_t barber_pid[BARBERS];
     //pid_t customer_pid[CUSTOMERS];
 
     key_t key_msg = ftok("/tmp", 'a');
@@ -104,63 +104,50 @@ int main() {
 
     /* Declara os processos filhos (barbeiros e clientes) */
     rtn = 1;
-    for(i = 0; i < BARBERS; i++){
-        if( rtn != 0 ) {
-
-		    barber_pid[i] = rtn = fork();
-            
-            if(rtn == 0){
-                barber(i + 1);
-            }
-
-	    } else {
-		    break;
-	    }
-    }
-
-    rtn = 1;
-    for( i = 0; i < CUSTOMERS; i++){
+    for(i = 0; i < BARBERS + CUSTOMERS; i++){
         if( rtn != 0 ) {
 
 		    rtn = fork();
 
-            if(rtn == 0){
-                customer(i + 1);
-            }
-
 	    } else {
 		    break;
 	    }
     }
 
-    /* Espera o término dos filhos */
-    if(rtn != 0){
 
-        for(int i = 0; i < CUSTOMERS; i++){
-                wait(NULL);
+    if(rtn == 0){ /* Filho */
+
+        if(i <= BARBERS){
+            barber(i);
+        } else {
+            customer(i);
+        }
+    }
+    else{ /* Pai */
+
+        for(int j = 0; j < CUSTOMERS; j++){
+            wait(NULL);
         }
 
-        for(int i = 0; i < BARBERS; i++){
+        for(int j = 0; j < BARBERS; j++){
             wait(NULL);
 
         }
 
-    }else{
-        exit(0);
+        /* Remove fila de mensagens */
+        if( msgctl(queue_id, IPC_RMID, NULL) == -1 ) {
+		    fprintf(stderr,"Impossivel remover a fila de mensagens!\n");
+		    exit(1);
+	    }
+
+        /* Remove memoria compartilhada */
+        if( shmctl(g_shm_id, IPC_RMID, NULL) != 0 ) {
+            fprintf(stderr,"Impossivel remover o segmento de memoria compartilhada!\n");
+            exit(1);
+        }
+
     }
 
-
-    /* Remove fila de mensagens */
-    if( msgctl(queue_id, IPC_RMID, NULL) == -1 ) {
-		fprintf(stderr,"Impossivel remover a fila de mensagens!\n");
-		exit(1);
-	}
-
-    /* Remove memoria compartilhada */
-    if( shmctl(g_shm_id, IPC_RMID, NULL) != 0 ) {
-        fprintf(stderr,"Impossivel remover o segmento de memoria compartilhada!\n");
-        exit(1);
-    }
     
     return 0;
 }
@@ -204,7 +191,6 @@ void barber(int barber){
     /* RC */
     *g_shm_addr = *g_shm_addr - 1;
 
-    exit(0);
     
 }
 
@@ -275,8 +261,6 @@ void customer(int customer){
 	time += (stop_time.tv_usec - start_time.tv_usec)/(float)MICRO_PER_SECOND; 
 
     apreciate_hair(data_ptr_receive->barber_no, data_ptr_receive->customer_no, time, array, arrayOrdered, sizeString);
-
-    exit(0);
 
 }
 
