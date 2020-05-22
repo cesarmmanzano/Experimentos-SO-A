@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 #include <time.h>           /* for time() */
 #include <errno.h>          /* errno and error codes */
 #include <unistd.h>         /* for fork() */
@@ -57,7 +58,7 @@ int queue_id;
 /* Memoria Compartilhada */
 int g_shm_id;
 int *g_shm_addr;
- 
+
 /* ========================= FUNÇÕES ========================= */
 
 void barber(int);
@@ -138,7 +139,7 @@ int main() {
         for(int i = 0; i < CUSTOMERS; i++){
                 wait(NULL);
         }
-        
+
         for(int i = 0; i < BARBERS; i++){
             wait(NULL);
 
@@ -176,11 +177,11 @@ void barber(int barber){
     data_t_customer *data_ptr_receive = (data_t_customer *)(message_receive.mtext);
 
     /* Recebe mensagens do cliente */
-    if( msgrcv(queue_id, (struct msgbuf_t *)&message_receive, sizeof(data_t_barber), MESSAGE_MTYPE_B, 0) == -1 ) {
-		fprintf(stderr, "Impossivel receber mensagem!\n");
-		exit(1);
-	}
-    
+    if( msgrcv(queue_id, (struct msgbuf_t *)&message_receive, sizeof(data_t_customer), MESSAGE_MTYPE_B, 0) == -1 ) {
+        fprintf(stderr, "Impossivel receber mensagem!\n");
+        exit(1);
+    }
+
     /* Pega informações da mensagem */
     strcpy(stringReceived, data_ptr_receive->msgCustomer);
     int array[data_ptr_receive->arraySize];
