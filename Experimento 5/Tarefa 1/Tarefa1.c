@@ -18,7 +18,7 @@
 /* ========================= CONSTANTES ========================= */
 
 #define BARBERS 2
-#define CUSTOMERS 1
+#define CUSTOMERS 20
 #define CHAIRS 7
 
 #define MESSAGE_MTYPE_B 1
