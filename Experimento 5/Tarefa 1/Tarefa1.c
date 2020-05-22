@@ -22,7 +22,6 @@
 #define CHAIRS 7
 
 #define MESSAGE_MTYPE_B 1
-#define MESSAGE_MTYPE_C 2
 
 #define PERMISSION 0666
 
@@ -120,7 +119,7 @@ int main() {
         if(i <= BARBERS){
             barber(i);
         } else {
-            customer(i);
+            customer(i-2);
         }
     }
     else{ /* Pai */
@@ -147,7 +146,6 @@ int main() {
         }
 
     }
-
     
     return 0;
 }
@@ -177,21 +175,20 @@ void barber(int barber){
     arrayToString(array, stringReceived, data_ptr_receive->arraySize);
 
     /* Apronta dados para enviar mensagem ao cliente */
-    message_send.mtype = MESSAGE_MTYPE_C;
+    message_send.mtype = data_ptr_receive->customer_no + 50;
 	data_ptr_send->barber_no = barber;
     data_ptr_send->customer_no = data_ptr_receive->customer_no;
 	strcpy(data_ptr_send->msgBarber, stringReceived);
 	data_ptr_send->arraySize = data_ptr_receive->arraySize;
+
+    /* RC */
+    *g_shm_addr = *g_shm_addr - 1;
 
     if( msgsnd(queue_id, (struct msgbuf_t *)&message_send, sizeof(data_t_barber), 0) == -1 ) {
 		fprintf(stderr, "Impossivel enviar mensagem!\n");
 	    exit(1);
 	}
 
-    /* RC */
-    *g_shm_addr = *g_shm_addr - 1;
-
-    
 }
 
 void customer(int customer){
@@ -225,7 +222,7 @@ void customer(int customer){
     if(*g_shm_addr >= CHAIRS){
         
         /* Cliente não atendido */
-        printf("Cliente #%d nao foi atendido", customer);
+        printf("Cliente #%d nao foi atendido\n", customer);
         exit(0);
 
     }else{
@@ -234,7 +231,7 @@ void customer(int customer){
         *g_shm_addr = *g_shm_addr + 1;
 
         /* Apronta os dados para enviar mensagem */
-        message_send.mtype = MESSAGE_MTYPE_B;
+        message_send.mtype = customer + 50;
 	    data_ptr_send->customer_no = customer;
 	    strcpy(data_ptr_send->msgCustomer, stringtoBarber);
 	    data_ptr_send->arraySize = sizeString;
@@ -247,7 +244,7 @@ void customer(int customer){
     }
 
     /* Cliente recebe mensagem do barbeiro -> acabou de cortar o cabelo */
-    if( msgrcv(queue_id, (struct msgbuf_t *)&message_receive, sizeof(data_t_barber), MESSAGE_MTYPE_C, 0) == -1 ) {
+    if( msgrcv(queue_id, (struct msgbuf_t *)&message_receive, sizeof(data_t_barber), customer + 50, 0) == -1 ) {
 		fprintf(stderr, "Impossivel receber mensagem!\n");
 		exit(1);
 	}
