@@ -24,7 +24,9 @@
 
 #define PERMISSION 0666
 
-#define MAXSTRINGSIZE 5115
+#define MAXSTRINGSIZE 1500
+
+#define SIZEARRAY 298
 
 #define MICRO_PER_SECOND 1000000
 
@@ -36,7 +38,6 @@
 typedef struct
 {
     unsigned int barber_no;
-    unsigned int customer_no;
     char msgBarber[MAXSTRINGSIZE];
     int arraySize;
 } data_t_barber;
@@ -52,20 +53,20 @@ typedef struct
 typedef struct
 {
     long mtype;
-    char mtext[5555];
+    char mtext[sizeof(data_t_barber)];
 } msgbuf_t;
 
 int queue_id;
 
 /* Memoria Compartilhada */
 int g_shm_id;
-int *g_shm_addr;
+int *num_chairs;
 
 /* Semáforo */
 struct sembuf g_lock_op[1];
 struct sembuf g_unlock_op[1];
-int g_sem_id_barber;
-int g_sem_id_customer;
+int g_sem_id_1;
+int g_sem_id_2;
 
 /* ========================= FUNÇÕES ========================= */
 
@@ -88,20 +89,20 @@ void unlockSem(int);
 
 int main()
 {
-
     pid_t rtn;
 
     /* Vetores com os pids dos barbeiros e clientes */
-    //pid_t barber_pid[BARBERS];
+    pid_t barber_pid[BARBERS];
     //pid_t customer_pid[CUSTOMERS];
 
     key_t key_msg = ftok("/tmp", 'a');
+
     key_t key_shm = ftok("/tmp", 'b');
 
-    key_t sem_key_barber = ftok("/tmp", 'c');
-    key_t sem_key_customer = ftok("/tmp", 'd');
+    key_t sem_key_1 = ftok("/tmp", 'c');
+    key_t sem_key_2 = ftok("/tmp", 'd');
 
-    int i;
+    int i, j = 0;
 
     /* Cria fila de mensagens */
     if ((queue_id = msgget(key_msg, IPC_CREAT | PERMISSION)) == -1)
@@ -116,21 +117,21 @@ int main()
         fprintf(stderr, "Impossivel criar o segmento de memoria compartilhada!\n");
         exit(1);
     }
-    if ((g_shm_addr = (int *)shmat(g_shm_id, NULL, 0)) == (int *)-1)
+    if ((num_chairs = (int *)shmat(g_shm_id, NULL, 0)) == (int *)-1)
     {
         fprintf(stderr, "Impossivel associar o segmento de memoria compartilhada!\n");
         exit(1);
     }
-    *g_shm_addr = 0;
+    *num_chairs = 0;
 
     /* Cria semaforos */
     semaphoreStruct();
 
-    createSem(&g_sem_id_barber, sem_key_barber);
-    createSem(&g_sem_id_customer, sem_key_customer);
+    createSem(&g_sem_id_1, sem_key_1);
+    createSem(&g_sem_id_2, sem_key_2);
 
-    unlockSem(g_sem_id_barber);
-    unlockSem(g_sem_id_customer);
+    unlockSem(g_sem_id_1);
+    unlockSem(g_sem_id_2);
 
     /* Declara os processos filhos (barbeiros e clientes) */
     rtn = 1;
@@ -138,8 +139,14 @@ int main()
     {
         if (rtn != 0)
         {
-
-            rtn = fork();
+            if (i == 1 || i == 2)
+            {
+                barber_pid[i - 1] = rtn = fork();
+            }
+            else
+            {
+                rtn = fork();
+            }
         }
         else
         {
@@ -167,9 +174,12 @@ int main()
             wait(NULL);
         }
 
+        //work = false;
+
         for (int j = 0; j < BARBERS; j++)
         {
-            wait(NULL);
+            //wait(NULL);
+            kill(barber_pid[j], SIGKILL);
         }
 
         /* Remove fila de mensagens */
@@ -187,8 +197,8 @@ int main()
         }
 
         /* Remove semáforos */
-        removeSem(g_sem_id_barber);
-        removeSem(g_sem_id_customer);
+        removeSem(g_sem_id_1);
+        removeSem(g_sem_id_2);
     }
 
     return 0;
@@ -198,63 +208,69 @@ int main()
 
 void barber(int barber)
 {
+    msgbuf_t message_send;                                                /* Mensagem que envia */
+    data_t_barber *data_ptr_send = (data_t_barber *)(message_send.mtext); /* Ponteiro para os dados */
 
-    //usleep(1000000);
-    msgbuf_t message_send;                                                          /* Mensagem que envia */
     msgbuf_t message_receive;                                                       /* Mensagem que recebe */
-    data_t_barber *data_ptr_send = (data_t_barber *)(message_send.mtext);           /* Ponteiro para os dados */
     data_t_customer *data_ptr_receive = (data_t_customer *)(message_receive.mtext); /* Ponteiro para os dados */
 
-    /* Recebe mensagens do cliente */
-    if (msgrcv(queue_id, (struct msgbuf_t *)&message_receive, sizeof(data_t_customer), 1, 0) == -1)
+    while (__STDC__)
     {
-        fprintf(stderr, "Impossivel receber mensagem!\n");
-        exit(1);
+        /* Recebe mensagens do cliente */
+        if (msgrcv(queue_id, (struct msgbuf_t *)&message_receive, sizeof(data_t_customer), 1, 0) == -1)
+        {
+            //fprintf(stderr, "Impossivel receber mensagem 1!\n");
+            exit(1);
+        }
+
+        /* Pega informações da mensagem */
+        int sizeString = data_ptr_receive->arraySize;
+        //char stringReceived[sizeString*5]; /* String do cliente */
+        int array[sizeString];
+
+        //strcpy(stringReceived, data_ptr_receive->msgCustomer);
+        cut_hair(array, data_ptr_receive->msgCustomer, sizeString);
+        bbsort(array, sizeString);
+        arrayToString(array, data_ptr_send->msgBarber, sizeString);
+
+        /* Apronta dados para enviar mensagem ao cliente */
+        message_send.mtype = data_ptr_receive->customer_no + 50;
+        data_ptr_send->barber_no = barber;
+        //strcpy(data_ptr_send->msgBarber, stringReceived);
+        data_ptr_send->arraySize = sizeString;
+
+        /* RC */
+        lockSem(g_sem_id_1);
+        *num_chairs = *num_chairs - 1;
+        unlockSem(g_sem_id_1);
+
+        if (msgsnd(queue_id, (struct msgbuf_t *)&message_send, sizeof(data_t_barber), 0) == -1)
+        {
+            //fprintf(stderr, "Impossivel enviar mensagem 2!\n");
+            exit(1);
+        }
     }
 
-    char stringReceived[data_ptr_receive->arraySize]; /* String do cliente */
-
-    /* Pega informações da mensagem */
-    strcpy(stringReceived, data_ptr_receive->msgCustomer);
-    int array[data_ptr_receive->arraySize];
-    cut_hair(array, stringReceived, data_ptr_receive->arraySize);
-    bbsort(array, data_ptr_receive->arraySize);
-    arrayToString(array, stringReceived, data_ptr_receive->arraySize);
-
-    /* Apronta dados para enviar mensagem ao cliente */
-    message_send.mtype = data_ptr_receive->customer_no + 50;
-    data_ptr_send->barber_no = barber;
-    data_ptr_send->customer_no = data_ptr_receive->customer_no;
-    strcpy(data_ptr_send->msgBarber, stringReceived);
-    data_ptr_send->arraySize = data_ptr_receive->arraySize;
-
-    /* RC */
-    *g_shm_addr = *g_shm_addr - 1;
-
-    if (msgsnd(queue_id, (struct msgbuf_t *)&message_send, sizeof(data_t_barber), 0) == -1)
-    {
-        fprintf(stderr, "Impossivel enviar mensagem!\n");
-        exit(1);
-    }
+    return;
 }
 
 void customer(int customer)
 {
+    msgbuf_t message_send;                                                    /* Mensagem que envia */
+    data_t_customer *data_ptr_send = (data_t_customer *)(message_send.mtext); /* Ponteiro para os dados */
 
-    srand(time(NULL) * customer * getpid());
-    int sizeString = (rand() % 1021) + 2; /* Tamanho da string que será passada ao barbeiro */
+    msgbuf_t message_receive;                                                   /* Mensagem que recebe */
+    data_t_barber *data_ptr_receive = (data_t_barber *)(message_receive.mtext); /* Ponteiro para os dados */
+
+    struct timeval start_time; /* Instante em que entra e senta na sala */
+    struct timeval stop_time;  /* Instante em que inicia o corte */
+
+    srand(time(NULL) * getpid() * customer);
+    int sizeString = (rand() % SIZEARRAY) + 2;; /* Tamanho da string que será passada ao barbeiro */
     int array[sizeString];                /* Armazena valores gerados */
     char stringtoBarber[sizeString * 5];  /* String que será passada ao barbeiro */
     char stringOrdered[sizeString * 5];   /* String que conterá a string organizada */
     int arrayOrdered[sizeString];         /* Vetor de inteiros ordenado*/
-
-    msgbuf_t message_send;                                                       /* Mensagem que envia */
-    msgbuf_t message_receive;                                                    /* Mensagem que recebe */
-    data_t_barber *data_ptr_receive = (data_t_barber *)(message_send.mtext);     /* Ponteiro para os dados */
-    data_t_customer *data_ptr_send = (data_t_customer *)(message_receive.mtext); /* Ponteiro para os dados */
-
-    struct timeval start_time; /* Instante em que entra e senta na sala */
-    struct timeval stop_time;  /* Instante em que inicia o corte */
 
     /* Gera vetor aleatorio e converte para string */
     srand(time(NULL) * getpid());
@@ -268,21 +284,21 @@ void customer(int customer)
     gettimeofday(&start_time, NULL);
 
     /* Início da RC */
-    if (*g_shm_addr >= CHAIRS)
+    if (*num_chairs >= CHAIRS)
     {
-
         /* Cliente não atendido */
         printf("Cliente #%d nao foi atendido\n", customer);
         exit(0);
     }
     else
     {
-
         /* Cliente atendido */
-        *g_shm_addr = *g_shm_addr + 1;
+        lockSem(g_sem_id_1);
+        *num_chairs = *num_chairs + 1;
+        unlockSem(g_sem_id_1);
 
         /* Apronta os dados para enviar mensagem */
-        message_send.mtype = customer + 50;
+        message_send.mtype = 1;
         data_ptr_send->customer_no = customer;
         strcpy(data_ptr_send->msgCustomer, stringtoBarber);
         data_ptr_send->arraySize = sizeString;
@@ -299,20 +315,22 @@ void customer(int customer)
             fprintf(stderr, "Impossivel receber mensagem!\n");
             exit(1);
         }
+
+        lockSem(g_sem_id_2);
         gettimeofday(&stop_time, NULL);
 
         strcpy(stringOrdered, data_ptr_receive->msgBarber);
         cut_hair(arrayOrdered, stringOrdered, data_ptr_receive->arraySize);
 
-        float time;
-        time = (float)(stop_time.tv_sec - start_time.tv_sec);
-        time += (stop_time.tv_usec - start_time.tv_usec) / (float)MICRO_PER_SECOND;
+        float time = (stop_time.tv_usec - start_time.tv_usec) / (float)MICRO_PER_SECOND;
 
-        apreciate_hair(data_ptr_receive->barber_no, data_ptr_receive->customer_no, time, array, arrayOrdered, sizeString);
+        apreciate_hair(data_ptr_receive->barber_no, customer, time, array, arrayOrdered, sizeString);
     }
+
+    return;
 }
 
-/*Converte string para vetor */
+/* Converte string para vetor */
 void cut_hair(int array[], char string[], int size)
 {
 
@@ -340,27 +358,31 @@ void cut_hair(int array[], char string[], int size)
             }
         }
     }
+
+    return;
 }
 
 /* Imprime informações */
 void apreciate_hair(int barber, int customer, float time, int array[], int arrayOrdered[], int size)
 {
     printf("\n");
-    //printf("\n======================================================\n");
+    printf("\n======================================================\n");
     printf("Cliente #%d foi atendido pelo barbeiro #%d", customer, barber);
-    printf("\nTempo aproximado para o cliente ser atendido: %.10f", time);
+    printf("\nTempo aproximado para o cliente ser atendido: %.8f", time);
     printf("\nString a ser ordenada:\n");
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < size; i++)
     {
         printf("%d ", array[i]);
     }
-    printf("\nString Ordenada:\n");
-    for (int i = 0; i < 5; i++)
+    printf("\nString ordenada:\n");
+    for (int i = 0; i < size; i++)
     {
         printf("%d ", arrayOrdered[i]);
     }
+    printf("\n======================================================\n");
     printf("\n");
-    //printf("\n======================================================\n");
+    unlockSem(g_sem_id_2);
+    return;
 }
 
 /* ========================= FUNÇÕES AUXILIARES ========================= */
@@ -376,12 +398,12 @@ void arrayToString(int array[], char string[], int size)
         n = n + x;
         n++;
     }
+    return;
 }
 
 /* Ordena vetor */
 void bbsort(int array[], int size)
 {
-
     int temp;
 
     for (int i = 0; i < (size - 1); i++)
@@ -398,6 +420,7 @@ void bbsort(int array[], int size)
             }
         }
     }
+    return;
 }
 
 /* Limpa string */
@@ -407,6 +430,7 @@ void clearString(char string[], int size)
     {
         string[i] = '\0';
     }
+    return;
 }
 
 /* ========================= SEMÁFOROS ========================= */
@@ -414,7 +438,6 @@ void clearString(char string[], int size)
 /* Construindo a estrutura de controle do semáforo */
 void semaphoreStruct()
 {
-
     g_lock_op[0].sem_num = 0;
     g_lock_op[0].sem_op = -1;
     g_lock_op[0].sem_flg = 0;
@@ -422,48 +445,49 @@ void semaphoreStruct()
     g_unlock_op[0].sem_num = 0;
     g_unlock_op[0].sem_op = 1;
     g_unlock_op[0].sem_flg = 0;
+    return;
 }
 
 /* Cria o semáforo*/
 void createSem(int *g_sem_id, key_t sem_key)
 {
-
     if ((*g_sem_id = semget(sem_key, 1, IPC_CREAT | PERMISSION)) == -1)
     {
         fprintf(stderr, "chamada a semget() falhou, impossivel criar o conjunto de semaforos!\n");
         exit(1);
     }
+    return;
 }
 
 /* Remove semáforo */
 void removeSem(int g_sem_id)
 {
-
     if (semctl(g_sem_id, 0, IPC_RMID, 0) != 0)
     {
         fprintf(stderr, "Impossivel remover o conjunto de semaforos!\n");
         exit(1);
     }
+    return;
 }
 
 /* Bloqueia semaforo */
 void lockSem(int g_sem_id)
 {
-
     if (semop(g_sem_id, g_lock_op, 1) == -1)
     {
         fprintf(stderr, "chamada semop() falhou, impossivel bloquear o semaforo!\n");
         exit(1);
     }
+    return;
 }
 
 /* Desbloqueia semáforo */
 void unlockSem(int g_sem_id)
 {
-
     if (semop(g_sem_id, g_unlock_op, 1) == -1)
     {
         fprintf(stderr, "chamada semop() falhou, impossivel desbloquear o semaforo!\n");
         exit(1);
     }
+    return;
 }
