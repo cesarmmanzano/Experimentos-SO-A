@@ -4,8 +4,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
-#include <unistd.h>
 #include <pthread.h>
+#include <unistd.h>
 #include <time.h>
 #include <errno.h>
 #include <wait.h>
@@ -20,7 +20,9 @@
 
 #define PERMISSION 0666
 
-#define MAXSTRINGSIZE 5115
+#define MAXSTRINGSIZE 500
+
+#define MICRO_PER_SECOND 1000000
 
 /* ========================= VARIÁVEIS E SIMILARES ========================= */
 
@@ -32,20 +34,23 @@ pthread_mutex_t mutex;
 /* Semáforo */
 struct sembuf g_lock_op[1];
 struct sembuf g_unlock_op[1];
-int g_sem_id_barber;
-int g_sem_id_customer;
+int g_sem_id_barber;   /* Para barbeiros */
+int g_sem_id_customer; /* Para clientes */
+int g_sem_id_aprHair;  /* Para os prints */
 
 /* Struct de Mensagens */
 typedef struct
 {
     unsigned int barber_no;
-    char msgBarber[MAXSTRINGSIZE];
 
-    unsigned int customer_no;
-    char msgCustomer[MAXSTRINGSIZE];
+    char msgToCustomer[MAXSTRINGSIZE];
+
+    char msgToBarber[MAXSTRINGSIZE];
 
     int arraySize;
-} data_t;
+
+    int currentCustomer;
+} data_t[CUSTOMERS];
 data_t infos_bc;
 
 /* Para numero de cadeiras */
@@ -54,13 +59,16 @@ int numChairs = 0;
 /* Quantos clientes foram atendidos */
 int atendido = 0;
 
+/* Para controlar barbeiro */
+bool work = true;
+
 /* ========================= FUNÇÕES ========================= */
 
 void *barber(void *);
 void *customer(void *);
 
 void cut_hair(int[], char[], int);
-void apreciate_hair();
+void apreciate_hair(int, int, float);
 
 void semaphoreStruct();
 void createSem(int *, key_t);
@@ -76,21 +84,23 @@ void clearString(char string[], int size);
 
 int main(int argc, char *argv[])
 {
-
     int num_barber[BARBERS], num_customer[CUSTOMERS];
     int i;
 
     /* Inicializa semaforo */
     key_t sem_key_barber = ftok("/tmp", 'a');
     key_t sem_key_customer = ftok("/tmp", 'b');
+    key_t sem_key_aprHair = ftok("/tmp", 'c');
 
     semaphoreStruct();
 
     createSem(&g_sem_id_barber, sem_key_barber);
     createSem(&g_sem_id_customer, sem_key_customer);
+    createSem(&g_sem_id_aprHair, sem_key_aprHair);
 
-    unlockSem(g_sem_id_barber);
-    unlockSem(g_sem_id_customer);
+    //lockSem(g_sem_id_barber);
+    //lockSem(g_sem_id_customer);
+    unlockSem(g_sem_id_aprHair);
 
     /* Inicializa mutex */
     if (pthread_mutex_init(&mutex, NULL))
@@ -131,6 +141,8 @@ int main(int argc, char *argv[])
         }
     }
 
+    work = false;
+
     for (i = 0; i < BARBERS; i++)
     {
         if (pthread_join(barbers[i], NULL))
@@ -149,105 +161,127 @@ int main(int argc, char *argv[])
     /* Remove semáforos */
     removeSem(g_sem_id_barber);
     removeSem(g_sem_id_customer);
+    removeSem(g_sem_id_aprHair);
 
     return 0;
 }
 
-/* ========================= FUNÇÕES REFERENTES AO BARBEIRO E CLIENTES ========================= */
+/* ========================= BARBEIROS E CLIENTES ========================= */
 
 void *barber(void *barberId)
 {
-
     int num_barber = *(int *)barberId;
 
+    //int sizeString;
+    int currentCustomer = -1;
+
     /* Atende cliente enquanto trabalhar */
-    while (atendido < CUSTOMERS)
+    while (work)
     {
-        lockSem(g_sem_id_customer);
+        currentCustomer = -1;
+
         pthread_mutex_lock(&mutex);
-        numChairs = numChairs - 1;
-        /* Pega informações da struct */
-        //
-        //
-        //
-        //
+        for (int i = 0; i < CUSTOMERS; i++)
+        {
+            if (infos_bc[i].currentCustomer == 0)
+            {
+                infos_bc[i].currentCustomer = 1;
+                infos_bc[i].barber_no = num_barber;
+                currentCustomer = i;
+                break;
+            }
+        }
         pthread_mutex_unlock(&mutex);
-        //cut_hair();
-        unlockSem(g_sem_id_barber);
+
+        if (currentCustomer != -1)
+        {
+            lockSem(g_sem_id_customer);
+            pthread_mutex_lock(&mutex);
+
+            numChairs = numChairs - 1;
+
+            /* Pega informações da struct */
+            int arrayOrdered[infos_bc[currentCustomer].arraySize];
+            strcpy(infos_bc[currentCustomer].msgToCustomer, infos_bc[currentCustomer].msgToBarber);
+            cut_hair(arrayOrdered, infos_bc[currentCustomer].msgToCustomer, infos_bc[currentCustomer].arraySize);
+            bbsort(arrayOrdered, infos_bc[currentCustomer].arraySize);
+            arrayToString(arrayOrdered, infos_bc[currentCustomer].msgToCustomer, infos_bc[currentCustomer].arraySize);
+
+            unlockSem(g_sem_id_barber);
+            pthread_mutex_unlock(&mutex);
+        }
     }
+
     pthread_exit(NULL);
 }
 
 void *customer(void *customerId)
 {
-
     int num_customer = *(int *)customerId;
 
     struct timeval start_time;
     struct timeval stop_time;
 
-    /* Gera tamanho da string */
-    srand(time(NULL) * getpid() * num_customer);
-    int sizeString = ((rand() % 1021) + 2);
-
-    int array[sizeString];
-    /* Gera vetor aleatorio e converte para string */
-    srand(time(NULL) * getpid());
-    for (int i = 0; i < sizeString; i++)
-    {
-        array[i] = (rand() % 1021) + 2;
-    }
-
-    /* String enviada ao barbeiro */
-    char stringToBarber[sizeString * 5];
-    arrayToString(array, stringToBarber, sizeString);
+    int sizeString;
 
     /* Inicio atendimento */
     gettimeofday(&start_time, NULL);
 
     bool control = true;
-    gettimeofday(&stop_time, NULL);
 
     while (control)
     {
-
         pthread_mutex_lock(&mutex);
 
         /* Cliente não pode ser atendido */
         if (numChairs >= CHAIRS)
         {
-
-            usleep(100);
             pthread_mutex_unlock(&mutex);
+            usleep(100);
         }
         else
         {
-
             /* Cliente pode ser atendido */
-            numChairs++;
-            atendido++;
-
-            /*Coloca informações na struct */
-            //
-            //
-            //
+            numChairs = numChairs + 1;
 
             unlockSem(g_sem_id_customer);
+
+            /* Coloca informações na struct */
+
+            /* Gera tamanho da string */
+            srand(time(NULL) * num_customer * 2);
+            infos_bc[num_customer].arraySize = (rand() % 98) + 2;
+
+            /* Gera vetor aleatorio e converte para string */
+            int array[infos_bc[num_customer].arraySize];
+            srand(time(NULL) * num_customer);
+            for (int i = 0; i < infos_bc[num_customer].arraySize; i++)
+            {
+                array[i] = (rand() % 1021) + 2;
+            }
+            arrayToString(array, infos_bc[num_customer].msgToBarber, infos_bc[num_customer].arraySize);
+
+            infos_bc[num_customer].currentCustomer = 0;
+
             pthread_mutex_unlock(&mutex);
             lockSem(g_sem_id_barber);
-            apreciate_hair();
+
+            /* Imprimir informações */
+            lockSem(g_sem_id_aprHair);
+            gettimeofday(&stop_time, NULL);
+            float time = (stop_time.tv_usec - start_time.tv_usec) / (float)MICRO_PER_SECOND;
+            apreciate_hair(infos_bc[num_customer].barber_no, num_customer, time);
 
             control = false;
         }
-
-        pthread_exit(NULL);
     }
+
+    pthread_exit(NULL);
 }
 
 /* Converte string para vetor */
 void cut_hair(int array[], char string[], int size)
 {
-
     int i, k;
     unsigned int j = 0;
 
@@ -275,9 +309,20 @@ void cut_hair(int array[], char string[], int size)
 }
 
 /* Imprime informações */
-void apreciate_hair()
+void apreciate_hair(int num_barber, int num_customer, float time)
 {
-    //
+    printf("\n");
+    printf("\n======================================================\n");
+    printf("Cliente #%d atendido pelo barbeiro #%d\n", num_customer + 1, num_barber + 1);
+    printf("Tempo de atendimento: %.8f\n", time);
+    printf("String não ordenada: ");
+    puts(infos_bc[num_customer].msgToBarber);
+    printf("\nString ordenada: ");
+    puts(infos_bc[num_customer].msgToCustomer);
+
+    printf("\n======================================================\n");
+    printf("\n");
+    unlockSem(g_sem_id_aprHair);
 }
 
 /* ========================= FUNÇÕES AUXILIARES ========================= */
@@ -285,7 +330,6 @@ void apreciate_hair()
 /* Converte um vetor de inteiros para string */
 void arrayToString(int array[], char string[], int size)
 {
-
     int n = 0;
     for (int i = 0; i < size; i++)
     {
@@ -299,7 +343,6 @@ void arrayToString(int array[], char string[], int size)
 /* Ordena vetor */
 void bbsort(int array[], int size)
 {
-
     int temp;
 
     for (int i = 0; i < (size - 1); i++)
@@ -308,7 +351,7 @@ void bbsort(int array[], int size)
         for (int j = (size - 2); j >= i; j--)
         {
 
-            if (array[j + 1] > array[j])
+            if (array[j + 1] < array[j])
             {
                 temp = array[j];
                 array[j] = array[j + 1];
@@ -321,31 +364,32 @@ void bbsort(int array[], int size)
 /* Limpa string */
 void clearString(char string[], int size)
 {
-
     for (int i = 0; i < size; i++)
     {
         string[i] = '\0';
     }
 }
-/* ========================= FUNÇÕES REFERENTES AOS SEMÁFOROS ========================= */
+
+/* ========================= SEMÁFORO ========================= */
 
 /* Construindo a estrutura de controle do semáforo */
 void semaphoreStruct()
 {
+    //for (int i = 0; i < CUSTOMERS; i++)
+    //{
+        g_lock_op[0].sem_num = 0;
+        g_lock_op[0].sem_op = -1;
+        g_lock_op[0].sem_flg = 0;
 
-    g_lock_op[0].sem_num = 0;
-    g_lock_op[0].sem_op = -1;
-    g_lock_op[0].sem_flg = 0;
-
-    g_unlock_op[0].sem_num = 0;
-    g_unlock_op[0].sem_op = 1;
-    g_unlock_op[0].sem_flg = 0;
+        g_unlock_op[0].sem_num = 0;
+        g_unlock_op[0].sem_op = 1;
+        g_unlock_op[0].sem_flg = 0;
+    //}
 }
 
 /* Cria o semáforo*/
 void createSem(int *g_sem_id, key_t sem_key)
 {
-
     if ((*g_sem_id = semget(sem_key, 1, IPC_CREAT | PERMISSION)) == -1)
     {
         fprintf(stderr, "chamada a semget() falhou, impossivel criar o conjunto de semaforos!\n");
@@ -356,7 +400,6 @@ void createSem(int *g_sem_id, key_t sem_key)
 /* Remove semáforo */
 void removeSem(int g_sem_id)
 {
-
     if (semctl(g_sem_id, 0, IPC_RMID, 0) != 0)
     {
         fprintf(stderr, "Impossivel remover o conjunto de semaforos!\n");
@@ -367,7 +410,6 @@ void removeSem(int g_sem_id)
 /* Bloqueia semaforo */
 void lockSem(int g_sem_id)
 {
-
     if (semop(g_sem_id, g_lock_op, 1) == -1)
     {
         fprintf(stderr, "chamada semop() falhou, impossivel bloquear o semaforo!\n");
@@ -378,7 +420,6 @@ void lockSem(int g_sem_id)
 /* Desbloqueia semáforo */
 void unlockSem(int g_sem_id)
 {
-
     if (semop(g_sem_id, g_unlock_op, 1) == -1)
     {
         fprintf(stderr, "chamada semop() falhou, impossivel desbloquear o semaforo!\n");
