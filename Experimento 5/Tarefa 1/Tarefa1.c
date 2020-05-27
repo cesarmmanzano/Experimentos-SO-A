@@ -102,7 +102,7 @@ int main()
     key_t sem_key_1 = ftok("/tmp", 'c');
     key_t sem_key_2 = ftok("/tmp", 'd');
 
-    int i, j = 0;
+    int i;
 
     /* Cria fila de mensagens */
     if ((queue_id = msgget(key_msg, IPC_CREAT | PERMISSION)) == -1)
@@ -225,10 +225,8 @@ void barber(int barber)
 
         /* Pega informações da mensagem */
         int sizeString = data_ptr_receive->arraySize;
-        //char stringReceived[sizeString*5]; /* String do cliente */
         int array[sizeString];
 
-        //strcpy(stringReceived, data_ptr_receive->msgCustomer);
         cut_hair(array, data_ptr_receive->msgCustomer, sizeString);
         bbsort(array, sizeString);
         arrayToString(array, data_ptr_send->msgBarber, sizeString);
@@ -236,7 +234,6 @@ void barber(int barber)
         /* Apronta dados para enviar mensagem ao cliente */
         message_send.mtype = data_ptr_receive->customer_no + 50;
         data_ptr_send->barber_no = barber;
-        //strcpy(data_ptr_send->msgBarber, stringReceived);
         data_ptr_send->arraySize = sizeString;
 
         /* RC */
@@ -266,11 +263,12 @@ void customer(int customer)
     struct timeval stop_time;  /* Instante em que inicia o corte */
 
     srand(time(NULL) * getpid() * customer);
-    int sizeString = (rand() % SIZEARRAY) + 2;; /* Tamanho da string que será passada ao barbeiro */
-    int array[sizeString];                /* Armazena valores gerados */
-    char stringtoBarber[sizeString * 5];  /* String que será passada ao barbeiro */
-    char stringOrdered[sizeString * 5];   /* String que conterá a string organizada */
-    int arrayOrdered[sizeString];         /* Vetor de inteiros ordenado*/
+    int sizeString = (rand() % SIZEARRAY) + 2;
+    ;                                    /* Tamanho da string que será passada ao barbeiro */
+    int array[sizeString];               /* Armazena valores gerados */
+    char stringtoBarber[sizeString * 5]; /* String que será passada ao barbeiro */
+    char stringOrdered[sizeString * 5];  /* String que conterá a string organizada */
+    int arrayOrdered[sizeString];        /* Vetor de inteiros ordenado*/
 
     /* Gera vetor aleatorio e converte para string */
     srand(time(NULL) * getpid());
@@ -365,8 +363,7 @@ void cut_hair(int array[], char string[], int size)
 /* Imprime informações */
 void apreciate_hair(int barber, int customer, float time, int array[], int arrayOrdered[], int size)
 {
-    printf("\n");
-    printf("\n======================================================\n");
+    printf("\n\n======================================================\n");
     printf("Cliente #%d foi atendido pelo barbeiro #%d", customer, barber);
     printf("\nTempo aproximado para o cliente ser atendido: %.8f", time);
     printf("\nString a ser ordenada:\n");
@@ -374,13 +371,13 @@ void apreciate_hair(int barber, int customer, float time, int array[], int array
     {
         printf("%d ", array[i]);
     }
-    printf("\nString ordenada:\n");
+    printf("\n\nString ordenada:\n");
     for (int i = 0; i < size; i++)
     {
         printf("%d ", arrayOrdered[i]);
     }
-    printf("\n======================================================\n");
-    printf("\n");
+    printf("\n======================================================\n\n");
+
     unlockSem(g_sem_id_2);
     return;
 }
