@@ -20,7 +20,7 @@
 
 #define PERMISSION 0666
 
-#define MAXSTRINGSIZE 500
+#define MAXSTRINGSIZE 1500
 
 #define MICRO_PER_SECOND 1000000
 
@@ -43,7 +43,7 @@ typedef struct
 {
     unsigned int barber_no;
 
-    unsigned int customer_no;
+    unsigned int currentCustomer;
 
     char msgToCustomer[MAXSTRINGSIZE];
 
@@ -96,8 +96,6 @@ int main(int argc, char *argv[])
     createSem(&g_sem_id_customer, sem_key_customer, CUSTOMERS);
     createSem(&g_sem_id_aprHair, sem_key_aprHair, 1);
 
-    //lockSem(g_sem_id_barber, 1);
-    //lockSem(g_sem_id_customer, i);
     unlockSem(g_sem_id_aprHair, 0);
 
     /* Inicializa mutex */
@@ -107,7 +105,7 @@ int main(int argc, char *argv[])
         exit(-1);
     }
 
-    /* Limpa os dados da struct */
+    /* Limpa/Inicializa os dados da struct */
     clearStruct();
 
     /* Cria as threads barbeiro */
@@ -173,26 +171,23 @@ void *barber(void *barberId)
 {
     int num_barber = *(int *)barberId;
 
-    //int sizeString;
     int currentCustomer;
 
-    /* Atende cliente enquanto trabalhar */
+    /* Atende os clientes enquanto trabalhar */
     while (__STDC__)
     {
         currentCustomer = -1;
-        //lockSem(g_sem_id_customer);
 
         pthread_mutex_lock(&mutex);
         for (int i = 0; i < CUSTOMERS; i++)
         {
-            if (infos_bc[i].customer_no == 0)
+            if (infos_bc[i].currentCustomer == 0)
             {
-                infos_bc[i].customer_no = 1;
+                infos_bc[i].currentCustomer = 1;
                 currentCustomer = i;
                 break;
             }
         }
-
         pthread_mutex_unlock(&mutex);
 
         if (currentCustomer != -1)
@@ -254,7 +249,7 @@ void *customer(void *customerId)
 
             /* Gera tamanho da string */
             srand(time(NULL) * num_customer * num_customer);
-            infos_bc[num_customer].arraySize = (rand() % 98) + 2;
+            infos_bc[num_customer].arraySize = (rand() % 298) + 2;
 
             /* Gera vetor aleatorio e converte para string */
             int array[infos_bc[num_customer].arraySize];
@@ -265,7 +260,7 @@ void *customer(void *customerId)
             }
             arrayToString(array, infos_bc[num_customer].msgToBarber, infos_bc[num_customer].arraySize);
 
-            infos_bc[num_customer].customer_no = 0;
+            infos_bc[num_customer].currentCustomer = 0;
 
             lockSem(g_sem_id_barber, 0);
 
@@ -380,7 +375,7 @@ void clearStruct()
     {
         clearString(infos_bc[i].msgToBarber, MAXSTRINGSIZE);
         clearString(infos_bc[i].msgToCustomer, MAXSTRINGSIZE);
-        infos_bc[i].customer_no = -1;
+        infos_bc[i].currentCustomer = -1;
     }
 }
 
