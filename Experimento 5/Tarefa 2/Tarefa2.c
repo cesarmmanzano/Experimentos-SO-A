@@ -43,13 +43,14 @@ typedef struct
 {
     unsigned int barber_no;
 
+    unsigned int customer_no;
+
     char msgToCustomer[MAXSTRINGSIZE];
 
     char msgToBarber[MAXSTRINGSIZE];
 
     int arraySize;
 
-    int currentCustomer;
 } data_t[CUSTOMERS];
 data_t infos_bc;
 
@@ -84,7 +85,7 @@ int main(int argc, char *argv[])
 {
     int num_barber[BARBERS], num_customer[CUSTOMERS];
 
-    /* Inicializa semaforo */
+    /* Inicializa semaforos */
     key_t sem_key_barber = ftok("/tmp", 'a');
     key_t sem_key_customer = ftok("/tmp", 'b');
     key_t sem_key_aprHair = ftok("/tmp", 'c');
@@ -95,17 +96,18 @@ int main(int argc, char *argv[])
     createSem(&g_sem_id_customer, sem_key_customer, CUSTOMERS);
     createSem(&g_sem_id_aprHair, sem_key_aprHair, 1);
 
-    //lockSem(g_sem_id_barber);
-    //lockSem(g_sem_id_customer);
+    //lockSem(g_sem_id_barber, 1);
+    //lockSem(g_sem_id_customer, i);
     unlockSem(g_sem_id_aprHair, 0);
 
     /* Inicializa mutex */
     if (pthread_mutex_init(&mutex, NULL))
     {
-        printf("Impossível inicializar mutex barbeiro");
+        printf("Impossível inicializar mutex barbeiro\n");
         exit(-1);
     }
 
+    /* Limpa os dados da struct */
     clearStruct();
 
     /* Cria as threads barbeiro */
@@ -130,7 +132,7 @@ int main(int argc, char *argv[])
         }
     }
 
-    /* Espera barbeiros e clientes */
+    /* Espera clientes */
     for (int i = 0; i < CUSTOMERS; i++)
     {
         if (pthread_join(customers[i], NULL))
@@ -140,6 +142,7 @@ int main(int argc, char *argv[])
         }
     }
 
+    /* Mata barbeiros */
     for (int i = 0; i < BARBERS; i++)
     {
         if (pthread_cancel(barbers[i]))
@@ -154,9 +157,10 @@ int main(int argc, char *argv[])
     removeSem(g_sem_id_customer);
     removeSem(g_sem_id_aprHair);
 
+    /* Destroi mutex */
     if (pthread_mutex_destroy(&mutex))
     {
-        printf("Impossível destruir mutex cliente\n");
+        printf("Impossível destruir mutex\n");
         exit(-1);
     }
 
@@ -170,7 +174,7 @@ void *barber(void *barberId)
     int num_barber = *(int *)barberId;
 
     //int sizeString;
-    int currentCustomer = -1;
+    int currentCustomer;
 
     /* Atende cliente enquanto trabalhar */
     while (__STDC__)
@@ -181,14 +185,14 @@ void *barber(void *barberId)
         pthread_mutex_lock(&mutex);
         for (int i = 0; i < CUSTOMERS; i++)
         {
-            if (infos_bc[i].currentCustomer == 0)
+            if (infos_bc[i].customer_no == 0)
             {
-                infos_bc[i].currentCustomer = 1;
-                infos_bc[i].barber_no = num_barber;
+                infos_bc[i].customer_no = 1;
                 currentCustomer = i;
                 break;
             }
         }
+
         pthread_mutex_unlock(&mutex);
 
         if (currentCustomer != -1)
@@ -196,6 +200,7 @@ void *barber(void *barberId)
             lockSem(g_sem_id_customer, currentCustomer);
             pthread_mutex_lock(&mutex);
 
+            infos_bc[currentCustomer].barber_no = num_barber;
             numChairs = numChairs - 1;
 
             /* Pega informações da struct */
@@ -243,11 +248,12 @@ void *customer(void *customerId)
             numChairs = numChairs + 1;
 
             unlockSem(g_sem_id_customer, num_customer);
+            pthread_mutex_unlock(&mutex);
 
             /* Coloca informações na struct */
 
             /* Gera tamanho da string */
-            srand(time(NULL) * num_customer * 2);
+            srand(time(NULL) * num_customer * num_customer);
             infos_bc[num_customer].arraySize = (rand() % 98) + 2;
 
             /* Gera vetor aleatorio e converte para string */
@@ -259,12 +265,12 @@ void *customer(void *customerId)
             }
             arrayToString(array, infos_bc[num_customer].msgToBarber, infos_bc[num_customer].arraySize);
 
-            infos_bc[num_customer].currentCustomer = 0;
+            infos_bc[num_customer].customer_no = 0;
 
-            pthread_mutex_unlock(&mutex);
             lockSem(g_sem_id_barber, 0);
 
             /* Imprimir informações */
+            usleep(10000);
             lockSem(g_sem_id_aprHair, 0);
             gettimeofday(&stop_time, NULL);
             float time = (stop_time.tv_usec - start_time.tv_usec) / (float)MICRO_PER_SECOND;
@@ -311,9 +317,9 @@ void apreciate_hair(int num_barber, int num_customer, float time)
 {
     printf("\n");
     printf("\n======================================================\n");
-    printf("Cliente #%d atendido pelo barbeiro #%d\n", num_customer + 1, num_barber + 1);
-    printf("Tempo de atendimento: %.8f\n", time);
-    printf("String não ordenada: ");
+    printf("\nCliente #%d atendido pelo barbeiro #%d\n", num_customer + 1, num_barber + 1);
+    printf("\nTempo de atendimento: %.8f\n", time);
+    printf("\nString não ordenada: ");
     puts(infos_bc[num_customer].msgToBarber);
     printf("\nString ordenada: ");
     puts(infos_bc[num_customer].msgToCustomer);
@@ -374,7 +380,7 @@ void clearStruct()
     {
         clearString(infos_bc[i].msgToBarber, MAXSTRINGSIZE);
         clearString(infos_bc[i].msgToCustomer, MAXSTRINGSIZE);
-        infos_bc[i].currentCustomer = -1;
+        infos_bc[i].customer_no = -1;
     }
 }
 
